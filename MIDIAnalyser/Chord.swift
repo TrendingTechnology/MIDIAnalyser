@@ -236,7 +236,6 @@ class ChordAnalyser {
         if(intervalStates[maj6])  {if(hasExt) {ext += ",";}; ext += "13";  hasExt = true;}
         
         chord = root + base;
-        
         if hasExt {
           if(ext.contains("b9") || ext.contains("#9") || ext.contains("#11") || ext.contains("b13") || ext.count > 3) {
             chord += "add(" + ext + ")";    // add brackets when extension has accidental or multiple extensions

@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -714,14 +715,14 @@
                                 </segmentedCell>
                             </segmentedControl>
                             <box boxType="custom" cornerRadius="4" title="Chord Name" id="n21-d8-SJs">
-                                <rect key="frame" x="20" y="61" width="760" height="319"/>
+                                <rect key="frame" x="20" y="61" width="581" height="319"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <view key="contentView" id="MM1-yb-FLy">
-                                    <rect key="frame" x="1" y="1" width="758" height="317"/>
+                                    <rect key="frame" x="1" y="1" width="579" height="317"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sTQ-Pa-1oG">
-                                            <rect key="frame" x="328" y="135" width="102" height="47"/>
+                                            <rect key="frame" x="239" y="135" width="102" height="47"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="Uca-iq-5m2">
                                                 <font key="font" metaFont="system" size="40"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -733,6 +734,19 @@
                                         <constraint firstItem="sTQ-Pa-1oG" firstAttribute="centerX" secondItem="MM1-yb-FLy" secondAttribute="centerX" id="CPc-AE-nDo"/>
                                         <constraint firstItem="sTQ-Pa-1oG" firstAttribute="centerY" secondItem="MM1-yb-FLy" secondAttribute="centerY" id="pEh-ID-ANO"/>
                                     </constraints>
+                                </view>
+                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <accessibilityConnection property="link" destination="AuA-4d-ud3" id="LGg-CZ-fkK"/>
+                                </connections>
+                            </box>
+                            <box boxType="custom" cornerRadius="4" title="Box" id="lNw-5f-fNB">
+                                <rect key="frame" x="621" y="61" width="159" height="319"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <view key="contentView" id="AuA-4d-ud3">
+                                    <rect key="frame" x="1" y="1" width="157" height="317"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>

@@ -43,7 +43,8 @@ class ViewController: NSViewController, AKMIDIListener {
         sourcePopUpButton.addItem(withTitle: "(Select MIDI Input)")
         sourcePopUpButton.addItems(withTitles: midi.inputNames)
         chordLabel.stringValue = "-"
-        
+    
+        print(midi.inputNames)
         
         
         // analyser
