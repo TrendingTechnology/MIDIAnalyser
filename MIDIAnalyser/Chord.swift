@@ -187,10 +187,10 @@ class ChordAnalyser {
             intervalStates[maj3] = false;
             intervalStates[min6] = false;
           }
-          else {base = "?";}  // no 5 chords here
+          else {base = "(no5)";}  // no 5 chords here
         }
         
-        if(intervalStates[min2])  {if(hasExt) {ext += ",";}; ext += "b9";  hasExt = true;}  // add comma if already extension
+        if(intervalStates[min2])  {ext += "b9"; hasExt = true;}
         if(intervalStates[maj2])  {if(hasExt) {ext += ",";}; ext += "9";   hasExt = true;}
         if(intervalStates[min3])  {if(hasExt) {ext += ",";}; ext += "#9";  hasExt = true;}
         if(intervalStates[perf4]) {if(hasExt) {ext += ",";}; ext += "11";  hasExt = true;}
