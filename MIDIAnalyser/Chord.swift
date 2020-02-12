@@ -187,7 +187,44 @@ class ChordAnalyser {
             intervalStates[maj3] = false;
             intervalStates[min6] = false;
           }
-          else {base = "(no5)";}  // no 5 chords here
+          else {
+            if(intervalStates[maj3]) {
+              intervalStates[maj3] = false;
+              if     (intervalStates[min7]) {base = "7";     intervalStates[min7] = false;}  // set the interval states to say they are accounted for
+              else if(intervalStates[maj7]) {base = "maj7";  intervalStates[maj7] = false;}
+              else if(intervalStates[maj6]) {base = "6";     intervalStates[maj6] = false;   if(intervalStates[maj2]){base = "6/9"; intervalStates[maj2] = false;}}  // special case for 6/9
+              else                          {base = "";}
+              
+            }
+            else if(intervalStates[min3]) {
+              intervalStates[min3] = false;
+              if     (intervalStates[min7]) {base = "m7";      intervalStates[min7] = false;}
+              else if(intervalStates[maj6]) {base = "m6";      intervalStates[maj6] = false;}
+              else if(intervalStates[maj7]) {base = "m(maj7)"; intervalStates[maj7] = false;}
+              else                          {base = "m";}
+            
+            }
+            else if(intervalStates[maj2])  {
+              intervalStates[maj2] = false;
+              if     (intervalStates[min7]) {base = "7sus2";    intervalStates[min7] = false;}
+              else if(intervalStates[maj7]) {base = "maj7sus2"; intervalStates[maj7] = false;}
+              else if(intervalStates[maj6]) {base = "6sus2";    intervalStates[maj6] = false;}
+              else                          {base = "sus2";}
+              
+            }
+            else if(intervalStates[perf4]) {
+              intervalStates[perf4] = false;
+              if     (intervalStates[min7]) {base = "7sus4";    intervalStates[min7] = false;}
+              else if(intervalStates[maj7]) {base = "maj7sus4"; intervalStates[maj7] = false;}
+              else if(intervalStates[maj6]) {base = "6sus4";    intervalStates[maj6] = false;}
+              else                          {base = "sus4";}
+            }
+            
+            base += "(no5)"
+            
+          }  // no 5 chords here
+            
+          
         }
         
         if(intervalStates[min2])  {ext += "b9"; hasExt = true;}

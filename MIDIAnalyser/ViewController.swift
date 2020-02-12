@@ -75,7 +75,17 @@ class ViewController: NSViewController, AKMIDIListener {
     }
 
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
+        
+        // update the keyboard class
         keys.updateKeys(key: Int(noteNumber), state: false)
+        updateAccidentals()
+        
+        // analyse and update display
+        if(keys.nKeysPressed != 0) {
+            analyser.analyse(keyStates: keys.keyStates, notes: keys.notes, nKeys: keys.nKeys!)
+            updateChordLabel("\(analyser.chordName)")
+        }
+        updateChordLabel("-")
     }
 
     
