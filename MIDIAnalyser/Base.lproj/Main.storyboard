@@ -663,8 +663,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <rect key="contentRect" x="172" y="629" width="800" height="400"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <value key="minSize" type="size" width="500" height="300"/>
-                        <value key="maxSize" type="size" width="1600" height="800"/>
+                        <value key="minSize" type="size" width="600" height="350"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="Lgv-TM-Yda"/>
                         </connections>
@@ -715,15 +714,15 @@
                                 </segmentedCell>
                             </segmentedControl>
                             <box boxType="custom" cornerRadius="4" title="Chord Name" id="n21-d8-SJs">
-                                <rect key="frame" x="20" y="61" width="581" height="319"/>
+                                <rect key="frame" x="20" y="61" width="540" height="319"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <view key="contentView" id="MM1-yb-FLy">
-                                    <rect key="frame" x="1" y="1" width="579" height="317"/>
+                                    <rect key="frame" x="1" y="1" width="538" height="317"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sTQ-Pa-1oG">
-                                            <rect key="frame" x="239" y="135" width="102" height="47"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="Label" id="Uca-iq-5m2">
+                                            <rect key="frame" x="165" y="135" width="208" height="47"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="chordName" id="Uca-iq-5m2">
                                                 <font key="font" metaFont="system" size="40"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -742,11 +741,22 @@
                                 </connections>
                             </box>
                             <box boxType="custom" cornerRadius="4" title="Box" id="lNw-5f-fNB">
-                                <rect key="frame" x="621" y="61" width="159" height="319"/>
+                                <rect key="frame" x="580" y="61" width="200" height="319"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                 <view key="contentView" id="AuA-4d-ud3">
-                                    <rect key="frame" x="1" y="1" width="157" height="317"/>
+                                    <rect key="frame" x="1" y="1" width="198" height="317"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qDc-Mb-XC8">
+                                            <rect key="frame" x="18" y="20" width="162" height="277"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="listOfChordNames" id="CnE-qv-uOa">
+                                                <font key="font" metaFont="message" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
                                 </view>
                                 <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -756,6 +766,7 @@
                     <connections>
                         <outlet property="accidentalsSelector" destination="dkW-SN-8cc" id="V5l-9c-WiW"/>
                         <outlet property="chordLabel" destination="sTQ-Pa-1oG" id="bEm-1I-H3Y"/>
+                        <outlet property="possibleChordsLabel" destination="qDc-Mb-XC8" id="ZZk-vd-DEq"/>
                         <outlet property="sourcePopUpButton" destination="r5W-2D-Iif" id="3s0-ZW-TGx"/>
                     </connections>
                 </viewController>

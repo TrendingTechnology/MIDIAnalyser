@@ -23,6 +23,7 @@ class ViewController: NSViewController, AKMIDIListener {
     @IBOutlet private var sourcePopUpButton: NSPopUpButton!
     @IBOutlet weak var chordLabel: NSTextField!
     @IBOutlet weak var accidentalsSelector: NSSegmentedControl!
+    @IBOutlet weak var possibleChordsLabel: NSTextField!
     
     // midi
     var midi = AudioKit.midi
@@ -40,12 +41,10 @@ class ViewController: NSViewController, AKMIDIListener {
 
         // UI initialisation
         sourcePopUpButton.removeAllItems()
-        sourcePopUpButton.addItem(withTitle: "(Select MIDI Input)")
+        sourcePopUpButton.addItem(withTitle: "(Default MIDI Input)")
         sourcePopUpButton.addItems(withTitles: midi.inputNames)
         chordLabel.stringValue = "-"
-    
-        print(midi.inputNames)
-        
+        possibleChordsLabel.stringValue = ""
         
         // analyser
         analyser = ChordAnalyser.init(keyboard: keys)
@@ -73,6 +72,18 @@ class ViewController: NSViewController, AKMIDIListener {
         analyser.analyse(keyStates: keys.keyStates, notes: keys.notes, nKeys: keys.nKeys!)
         updateChordLabel("\(analyser.chordName)")
         
+        // possible chords
+        var multiLineChordLabel =   ""
+        analyser.possibleChords.sort(by: descending)
+        
+        if(analyser.possibleChords.count != 0) {
+            
+            for i in 0...(analyser.possibleChords.count - 1) {
+                multiLineChordLabel += "\(analyser.possibleChords[i])\n"
+            }
+            
+        }
+        updatePossibleChordsLabel(multiLineChordLabel)
     }
 
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
@@ -114,7 +125,19 @@ class ViewController: NSViewController, AKMIDIListener {
             self.chordLabel.stringValue = "\(label)"
         })
     }
-
+    
+    // update possible chords label
+    func updatePossibleChordsLabel(_ label: String) {
+        DispatchQueue.main.async(execute: {
+            self.possibleChordsLabel.stringValue = "\(label)"
+        })
+    }
+    
+    //
+    func descending(value1: String, value2: String) -> Bool {
+        return value1.count < value2.count;
+    }
+    
     // update accidentals
     func updateAccidentals() {
         DispatchQueue.main.async(execute: {
