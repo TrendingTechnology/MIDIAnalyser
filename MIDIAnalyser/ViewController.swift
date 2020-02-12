@@ -84,9 +84,11 @@ class ViewController: NSViewController, AKMIDIListener {
         // analyse and update display
         if(keys.nKeysPressed != 0) {
             analyser.analyse(keyStates: keys.keyStates, notes: keys.notes, nKeys: keys.nKeys!)
-            updateChordLabel("\(analyser.chordName)")
         }
-        updateChordLabel("-")
+        else if keys.nKeysPressed == 0 {
+            analyser.chordName = "-"
+        }
+        updateChordLabel("\(analyser.chordName)")
     }
 
     

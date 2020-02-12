@@ -12,6 +12,7 @@ class ChordAnalyser {
     
     // variables
     var chordName: String = ""
+    var possibleChords: [String] = []
     var keys: Keyboard = Keyboard()
     var accidentals: Keyboard.Accidentals = Keyboard.Accidentals.sharps
     
@@ -50,7 +51,7 @@ class ChordAnalyser {
             
             // analyse all possible combinations of intervals
             let nCombinations: Int = intervals.count - 1
-            var possibleChords: [String] = Array(repeating: "", count: intervals.count)
+            possibleChords = Array(repeating: "", count: intervals.count)
             
             // analyse first permutation
             possibleChords[0] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals))
@@ -137,39 +138,44 @@ class ChordAnalyser {
         var hasExt: Bool = false;
         
         if(intervalStates[perf5]) {
-          
-          // chords with a perfect fifth
-          if(intervalStates[maj3]) {
-            intervalStates[maj3] = false;
-            if     (intervalStates[min7]) {base = "7";     intervalStates[min7] = false;}  // set the interval states to say they are accounted for
-            else if(intervalStates[maj7]) {base = "maj7";  intervalStates[maj7] = false;}
-            else if(intervalStates[maj6]) {base = "6";     intervalStates[maj6] = false;   if(intervalStates[maj2]){base = "6/9"; intervalStates[maj2] = false;}}  // special case for 6/9
-            else                          {base = "";}
             
-          }
-          else if(intervalStates[min3]) {
-            intervalStates[min3] = false;
-            if     (intervalStates[min7]) {base = "m7";      intervalStates[min7] = false;}
-            else if(intervalStates[maj6]) {base = "m6";      intervalStates[maj6] = false;}
-            else if(intervalStates[maj7]) {base = "m(maj7)"; intervalStates[maj7] = false;}
-            else                          {base = "m";}
+            intervalStates[perf5] = false;
           
-          }
-          else if(intervalStates[maj2])  {
-            intervalStates[maj2] = false;
-            if     (intervalStates[min7]) {base = "7sus2";    intervalStates[min7] = false;}
-            else if(intervalStates[maj7]) {base = "maj7sus2"; intervalStates[maj7] = false;}
-            else if(intervalStates[maj6]) {base = "6sus2";    intervalStates[maj6] = false;}
-            else                          {base = "sus2";}
-            
-          }
-          else if(intervalStates[perf4]) {
-            intervalStates[perf4] = false;
-            if     (intervalStates[min7]) {base = "7sus4";    intervalStates[min7] = false;}
-            else if(intervalStates[maj7]) {base = "maj7sus4"; intervalStates[maj7] = false;}
-            else if(intervalStates[maj6]) {base = "6sus4";    intervalStates[maj6] = false;}
-            else                          {base = "sus4";}
-          }
+            // chords with a perfect fifth
+            if(intervalStates[maj3]) {
+                intervalStates[maj3] = false;
+                if     (intervalStates[min7]) {base = "7";     intervalStates[min7] = false;}  // set the interval states to say they are accounted for
+                else if(intervalStates[maj7]) {base = "maj7";  intervalStates[maj7] = false;}
+                else if(intervalStates[maj6]) {base = "6";     intervalStates[maj6] = false;   if(intervalStates[maj2]){base = "6/9"; intervalStates[maj2] = false;}}  // special case for 6/9
+                else                          {base = "";}
+            }
+            else if(intervalStates[min3]) {
+                intervalStates[min3] = false;
+                if     (intervalStates[min7]) {base = "m7";      intervalStates[min7] = false;}
+                else if(intervalStates[maj6]) {base = "m6";      intervalStates[maj6] = false;}
+                else if(intervalStates[maj7]) {base = "m(maj7)"; intervalStates[maj7] = false;}
+                else                          {base = "m";}
+            }
+            else if(intervalStates[maj2])  {
+                intervalStates[maj2] = false;
+                if     (intervalStates[min7]) {base = "7sus2";    intervalStates[min7] = false;}
+                else if(intervalStates[maj7]) {base = "maj7sus2"; intervalStates[maj7] = false;}
+                else if(intervalStates[maj6]) {base = "6sus2";    intervalStates[maj6] = false;}
+                else                          {base = "sus2";}
+            }
+            else if(intervalStates[perf4]) {
+                intervalStates[perf4] = false;
+                if     (intervalStates[min7]) {base = "7sus4";    intervalStates[min7] = false;}
+                else if(intervalStates[maj7]) {base = "maj7sus4"; intervalStates[maj7] = false;}
+                else if(intervalStates[maj6]) {base = "6sus4";    intervalStates[maj6] = false;}
+                else                          {base = "sus4";}
+            }
+            else {
+                if     (intervalStates[min7]) {base = "7(no3)";    intervalStates[min7] = false;}
+                else if(intervalStates[maj7]) {base = "maj7(no3))"; intervalStates[maj7] = false;}
+                else if(intervalStates[maj6]) {base = "6(no3)";    intervalStates[maj6] = false;}
+                else                          {base = "5";}
+            }
          
           
         }
