@@ -1,7 +1,8 @@
 # MIDIAnalyser
-`Current version: 1.1`
- 
-`Last update: 11/02/2020`
+``` 
+Current version  :  1.1
+Last updated     :  11/02/2020
+```
 
 ### About
 
