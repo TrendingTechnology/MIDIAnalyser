@@ -3,4 +3,4 @@
 [App Link](README.md)
 
 
-<a href="README.md" download>Click to Download</a>
+<a href="/macOS Builds/MIDIAnalyser 2020-02-11/MIDIAnalyser.app" download>Click to Download</a>
