@@ -15,9 +15,10 @@ This project is made to analyse input data from a MIDI controller and display th
 * Alternative names for chords displayed.
 
 ### Downloads
-[Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
+
 [Download Latest Version 1.1](https://github.com/t-bre/MIDIAnalyser/releases/download/1.1/MIDIAnalyser.app.zip)
 
+[Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
 [Demo Video (Beta Version)](https://github.com/t-bre/MIDIAnalyser/raw/master/Archive/Demo/ChordAnalyser_0_2.mov)
 
 ### Credits
