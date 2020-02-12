@@ -2,6 +2,7 @@
 ``` 
 Current version  :  1.1
 Last updated     :  11/02/2020
+Supported OS     :  macOS 10.14+
 ```
 
 ### Description
