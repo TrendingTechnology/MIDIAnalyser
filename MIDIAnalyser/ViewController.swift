@@ -70,6 +70,7 @@ class ViewController: NSViewController, AKMIDIListener {
         
         // analyse and update display
         analyser.analyse(keyStates: keys.keyStates, notes: keys.notes, nKeys: keys.nKeys!)
+        analyser.chordName = formatChordLabel(label: analyser.chordName)
         updateChordLabel("\(analyser.chordName)")
         
         // possible chords
@@ -86,6 +87,7 @@ class ViewController: NSViewController, AKMIDIListener {
         updatePossibleChordsLabel(multiLineChordLabel)
     }
 
+    
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
         
         // update the keyboard class
@@ -99,6 +101,7 @@ class ViewController: NSViewController, AKMIDIListener {
         else if keys.nKeysPressed == 0 {
             analyser.chordName = "-"
         }
+        analyser.chordName = formatChordLabel(label: analyser.chordName)
         updateChordLabel("\(analyser.chordName)")
     }
 
@@ -118,6 +121,16 @@ class ViewController: NSViewController, AKMIDIListener {
     func receivedMIDISystemCommand(_ data: [MIDIByte], portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
     }
 
+    // format chord label
+    func formatChordLabel(label: String) -> String {
+        var newLabel: String = ""
+        newLabel = label
+        newLabel = newLabel.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
+        newLabel = newLabel.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
+        newLabel = newLabel.replacingOccurrences(of: "/", with: " / ", options: .literal, range: nil)
+        newLabel = newLabel.replacingOccurrences(of: "6 / 9", with: "6/9", options: .literal, range: nil) // hack to deformat spaces from prev line in 6/9 chord
+        return newLabel
+    }
     
     // update chord label
     func updateChordLabel(_ label: String) {
@@ -133,7 +146,7 @@ class ViewController: NSViewController, AKMIDIListener {
         })
     }
     
-    //
+    // sort by descending
     func descending(value1: String, value2: String) -> Bool {
         return value1.count < value2.count;
     }
