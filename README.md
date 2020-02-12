@@ -19,5 +19,5 @@ This project is made to analyse input data from a MIDI controller and display th
 [Download Version 1.1](https://github.com/tbre/MIDIAnalyser/raw/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app.zip)
 
 ### Credits
-MIDI event handling: [AudioKit](https://github.com/AudioKit/AudioKit)  
-UI: [AppKit](https://developer.apple.com/documentation/appkit)
+MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
+UI ---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
