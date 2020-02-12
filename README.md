@@ -12,7 +12,7 @@ This project is made to analyse input data from a MIDI controller and display th
 * Real time analysis.
 * Recognition of major, minor, diminished, augmented and suspended chords (including extensions).
 * Recognition of intervals.
-* Alternative names for chords displayed
+* Alternative names for chords displayed.
 
 ### Downloads
 [Download Version 1.0](https://github.com/t-bre/MIDIAnalyser/raw/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app.zip)  
