@@ -1,6 +1,4 @@
 # MIDIAnalyser
 
-[App Link](README.md)
 
-
-<a href="/macOS Builds/MIDIAnalyser 2020-02-11/MIDIAnalyser.app" download>Click to Download</a>
+<a href="https://github.com/t-bre/MIDIAnalyser/tree/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app/Contents" download>Click to Download</a>
