@@ -20,4 +20,4 @@ This project is made to analyse input data from a MIDI controller and display th
 
 ### Credits
 MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
-UI ---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
+UI &nbsp;---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
