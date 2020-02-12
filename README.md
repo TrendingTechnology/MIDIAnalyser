@@ -16,7 +16,8 @@ This project is made to analyse input data from a MIDI controller and display th
 
 ### Downloads
 [Download Version 1.0](https://github.com/t-bre/MIDIAnalyser/raw/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app.zip)  
-[Download Version 1.1](https://github.com/tbre/MIDIAnalyser/raw/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app.zip)  
+[Download Version 1.1](https://github.com/tbre/MIDIAnalyser/raw/master/macOS%20Builds/MIDIAnalyser%202020-02-11/MIDIAnalyser.app.zip)
+
 [Demo Video (Beta Version)](https://github.com/t-bre/MIDIAnalyser/raw/master/Archive/Demo/ChordAnalyser_0_2.mov)
 
 ### Credits
