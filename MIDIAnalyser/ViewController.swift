@@ -127,6 +127,7 @@ class ViewController: NSViewController, AKMIDIListener {
         newLabel = label
         newLabel = newLabel.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
         newLabel = newLabel.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
+        newLabel = newLabel.replacingOccurrences(of: "add", with: " add", options: .literal, range: nil)
         newLabel = newLabel.replacingOccurrences(of: "/", with: " / ", options: .literal, range: nil)
         newLabel = newLabel.replacingOccurrences(of: "6 / 9", with: "6/9", options: .literal, range: nil) // hack to deformat spaces from prev line in 6/9 chord
         return newLabel

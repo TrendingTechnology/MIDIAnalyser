@@ -172,7 +172,7 @@ class ChordAnalyser {
             }
             else {
                 if     (intervalStates[min7]) {base = "7(no3)";    intervalStates[min7] = false;}
-                else if(intervalStates[maj7]) {base = "maj7(no3))"; intervalStates[maj7] = false;}
+                else if(intervalStates[maj7]) {base = "maj7(no3)"; intervalStates[maj7] = false;}
                 else if(intervalStates[maj6]) {base = "6(no3)";    intervalStates[maj6] = false;}
                 else                          {base = "5";}
             }
@@ -189,9 +189,12 @@ class ChordAnalyser {
           
           }
           else if(intervalStates[maj3] && intervalStates[min6]) {
-            base = "aug";
             intervalStates[maj3] = false;
             intervalStates[min6] = false;
+            if(intervalStates[maj7]) {base = "maj7(#5)";    intervalStates[maj7] = false;}
+            else {
+                base = "aug"
+            }
           }
           else {
             if(intervalStates[maj3]) {
