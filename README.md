@@ -8,6 +8,8 @@ Supported OS     :  macOS 10.14+
 ### Description
 This project is made to analyse input data from a MIDI controller and display the chord played in real time.
 
+![](Archive/Demo/MIDIAnalyser%201.2.0.png)
+
 ### Features
 * Real time analysis.
 * Recognition of major, minor, diminished, augmented and suspended chords (including extensions).
