@@ -8,7 +8,7 @@ Supported OS     :  macOS 10.14+
 ### Description
 This project is made to analyse input data from a MIDI controller and display the chord played in real time.
 
-![](Archive/Demo/MIDIAnalyser%201.2.0.png)
+<img src="./Archive/Demo/MIDIAnalyser%201.2.0.png" width="800" class="center">
 
 ### Features
 * Real time analysis.
