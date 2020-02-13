@@ -17,6 +17,8 @@ class Keyboard {
     let maxMIDINumber = 108
     
     var nKeys: Int?
+    var nWhiteKeys: Int = 0
+    var nBlackKeys: Int = 0
     var keyStates: [Bool] = Array()     // represents state of all keys on keyboard
     var noteStates: [Bool] = Array()    // representes states of the 12 chromatic notes
     
@@ -29,11 +31,17 @@ class Keyboard {
     let noteNamesMixed  = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
 
     
+    
     // initialiser
     init() {
+        
+        // calculate number of keys and set all to un-pressed
         nKeys = maxMIDINumber - (minMIDINumber - 1)
+        nWhiteKeys = 52                                         // MAGIC NUMBER! only works for 88 keys
+        nBlackKeys = nKeys! - nWhiteKeys
         keyStates = Array(repeating: false, count: nKeys!)
         noteStates = Array(repeating: false, count: 12)
+        
     }
     
     
@@ -89,6 +97,18 @@ class Keyboard {
             return noteNamesMixed[key % 12]
 
         }
+    }
+    
+    static func isWhiteKey(key: Int) -> Bool {
+                                  // A  // Bb  // B  // C
+        let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
+        var result: Bool = false
+        
+        if isWhiteKey[key % 12] {
+            result =  true
+        }
+        
+        return result
     }
     
 }

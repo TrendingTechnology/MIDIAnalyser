@@ -34,74 +34,75 @@ class ChordAnalyser {
     // utility functions
     func analyse(keyStates: [Bool], notes: [Int], nKeys: Int) {
         
-        
-        // figure out intervals in chord (assuming lowest note is root)
-        var intervals: [Int] = Array(repeating: 0, count: notes.count)
-        
-        for i in 0...(notes.count - 1) {
-            intervals[i] = (notes[i] - notes[0]) % 12 // mod 12 removes compound intervals
-        }
-        
-        intervals.sort()
-        intervals.removeDuplicates()
-        
-        
-        // triads and extended chords
-        if intervals.count > 2 {
+        if(notes.count >= 1) {
+            // figure out intervals in chord (assuming lowest note is root)
+            var intervals: [Int] = Array(repeating: 0, count: notes.count)
             
-            // analyse all possible combinations of intervals
-            let nCombinations: Int = intervals.count - 1
-            possibleChords = Array(repeating: "", count: intervals.count)
-            
-            // analyse first permutation
-            possibleChords[0] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals))
-            
-            // go through permutations
-            for i in 1...nCombinations {
-                
-                // rearrange intervals into next combination
-                for j in (0...nCombinations - 1) {
-                    intervals[j] = intervals[j + 1]
-                }
-                
-                intervals[nCombinations] = 12 // last one always 12 (octave shifted up)
-                
-                let offset: Int = intervals[0]
-                
-                for j in 0...nCombinations {
-                    intervals[j] -= offset;
-                }
-                
-                // every loop, using latest interval set, analyse the chord
-                possibleChords[i] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[i] + keys.minMIDINumber, type: accidentals)) + "/" + keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals)
-                
+            for i in 0...(notes.count - 1) {
+                intervals[i] = (notes[i] - notes[0]) % 12 // mod 12 removes compound intervals
             }
             
+            intervals.sort()
+            intervals.removeDuplicates()
             
-            // choose the most likely chord name
-            chordName = mostLikelyChord(possibleChords: possibleChords)
             
-            
-        }
-        // intervals
-        else if intervals.count == 2 {
-            
-            chordName = keys.noteNameOfKey(key: notes[0]
-                        + keys.minMIDINumber, type: accidentals)
-                        + ", "
-                        + keys.noteNameOfKey(key: notes[1]
-                        + keys.minMIDINumber, type: accidentals)
-                        + ": "
-                        + intervalNames[intervals[1]]
-            
-        }
-        // single notes
-        else if intervals.count == 1 {
-            chordName = keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals) + " (note)"
-        }
-        // no notes
-        else {
-            chordName = ""
+            // triads and extended chords
+            if intervals.count > 2 {
+                
+                // analyse all possible combinations of intervals
+                let nCombinations: Int = intervals.count - 1
+                possibleChords = Array(repeating: "", count: intervals.count)
+                
+                // analyse first permutation
+                possibleChords[0] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals))
+                
+                // go through permutations
+                for i in 1...nCombinations {
+                    
+                    // rearrange intervals into next combination
+                    for j in (0...nCombinations - 1) {
+                        intervals[j] = intervals[j + 1]
+                    }
+                    
+                    intervals[nCombinations] = 12 // last one always 12 (octave shifted up)
+                    
+                    let offset: Int = intervals[0]
+                    
+                    for j in 0...nCombinations {
+                        intervals[j] -= offset;
+                    }
+                    
+                    // every loop, using latest interval set, analyse the chord
+                    possibleChords[i] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[i] + keys.minMIDINumber, type: accidentals)) + "/" + keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals)
+                    
+                }
+                
+                
+                // choose the most likely chord name
+                chordName = mostLikelyChord(possibleChords: possibleChords)
+                
+                
+            }
+            // intervals
+            else if intervals.count == 2 {
+                
+                chordName = keys.noteNameOfKey(key: notes[0]
+                            + keys.minMIDINumber, type: accidentals)
+                            + ", "
+                            + keys.noteNameOfKey(key: notes[1]
+                            + keys.minMIDINumber, type: accidentals)
+                            + ": "
+                            + intervalNames[intervals[1]]
+                
+            }
+            // single notes
+            else if intervals.count == 1 {
+                chordName = keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals) + " (note)"
+            }
+            // no notes
+            else {
+                chordName = ""
+            }
         }
         
         

@@ -682,6 +682,7 @@
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2S-Jp-Qdl">
                         <rect key="frame" x="0.0" y="0.0" width="800" height="473"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <subviews>
                             <popUpButton verticalHuggingPriority="750" id="r5W-2D-Iif">
                                 <rect key="frame" x="18" y="17" width="633" height="25"/>
@@ -713,14 +714,14 @@
                                 </segmentedCell>
                             </segmentedControl>
                             <box boxType="custom" cornerRadius="4" title="Chord Name" id="n21-d8-SJs">
-                                <rect key="frame" x="20" y="202" width="540" height="251"/>
+                                <rect key="frame" x="20" y="177" width="540" height="276"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <view key="contentView" id="MM1-yb-FLy">
-                                    <rect key="frame" x="1" y="1" width="538" height="249"/>
+                                    <rect key="frame" x="1" y="1" width="538" height="274"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sTQ-Pa-1oG">
-                                            <rect key="frame" x="165" y="101" width="208" height="47"/>
+                                            <rect key="frame" x="165" y="114" width="208" height="47"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="chordName" id="Uca-iq-5m2">
                                                 <font key="font" metaFont="system" size="40"/>
                                                 <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
@@ -740,14 +741,14 @@
                                 </connections>
                             </box>
                             <box boxType="custom" cornerRadius="4" title="Box" id="lNw-5f-fNB">
-                                <rect key="frame" x="580" y="202" width="200" height="251"/>
+                                <rect key="frame" x="580" y="177" width="200" height="276"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
                                 <view key="contentView" id="AuA-4d-ud3">
-                                    <rect key="frame" x="1" y="1" width="198" height="249"/>
+                                    <rect key="frame" x="1" y="1" width="198" height="274"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qDc-Mb-XC8">
-                                            <rect key="frame" x="18" y="20" width="162" height="209"/>
+                                            <rect key="frame" x="18" y="20" width="162" height="234"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="listOfChordNames" id="CnE-qv-uOa">
                                                 <font key="font" metaFont="message" size="11"/>
@@ -760,28 +761,22 @@
                                 <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <box ambiguous="YES" boxType="custom" cornerRadius="4" title="Box" id="pCL-28-ffF">
-                                <rect key="frame" x="20" y="61" width="760" height="121"/>
+                            <box boxType="custom" cornerRadius="4" title="Keyboard" id="pCL-28-ffF">
+                                <rect key="frame" x="20" y="61" width="760" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="1RY-bf-U5M">
-                                    <rect key="frame" x="1" y="1" width="758" height="119"/>
+                                <view key="contentView" id="1RY-bf-U5M">
+                                    <rect key="frame" x="1" y="1" width="758" height="98"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="760" id="bNq-Dv-0BA"/>
-                                    <constraint firstAttribute="height" constant="120" id="cJ1-Cl-xvb"/>
-                                </constraints>
                                 <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </box>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="pCL-28-ffF" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="k5h-Tk-KCm"/>
-                        </constraints>
                     </view>
                     <connections>
                         <outlet property="accidentalsSelector" destination="dkW-SN-8cc" id="V5l-9c-WiW"/>
                         <outlet property="chordLabel" destination="sTQ-Pa-1oG" id="bEm-1I-H3Y"/>
+                        <outlet property="keyboardBox" destination="pCL-28-ffF" id="aGJ-l0-igz"/>
                         <outlet property="possibleChordsLabel" destination="qDc-Mb-XC8" id="ZZk-vd-DEq"/>
                         <outlet property="sourcePopUpButton" destination="r5W-2D-Iif" id="3s0-ZW-TGx"/>
                     </connections>

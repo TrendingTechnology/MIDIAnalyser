@@ -6,33 +6,39 @@
 //  Copyright © 2020 Tim Brewis. All rights reserved.
 //
 
-/*
-    NSTextField: https://forums.raywenderlich.com/t/nstextfield-whats-up-with-that/60577/2
- 
- 
- 
- */
-
 import AudioKit
 import AppKit
 import Cocoa
 
-class ViewController: NSViewController, AKMIDIListener {
+class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
     
     // UI connections
     @IBOutlet private var sourcePopUpButton: NSPopUpButton!
     @IBOutlet weak var chordLabel: NSTextField!
     @IBOutlet weak var accidentalsSelector: NSSegmentedControl!
     @IBOutlet weak var possibleChordsLabel: NSTextField!
+    @IBOutlet weak var keyboardBox: NSBox!
     
     // midi
     var midi = AudioKit.midi
     var keys: Keyboard = Keyboard.init()
     var analyser: ChordAnalyser = ChordAnalyser(keyboard: Keyboard())
+    
+    var whiteKeys: [NSButton] = []
+    var whiteKeyWidth:Double = 0
+    var whiteKeyHeight:Double = 0
+    
+    var blackKeys: [NSButton] = []
+    var blackKeyWidth:Double = 0
+    var blackKeyHeight:Double = 0
+    
+    var keyPressedColor: NSColor = NSColor(red: 3/255, green: 252/255, blue: 177/255, alpha: 1)
 
     
-    // handle view loaded
+    // initialisation for view
     override func viewDidLoad() {
+        
+        // view loaded
         super.viewDidLoad()
         
         // MIDI initialisation
@@ -46,9 +52,54 @@ class ViewController: NSViewController, AKMIDIListener {
         chordLabel.stringValue = "-"
         possibleChordsLabel.stringValue = ""
         
+        
+        // initialise NSButton key arrays
+        whiteKeys = Array(repeating: NSButton(), count: keys.nWhiteKeys)
+        whiteKeyWidth = Float(keyboardBox.frame.size.width) / keys.nWhiteKeys
+        whiteKeyHeight = Double(keyboardBox.frame.size.height)
+        
+        blackKeys = Array(repeating: NSButton(), count: keys.nBlackKeys)
+        blackKeyWidth = 0.7 * whiteKeyWidth
+        blackKeyHeight = 0.6 * whiteKeyHeight
+        
+        for i in 0...(whiteKeys.count - 1) {
+            whiteKeys[i] = NSButton(frame: NSRect(x: Double(keyboardBox.frame.origin.x) + i * whiteKeyWidth, y: Double(keyboardBox.frame.origin.y), width: Double(whiteKeyWidth - 2), height: whiteKeyHeight));
+            whiteKeys[i].target = self
+            whiteKeys[i].action = #selector(buttonTest(_:))
+            whiteKeys[i].title = ""
+            whiteKeys[i].image = NSImage.swatchWithColor(color: NSColor.white, size: NSMakeSize(CGFloat(whiteKeyWidth), CGFloat(whiteKeyHeight)))
+            whiteKeys[i].isBordered = false
+            self.view.addSubview(whiteKeys[i])
+        }
+        
+        let blackKeyOffsets = [0,  1,  1,  2,  2,  2,
+                                   3,  3,  4,  4,  4,
+                                   5,  5,  6,  6,  6,
+                                   7,  7,  8,  8,  8,
+                                   9,  9, 10, 10, 10,
+                                  11, 11, 12, 12, 12,
+                                  13, 13, 14, 14, 14,
+                                  15, 15, 16, 16, 16]
+        
+        for i in 0...(blackKeys.count - 1) {
+            blackKeys[i] = NSButton(frame: NSRect(x: Double(keyboardBox.frame.origin.x) + (whiteKeyWidth - Double(blackKeyWidth / 2)) + (i + blackKeyOffsets[i]) * whiteKeyWidth, y: Double(keyboardBox.frame.origin.y) + Double(keyboardBox.frame.size.height) - blackKeyHeight, width: Double(blackKeyWidth * 0.9), height: blackKeyHeight));
+            blackKeys[i].target = self
+            blackKeys[i].action = #selector(buttonTest(_:))
+            blackKeys[i].title = ""
+            blackKeys[i].image = NSImage.swatchWithColor(color: NSColor.black, size: NSMakeSize(CGFloat(blackKeyWidth), CGFloat(blackKeyHeight)))
+            blackKeys[i].isBordered = false
+            self.view.addSubview(blackKeys[i])
+        }
+        
+        
         // analyser
         analyser = ChordAnalyser.init(keyboard: keys)
         
+        
+    }
+    
+    override func viewDidAppear() {
+        view.window?.delegate = self
     }
     
     
@@ -85,6 +136,10 @@ class ViewController: NSViewController, AKMIDIListener {
             
         }
         updatePossibleChordsLabel(multiLineChordLabel)
+        
+        // UI keyboard
+        keyStateChange(Int(noteNumber), true)
+        
     }
 
     
@@ -103,6 +158,9 @@ class ViewController: NSViewController, AKMIDIListener {
         }
         analyser.chordName = formatChordLabel(label: analyser.chordName)
         updateChordLabel("\(analyser.chordName)")
+        
+        // UI keyboard
+        keyStateChange(Int(noteNumber), false)
     }
 
     
@@ -147,6 +205,79 @@ class ViewController: NSViewController, AKMIDIListener {
         })
     }
     
+    // update keys
+    func keyStateChange(_ noteNumber: Int, _ state: Bool) {
+        DispatchQueue.main.async(execute: {
+            
+            // convert MIDI number to black or white key number
+                                            //   | = white key
+                                            //   |       |   |       |       |   |       |   Ab
+            let correspondingKeyNumber: [Int] = [0,  0,  1,  2,  1,  3,  2,  4,  5,  3,  6,  4,    // A0 - Ab1
+                                                 7,  5,  8,  9,  6, 10,  7, 11, 12,  8, 13,  9,    // A1 - Ab2
+                                                14, 10, 15, 16, 11, 17, 12, 18, 19, 13, 20, 14,    // A2 - Ab3
+                                                21, 15, 22, 23, 16, 24, 17, 25, 26, 18, 27, 19,    // A3 - Ab4
+                                                28, 20, 29, 30, 21, 31, 22, 32, 33, 23, 34, 24,    // A4 - Ab5
+                                                35, 25, 36, 37, 26, 38, 27, 39, 40, 28, 41, 29,    // A5 - Ab6
+                                                42, 30, 43, 44, 31, 45, 32, 46, 47, 33, 48, 34,    // A6 - Ab7
+                                                49, 35, 50, 51, 36, 52, 37, 53, 54, 38, 55, 39]    // A7 - Ab8
+            
+            // update keys
+            if noteNumber >= self.keys.minMIDINumber && noteNumber < self.keys.maxMIDINumber {
+                if state {
+                    if(Keyboard.isWhiteKey(key: Int(noteNumber) - self.keys.minMIDINumber)) {
+                        self.whiteKeys[correspondingKeyNumber[Int(noteNumber - self.keys.minMIDINumber)]].image = NSImage.swatchWithColor(color: self.keyPressedColor, size: NSMakeSize(CGFloat(self.whiteKeyWidth), CGFloat(self.whiteKeyHeight)))
+                    }
+                    else {
+                        self.blackKeys[correspondingKeyNumber[Int(noteNumber - self.keys.minMIDINumber)]].image = NSImage.swatchWithColor(color: self.keyPressedColor, size: NSMakeSize(CGFloat(self.blackKeyWidth), CGFloat(self.blackKeyHeight)))
+                    }
+                }
+                else  {
+                    if(Keyboard.isWhiteKey(key: Int(noteNumber) - self.keys.minMIDINumber)) {
+                        self.whiteKeys[correspondingKeyNumber[Int(noteNumber - self.keys.minMIDINumber)]].image = NSImage.swatchWithColor(color: NSColor.white, size: NSMakeSize(CGFloat(self.whiteKeyWidth), CGFloat(self.whiteKeyHeight)))
+                    }
+                    else {
+                        self.blackKeys[correspondingKeyNumber[Int(noteNumber - self.keys.minMIDINumber)]].image = NSImage.swatchWithColor(color: NSColor.black, size: NSMakeSize(CGFloat(self.blackKeyWidth), CGFloat(self.blackKeyHeight)))
+                    }
+                }
+            }
+            
+        })
+    }
+    
+    func keyPositionChange() {
+        DispatchQueue.main.async(execute: {
+            
+            var x: Double = 0
+            var y: Double = 0
+            for i in 0...(self.whiteKeys.count - 1) {
+                x = Double(self.keyboardBox.frame.origin.x) + i * self.whiteKeyWidth
+                y = Double(self.keyboardBox.frame.origin.y)
+                self.whiteKeys[i].setFrameOrigin(NSPoint(x: x, y: y))
+                //self.view.addSubview(whiteKeys[i])
+            }
+            
+            x = 0
+            y = 0
+            let blackKeyOffsets = [0,  1,  1,  2,  2,  2,
+                                       3,  3,  4,  4,  4,
+                                       5,  5,  6,  6,  6,
+                                       7,  7,  8,  8,  8,
+                                       9,  9, 10, 10, 10,
+                                      11, 11, 12, 12, 12,
+                                      13, 13, 14, 14, 14,
+                                      15, 15, 16, 16, 16]
+            
+            for i in 0...(self.blackKeys.count - 1) {
+                let offset: Double = (i + blackKeyOffsets[i]) * self.whiteKeyWidth
+                x = Double(self.keyboardBox.frame.origin.x) + (self.whiteKeyWidth - Double(self.blackKeyWidth / 2)) + offset
+                y = Double(self.keyboardBox.frame.origin.y) + Double(self.keyboardBox.frame.size.height) - self.blackKeyHeight
+                self.blackKeys[i].setFrameOrigin(NSPoint(x: x, y: y))
+                //self.view.addSubview(blackKeys[i])
+            }
+            
+        })
+    }
+    
     // sort by descending
     func descending(value1: String, value2: String) -> Bool {
         return value1.count < value2.count;
@@ -165,6 +296,11 @@ class ViewController: NSViewController, AKMIDIListener {
             }
         })
     }
+    
+    
+    @objc func buttonTest(_ sender: NSButton) {
+        //print("Test button")
+    }
 
     
     // default (probably don't remove)
@@ -173,4 +309,20 @@ class ViewController: NSViewController, AKMIDIListener {
             // Update the view, if already loaded.
         }
     }
+    
+    // handle window resize events
+    func windowDidResize(_ notification: Notification) {
+        keyPositionChange()
+    }
 }
+
+extension NSImage {
+class func swatchWithColor(color: NSColor, size: NSSize) -> NSImage {
+    let image = NSImage(size: size)
+    image.lockFocus()
+    color.drawSwatch(in: NSMakeRect(0, 0, size.width, size.height))
+    image.unlockFocus()
+    return image
+   }
+}
+
