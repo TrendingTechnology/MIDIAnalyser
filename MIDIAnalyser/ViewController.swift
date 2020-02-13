@@ -18,6 +18,7 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
     @IBOutlet weak var accidentalsSelector: NSSegmentedControl!
     @IBOutlet weak var possibleChordsLabel: NSTextField!
     @IBOutlet weak var keyboardBox: NSBox!
+    @IBOutlet var showNo5Button: NSButton!
     
     // midi
     var midi = AudioKit.midi
@@ -31,6 +32,8 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
     var blackKeys: [NSButton] = []
     var blackKeyWidth:Double = 0
     var blackKeyHeight:Double = 0
+    
+    var showNo5: Bool = false;
     
     var keyPressedColor: NSColor = NSColor(red: 3/255, green: 252/255, blue: 177/255, alpha: 1)
 
@@ -52,6 +55,9 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
         chordLabel.stringValue = "-"
         possibleChordsLabel.stringValue = ""
         
+        showNo5Button.target = self
+        showNo5Button.action = #selector(updateNo5)
+
         
         // initialise NSButton key arrays
         whiteKeys = Array(repeating: NSButton(), count: keys.nWhiteKeys)
@@ -121,8 +127,11 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
         
         // analyse and update display
         analyser.analyse(keyStates: keys.keyStates, notes: keys.notes, nKeys: keys.nKeys!)
-        analyser.chordName = formatChordLabel(label: analyser.chordName)
-        updateChordLabel("\(analyser.chordName)")
+        if(keys.nKeysPressed > 2) {
+            analyser.chordName = formatChordLabel(label: analyser.chordName)
+            updateChordLabel("\(analyser.chordName)")
+        }
+
         
         // possible chords
         var multiLineChordLabel =   ""
@@ -188,6 +197,10 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
         newLabel = newLabel.replacingOccurrences(of: "add", with: " add", options: .literal, range: nil)
         newLabel = newLabel.replacingOccurrences(of: "/", with: " / ", options: .literal, range: nil)
         newLabel = newLabel.replacingOccurrences(of: "6 / 9", with: "6/9", options: .literal, range: nil) // hack to deformat spaces from prev line in 6/9 chord
+        if(!showNo5) {
+            newLabel = newLabel.replacingOccurrences(of: "(no5)", with: "", options: .literal, range: nil)
+        }
+        
         return newLabel
     }
     
@@ -296,11 +309,20 @@ class ViewController: NSViewController, NSWindowDelegate, AKMIDIListener {
             }
         })
     }
+
     
-    
+    // key clicked
     @objc func buttonTest(_ sender: NSButton) {
         //print("Test button")
     }
+    
+    // no5 button clicked
+    @objc func updateNo5(_ sender: NSButton) {
+        showNo5 = !showNo5
+    }
+
+    
+    
 
     
     // default (probably don't remove)

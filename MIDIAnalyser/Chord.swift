@@ -34,6 +34,11 @@ class ChordAnalyser {
     // utility functions
     func analyse(keyStates: [Bool], notes: [Int], nKeys: Int) {
         
+        var noteNames: [String] = Array(repeating: "", count: notes.count)
+        for i in 0...(noteNames.count - 1) {
+            noteNames[i] = keys.noteNameOfKey(key: notes[i] + keys.minMIDINumber, type: accidentals)
+        }
+        
         if(notes.count >= 1) {
             // figure out intervals in chord (assuming lowest note is root)
             var intervals: [Int] = Array(repeating: 0, count: notes.count)
@@ -44,6 +49,8 @@ class ChordAnalyser {
             
             intervals.sort()
             intervals.removeDuplicates()
+            
+            let originalIntervals = intervals;
             
             
             // triads and extended chords
@@ -71,15 +78,15 @@ class ChordAnalyser {
                     for j in 0...nCombinations {
                         intervals[j] -= offset;
                     }
+            
                     
                     // every loop, using latest interval set, analyse the chord
-                    possibleChords[i] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(key: notes[i] + keys.minMIDINumber, type: accidentals)) + "/" + keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals)
-                    
+                    possibleChords[i] = analysePermutation(intervals: intervals, root: keys.noteNameOfKey(/*key: notes[i]*/key: notes[0] + originalIntervals[i] + keys.minMIDINumber, type: accidentals)) + "/" + keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals)
                 }
                 
                 
                 // choose the most likely chord name
-                chordName = mostLikelyChord(possibleChords: possibleChords)
+                chordName = mostLikelyChord(chords: possibleChords)
                 
                 
             }
@@ -93,11 +100,13 @@ class ChordAnalyser {
                             + keys.minMIDINumber, type: accidentals)
                             + ": "
                             + intervalNames[intervals[1]]
+                chordName = "-"
                 
             }
             // single notes
             else if intervals.count == 1 {
                 chordName = keys.noteNameOfKey(key: notes[0] + keys.minMIDINumber, type: accidentals) + " (note)"
+                chordName = "-"
             }
             // no notes
             else {
@@ -153,8 +162,8 @@ class ChordAnalyser {
             else if(intervalStates[min3]) {
                 intervalStates[min3] = false;
                 if     (intervalStates[min7]) {base = "m7";      intervalStates[min7] = false;}
-                else if(intervalStates[maj6]) {base = "m6";      intervalStates[maj6] = false;}
                 else if(intervalStates[maj7]) {base = "m(maj7)"; intervalStates[maj7] = false;}
+                    else if(intervalStates[maj6]) {base = "m6";      intervalStates[maj6] = false;}
                 else                          {base = "m";}
             }
             else if(intervalStates[maj2])  {
@@ -259,17 +268,41 @@ class ChordAnalyser {
     }
     
     // select the most likely chord from a set of chord names (needs improving)
-    func mostLikelyChord(possibleChords: [String]) -> String {
+    func mostLikelyChord(chords: [String]) -> String {
         
+        var possibleChords = chords;
+        
+        // strip extra characters not affecting complexity
+        for i in 0...(possibleChords.count - 1) {
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "#", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "b", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "(", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: ")", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: ",", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: " ", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "m", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "no", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "add", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "aj", with: "", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "11", with: "1", options: .literal, range: nil)
+            possibleChords[i] = possibleChords[i].replacingOccurrences(of: "13", with: "3", options: .literal, range: nil)
+            print(possibleChords[i])
+        }
+        
+        
+        // choose chord based on shortest string
         var bestGuess: String = possibleChords[0]
+        var bestIndex: Int = 0;
         
         for i in 1...(possibleChords.count - 1) {
+            
             if possibleChords[i].count <= bestGuess.count {
-                bestGuess = possibleChords[i]
+                bestGuess = chords[i]
+                bestIndex = i;
             }
         }
         
-        return bestGuess
+        return chords[bestIndex]
     }
     
     
