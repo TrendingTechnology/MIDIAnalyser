@@ -3,7 +3,7 @@
 //  MIDIAnalyser
 //
 //  Created by Tim Brewis on 13/02/2020.
-//  Copyright © 2020 AudioKit. All rights reserved.
+//  Copyright © 2020 Tim Brewis. All rights reserved.
 //
 
 // https://gist.github.com/chsh/ecf534ca79a8cf11e49d
