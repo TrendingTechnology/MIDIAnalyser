@@ -25,6 +25,6 @@ This project is made to analyse input data from a MIDI controller and display th
 [Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
 [Demo Video (Beta Version)](https://github.com/t-bre/MIDIAnalyser/raw/master/Archive/Demo/ChordAnalyser_0_2.mov)
 
-### Credits
+### Acknowledgements
 MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
 UI &nbsp;---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
