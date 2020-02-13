@@ -1,7 +1,7 @@
 # MIDIAnalyser
 ``` 
-Current version  :  1.2.0
-Last updated     :  11/02/2020
+Current version  :  1.2.1
+Last updated     :  13/02/2020
 Supported OS     :  macOS 10.14+
 License          :  GPL-3.0
 ```
@@ -21,7 +21,7 @@ This project is made to analyse input data from a MIDI controller and display th
 
 ### Downloads
 
-[Download Latest Version 1.2.0](https://github.com/t-bre/MIDIAnalyser/releases/download/1.2.0/MIDIAnalyser.app.zip)
+[Download Latest Version 1.2.1](https://github.com/t-bre/MIDIAnalyser/releases/download/1.2.1/MIDIAnalyser.app.zip)
 
 [Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
 [Demo Video (Beta Version)](https://github.com/t-bre/MIDIAnalyser/raw/master/Archive/Demo/ChordAnalyser_0_2.mov)
