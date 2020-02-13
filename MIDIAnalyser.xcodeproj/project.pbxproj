@@ -12,6 +12,7 @@
 		22540B8623F24EA700927571 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22540B8523F24EA700927571 /* Keyboard.swift */; };
 		22540B8823F2EA4E00927571 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22540B8723F2EA4E00927571 /* Chord.swift */; };
 		22540B8A23F3372E00927571 /* MIDIAnalyser.icns in Resources */ = {isa = PBXBuildFile; fileRef = 22540B8923F3372E00927571 /* MIDIAnalyser.icns */; };
+		22B8CE7A23F5B8AB005E5A04 /* AboutMIDIAnalyserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B8CE7923F5B8AB005E5A04 /* AboutMIDIAnalyserViewController.swift */; };
 		C472E1921CD40E2000C748F4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E1911CD40E2000C748F4 /* AppDelegate.swift */; };
 		C472E1941CD40E2000C748F4 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C472E1931CD40E2000C748F4 /* ViewController.swift */; };
 		C472E1961CD40E2000C748F4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C472E1951CD40E2000C748F4 /* Assets.xcassets */; };
@@ -38,6 +39,7 @@
 		22540B8523F24EA700927571 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
 		22540B8723F2EA4E00927571 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		22540B8923F3372E00927571 /* MIDIAnalyser.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = MIDIAnalyser.icns; sourceTree = "<group>"; };
+		22B8CE7923F5B8AB005E5A04 /* AboutMIDIAnalyserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMIDIAnalyserViewController.swift; sourceTree = "<group>"; };
 		C472E18E1CD40E2000C748F4 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C472E1911CD40E2000C748F4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C472E1931CD40E2000C748F4 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 				22540B8723F2EA4E00927571 /* Chord.swift */,
 				C472E1911CD40E2000C748F4 /* AppDelegate.swift */,
 				C472E1931CD40E2000C748F4 /* ViewController.swift */,
+				22B8CE7923F5B8AB005E5A04 /* AboutMIDIAnalyserViewController.swift */,
 				C472E1971CD40E2000C748F4 /* Main.storyboard */,
 				C472E1951CD40E2000C748F4 /* Assets.xcassets */,
 				22540B7D23F24C7E00927571 /* Info.plist */,
@@ -171,6 +174,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22B8CE7A23F5B8AB005E5A04 /* AboutMIDIAnalyserViewController.swift in Sources */,
 				C472E1941CD40E2000C748F4 /* ViewController.swift in Sources */,
 				C472E1921CD40E2000C748F4 /* AppDelegate.swift in Sources */,
 				22540B8823F2EA4E00927571 /* Chord.swift in Sources */,
@@ -322,6 +326,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = timbrewis.MIDIAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Debug;
 		};
@@ -347,6 +352,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = timbrewis.MIDIAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "";
 			};
 			name = Release;
 		};
