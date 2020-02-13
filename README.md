@@ -14,7 +14,6 @@ This project is made to analyse input data from a MIDI controller and display th
 ### Features
 * Real time analysis.
 * Recognition of major, minor, diminished, augmented and suspended chords (including extensions).
-* Recognition of intervals.
 * Alternative names for chords displayed.
 * Graphical visualisation of keys pressed.
 * Notes in range A0:C8 (88 keys)
