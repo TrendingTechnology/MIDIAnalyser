@@ -3,6 +3,7 @@
 Current version  :  1.2.0
 Last updated     :  11/02/2020
 Supported OS     :  macOS 10.14+
+License          :  GPL-3.0
 ```
 
 ### Description
