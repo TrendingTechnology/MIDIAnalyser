@@ -27,7 +27,6 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="XoR-2n-lZ1"/>
-                                                <segue destination="eqN-yp-sJa" kind="show" id="5Vq-G8-nci"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -147,17 +146,18 @@
             <objects>
                 <viewController id="Nkh-rA-sOL" sceneMemberID="viewController">
                     <view key="view" id="Ccy-yf-RW5">
-                        <rect key="frame" x="0.0" y="0.0" width="509" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="509" height="182"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
-                                <rect key="frame" x="185" y="15" width="304" height="154"/>
-                                <view key="contentView" id="re2-l7-kDg">
-                                    <rect key="frame" x="1" y="1" width="302" height="152"/>
+                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
+                                <rect key="frame" x="185" y="8" width="304" height="174"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" ambiguous="YES" id="re2-l7-kDg">
+                                    <rect key="frame" x="1" y="1" width="302" height="172"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="haF-zB-uVO">
-                                            <rect key="frame" x="6" y="103" width="226" height="51"/>
+                                            <rect key="frame" x="6" y="115" width="226" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="MIDIAnalyser" id="Q6D-tz-3Dn">
                                                 <font key="font" metaFont="systemUltraLight" size="43"/>
@@ -166,7 +166,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dR7-5A-Tf4">
-                                            <rect key="frame" x="6" y="90" width="82" height="17"/>
+                                            <rect key="frame" x="6" y="105" width="82" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.2.2" id="mjb-gG-Vpn">
                                                 <font key="font" metaFont="systemThin" size="14"/>
@@ -174,78 +174,47 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-E2-AJr">
-                                            <rect key="frame" x="6" y="42" width="294" height="42"/>
-                                            <textFieldCell key="cell" selectable="YES" id="Z5T-8c-10y">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="eD6-nf-Yby">
+                                            <rect key="frame" x="6" y="42" width="277" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Support MIDIAnalyser by leaving feedback online." id="26e-DQ-R9A">
                                                 <font key="font" metaFont="systemThin" size="11"/>
-                                                <string key="title">Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                             Support MIDIAnalyser by leaving suggestions / feedback.</string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-43-8E4">
-                                            <rect key="frame" x="6" y="-8" width="281" height="42"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="42" id="yrN-jQ-Vpt"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis.                                        Published under the GNU General Public Licence v3.0." id="wb0-4g-i9b">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="Hcs-43-8E4">
+                                            <rect key="frame" x="6" y="0.0" width="278" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis. Published under the GNU General Public Licence v3.0." id="wb0-4g-i9b">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="lrg-E2-AJr">
+                                            <rect key="frame" x="6" y="69" width="294" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                    " id="Z5T-8c-10y">
                                                 <font key="font" metaFont="systemThin" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="Hcs-43-8E4" secondAttribute="bottom" constant="-8" id="FpZ-fw-RFs"/>
-                                        <constraint firstItem="dR7-5A-Tf4" firstAttribute="leading" secondItem="lrg-E2-AJr" secondAttribute="leading" id="Kgq-vR-aW4"/>
-                                        <constraint firstItem="haF-zB-uVO" firstAttribute="leading" secondItem="re2-l7-kDg" secondAttribute="leading" constant="8" id="McG-hb-k4K"/>
-                                        <constraint firstAttribute="trailing" secondItem="Hcs-43-8E4" secondAttribute="trailing" constant="17" id="Orl-wS-brS"/>
-                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="leading" secondItem="Hcs-43-8E4" secondAttribute="leading" id="UcB-eB-eyz"/>
-                                        <constraint firstAttribute="trailing" secondItem="lrg-E2-AJr" secondAttribute="trailing" constant="4" id="VHO-pR-Rsa"/>
-                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="top" secondItem="haF-zB-uVO" secondAttribute="bottom" constant="19" id="Vqu-xI-Y3G"/>
-                                        <constraint firstItem="haF-zB-uVO" firstAttribute="top" secondItem="re2-l7-kDg" secondAttribute="top" constant="-2" id="ZVb-7n-IgY"/>
-                                        <constraint firstItem="dR7-5A-Tf4" firstAttribute="top" secondItem="re2-l7-kDg" secondAttribute="top" constant="45" id="dpb-iP-wRz"/>
-                                        <constraint firstItem="haF-zB-uVO" firstAttribute="leading" secondItem="dR7-5A-Tf4" secondAttribute="leading" id="emA-Pp-tID"/>
-                                        <constraint firstItem="Hcs-43-8E4" firstAttribute="top" secondItem="lrg-E2-AJr" secondAttribute="bottom" constant="8" id="jSF-sp-JzX"/>
-                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="top" secondItem="dR7-5A-Tf4" secondAttribute="bottom" constant="6" id="omZ-f0-RJb"/>
-                                    </constraints>
                                 </view>
                             </box>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-zR-5CE">
-                                <rect key="frame" x="20" y="24" width="145" height="145"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="145" id="fxB-38-jHd"/>
-                                </constraints>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-zR-5CE">
+                                <rect key="frame" x="20" y="24" width="145" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MIDIAnalyser" id="VG2-ab-gqi"/>
                             </imageView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="VrR-zR-5CE" firstAttribute="leading" secondItem="Ccy-yf-RW5" secondAttribute="leading" constant="20" symbolic="YES" id="Ohf-nM-xbp"/>
-                            <constraint firstAttribute="trailing" secondItem="pSp-pb-o9S" secondAttribute="trailing" constant="20" symbolic="YES" id="bSW-af-MMa"/>
-                            <constraint firstAttribute="bottom" secondItem="pSp-pb-o9S" secondAttribute="bottom" constant="15" id="hK2-T8-sIs"/>
-                            <constraint firstItem="VrR-zR-5CE" firstAttribute="top" secondItem="Ccy-yf-RW5" secondAttribute="top" id="iGo-F6-8uQ"/>
-                            <constraint firstAttribute="bottom" secondItem="VrR-zR-5CE" secondAttribute="bottom" constant="24" id="k3x-xd-5Ad"/>
-                            <constraint firstItem="VrR-zR-5CE" firstAttribute="top" secondItem="pSp-pb-o9S" secondAttribute="top" id="n3g-5M-thd"/>
-                            <constraint firstItem="pSp-pb-o9S" firstAttribute="leading" secondItem="VrR-zR-5CE" secondAttribute="trailing" constant="20" symbolic="YES" id="yRp-q0-4H5"/>
-                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="ghv-J3-goQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="816.5" y="561.5"/>
-        </scene>
-        <!--About AudioKit-->
-        <scene sceneID="DW8-tR-1oG">
-            <objects>
-                <viewController title="About AudioKit" id="eqN-yp-sJa" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="aZz-ce-vUe">
-                        <rect key="frame" x="0.0" y="0.0" width="400" height="400"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="6WJ-4v-KfC" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1593" y="275"/>
+            <point key="canvasLocation" x="816.5" y="568"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
