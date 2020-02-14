@@ -140,24 +140,23 @@
                 </windowController>
                 <customObject id="Fza-2H-28k" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="803" y="174"/>
+            <point key="canvasLocation" x="822" y="174"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1Wf-ni-dUV">
             <objects>
                 <viewController id="Nkh-rA-sOL" sceneMemberID="viewController">
                     <view key="view" id="Ccy-yf-RW5">
-                        <rect key="frame" x="0.0" y="0.0" width="489" height="169"/>
+                        <rect key="frame" x="0.0" y="0.0" width="509" height="169"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
-                                <rect key="frame" x="185" y="15" width="284" height="154"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="re2-l7-kDg">
-                                    <rect key="frame" x="1" y="1" width="282" height="152"/>
+                            <box boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
+                                <rect key="frame" x="185" y="15" width="304" height="154"/>
+                                <view key="contentView" id="re2-l7-kDg">
+                                    <rect key="frame" x="1" y="1" width="302" height="152"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="haF-zB-uVO">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="haF-zB-uVO">
                                             <rect key="frame" x="6" y="103" width="226" height="51"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="MIDIAnalyser" id="Q6D-tz-3Dn">
@@ -166,27 +165,29 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dR7-5A-Tf4">
-                                            <rect key="frame" x="6" y="90" width="80" height="17"/>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dR7-5A-Tf4">
+                                            <rect key="frame" x="6" y="90" width="82" height="17"/>
                                             <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.2.1" id="mjb-gG-Vpn">
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.2.2" id="mjb-gG-Vpn">
                                                 <font key="font" metaFont="systemThin" size="14"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-E2-AJr">
-                                            <rect key="frame" x="6" y="42" width="274" height="34"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <textFieldCell key="cell" selectable="YES" title="Visit GitHub for new versions and more information.     Support MIDIAnalyser at ________." id="Z5T-8c-10y">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lrg-E2-AJr">
+                                            <rect key="frame" x="6" y="42" width="294" height="42"/>
+                                            <textFieldCell key="cell" selectable="YES" id="Z5T-8c-10y">
                                                 <font key="font" metaFont="systemThin" size="11"/>
+                                                <string key="title">Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                             Support MIDIAnalyser by leaving suggestions / feedback.</string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-43-8E4">
-                                            <rect key="frame" x="6" y="0.0" width="281" height="42"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Hcs-43-8E4">
+                                            <rect key="frame" x="6" y="-8" width="281" height="42"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="42" id="yrN-jQ-Vpt"/>
+                                            </constraints>
                                             <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis.                                        Published under the GNU General Public Licence v3.0." id="wb0-4g-i9b">
                                                 <font key="font" metaFont="systemThin" size="11"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -194,19 +195,44 @@
                                             </textFieldCell>
                                         </textField>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="Hcs-43-8E4" secondAttribute="bottom" constant="-8" id="FpZ-fw-RFs"/>
+                                        <constraint firstItem="dR7-5A-Tf4" firstAttribute="leading" secondItem="lrg-E2-AJr" secondAttribute="leading" id="Kgq-vR-aW4"/>
+                                        <constraint firstItem="haF-zB-uVO" firstAttribute="leading" secondItem="re2-l7-kDg" secondAttribute="leading" constant="8" id="McG-hb-k4K"/>
+                                        <constraint firstAttribute="trailing" secondItem="Hcs-43-8E4" secondAttribute="trailing" constant="17" id="Orl-wS-brS"/>
+                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="leading" secondItem="Hcs-43-8E4" secondAttribute="leading" id="UcB-eB-eyz"/>
+                                        <constraint firstAttribute="trailing" secondItem="lrg-E2-AJr" secondAttribute="trailing" constant="4" id="VHO-pR-Rsa"/>
+                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="top" secondItem="haF-zB-uVO" secondAttribute="bottom" constant="19" id="Vqu-xI-Y3G"/>
+                                        <constraint firstItem="haF-zB-uVO" firstAttribute="top" secondItem="re2-l7-kDg" secondAttribute="top" constant="-2" id="ZVb-7n-IgY"/>
+                                        <constraint firstItem="dR7-5A-Tf4" firstAttribute="top" secondItem="re2-l7-kDg" secondAttribute="top" constant="45" id="dpb-iP-wRz"/>
+                                        <constraint firstItem="haF-zB-uVO" firstAttribute="leading" secondItem="dR7-5A-Tf4" secondAttribute="leading" id="emA-Pp-tID"/>
+                                        <constraint firstItem="Hcs-43-8E4" firstAttribute="top" secondItem="lrg-E2-AJr" secondAttribute="bottom" constant="8" id="jSF-sp-JzX"/>
+                                        <constraint firstItem="lrg-E2-AJr" firstAttribute="top" secondItem="dR7-5A-Tf4" secondAttribute="bottom" constant="6" id="omZ-f0-RJb"/>
+                                    </constraints>
                                 </view>
                             </box>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-zR-5CE">
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-zR-5CE">
                                 <rect key="frame" x="20" y="24" width="145" height="145"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="145" id="fxB-38-jHd"/>
+                                </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MIDIAnalyser" id="VG2-ab-gqi"/>
                             </imageView>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="VrR-zR-5CE" firstAttribute="leading" secondItem="Ccy-yf-RW5" secondAttribute="leading" constant="20" symbolic="YES" id="Ohf-nM-xbp"/>
+                            <constraint firstAttribute="trailing" secondItem="pSp-pb-o9S" secondAttribute="trailing" constant="20" symbolic="YES" id="bSW-af-MMa"/>
+                            <constraint firstAttribute="bottom" secondItem="pSp-pb-o9S" secondAttribute="bottom" constant="15" id="hK2-T8-sIs"/>
+                            <constraint firstItem="VrR-zR-5CE" firstAttribute="top" secondItem="Ccy-yf-RW5" secondAttribute="top" id="iGo-F6-8uQ"/>
+                            <constraint firstAttribute="bottom" secondItem="VrR-zR-5CE" secondAttribute="bottom" constant="24" id="k3x-xd-5Ad"/>
+                            <constraint firstItem="VrR-zR-5CE" firstAttribute="top" secondItem="pSp-pb-o9S" secondAttribute="top" id="n3g-5M-thd"/>
+                            <constraint firstItem="pSp-pb-o9S" firstAttribute="leading" secondItem="VrR-zR-5CE" secondAttribute="trailing" constant="20" symbolic="YES" id="yRp-q0-4H5"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <customObject id="ghv-J3-goQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="806.5" y="561.5"/>
+            <point key="canvasLocation" x="816.5" y="561.5"/>
         </scene>
         <!--About AudioKit-->
         <scene sceneID="DW8-tR-1oG">
@@ -313,12 +339,12 @@
                                     <rect key="frame" x="1" y="1" width="758" height="98"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
-                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
-                                <color key="fillColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3wf-H4-hBp">
+                            <button verticalHuggingPriority="750" id="3wf-H4-hBp">
                                 <rect key="frame" x="556" y="13" width="110" height="32"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                                 <buttonCell key="cell" type="push" title="Show (no5)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c9p-2l-Foe">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
                                     <font key="font" metaFont="system"/>
