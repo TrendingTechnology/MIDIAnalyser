@@ -7,5 +7,10 @@
 [Resize Window Events](https://stackoverflow.com/questions/35688043/resize-windows-event)  
 [Multiple View Controllers](https://www.huffpost.com/entry/ios-quick-read-implementi_b_6923788?guccounter=1&guce_referrer=aHR0cHM6Ly93d3cuZ29vZ2xlLmNvLnVrLw&guce_referrer_sig=AQAAAEkWe7mCfx9vUjDDnlLRzH_KM9j6EZLct-I3efIEopQHdn4pm_L7PJx0RXxbF3EnnnxffYHXgHc1IBaOT4m-KJRT0oZ4SwhxPeXpRFFlCfxcRFRxQJdjYnuWlCLM2mA0RpzQlzBULeTJW2Nmmxdw3H2vcHa1RLrxNbz27otYJSIB)  
 
+
+### Things That Will Be Forgotten
+* Must add additional linker flag -lc++ for AudioKit to compile objective C
+
+
 ### Additional Software
 [Virtual MIDI Keyboard](https://vmpk.sourceforge.io)
