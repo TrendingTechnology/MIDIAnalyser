@@ -2,7 +2,7 @@
 ``` 
 Current version  :  1.2.1
 Last updated     :  05/04/2020
-Supported OS     :  macOS 10.14+
+Supported OS     :  macOS 10.15+
 License          :  GPL-3.0
 ```
 
