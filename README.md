@@ -23,7 +23,8 @@ This project is made to analyse input data from a MIDI controller and display th
 * Full rewrite of codebase
 * User preferences
 * Musical notation for notes played
-* Key detection / estimation (?)
+* Computer keyboard input: "virtual MIDI keyboard"
+
 
 ### Downloads
 
