@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Application-->
+        <scene sceneID="JPo-4y-FX3">
+            <objects>
+                <application id="hnw-xV-0zn" sceneMemberID="viewController">
+                    <menu key="mainMenu" title="Main Menu" systemMenu="main" id="AYu-sK-qS6">
+                        <items>
+                            <menuItem title="MIDIAnalyser" id="1Xt-HY-uBw">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="MIDIAnalyser" systemMenu="apple" id="uQy-DD-JDr">
+                                    <items>
+                                        <menuItem title="About MIDIAnalyser" id="5kV-Vb-QxS">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="J36-rs-d4Y" kind="show" id="n8t-g1-HvC"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="About AudioKit" id="O66-cR-NeB">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="XoR-2n-lZ1"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
+                                        <menuItem title="Hide MIDIAnalyser" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <connections>
+                                                <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
+                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
+                                        <menuItem title="Quit MIDIAnalyser" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <connections>
+                                                <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="File" id="dMs-cI-mzQ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="File" id="bib-Uj-vzu">
+                                    <items>
+                                        <menuItem title="Print…" keyEquivalent="p" id="aTl-1u-JFS">
+                                            <connections>
+                                                <action selector="print:" target="Ady-hI-5gd" id="qaZ-4w-aoO"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="aUF-d1-5bR">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="OY7-WF-poV">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="VwT-WD-YPe"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="R4o-n2-Eq4">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="DIl-cC-cCs"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="eu3-7i-yIM"/>
+                                        <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="DRN-fu-gQh"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                        </items>
+                    </menu>
+                    <connections>
+                        <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
+                    </connections>
+                </application>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="MIDIAnalyser" customModuleProvider="target"/>
+                <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="89" y="-110"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="R2V-B0-nI4">
+            <objects>
+                <windowController showSeguePresentationStyle="single" id="B8D-0N-5wS" sceneMemberID="viewController">
+                    <window key="window" title="MIDIAnalyser" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" animationBehavior="default" id="IQv-IB-iLA">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <rect key="contentRect" x="172" y="629" width="800" height="400"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <value key="minSize" type="size" width="800" height="400"/>
+                        <connections>
+                            <outlet property="delegate" destination="B8D-0N-5wS" id="Lgv-TM-Yda"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
+                    </connections>
+                </windowController>
+                <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="56" y="282"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="3if-DR-jAv">
+            <objects>
+                <windowController id="J36-rs-d4Y" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="ZiU-hi-vHQ">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="-116" y="1370" width="520" height="230"/>
+                        <rect key="screenRect" x="-541" y="900" width="2560" height="1440"/>
+                        <connections>
+                            <outlet property="delegate" destination="J36-rs-d4Y" id="P5y-H2-VMW"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="Nkh-rA-sOL" kind="relationship" relationship="window.shadowedContentViewController" id="zY8-Rr-01K"/>
+                    </connections>
+                </windowController>
+                <customObject id="Fza-2H-28k" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="822" y="174"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="1Wf-ni-dUV">
+            <objects>
+                <viewController id="Nkh-rA-sOL" sceneMemberID="viewController">
+                    <view key="view" id="Ccy-yf-RW5">
+                        <rect key="frame" x="0.0" y="0.0" width="509" height="182"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
+                                <rect key="frame" x="185" y="8" width="304" height="174"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" ambiguous="YES" id="re2-l7-kDg">
+                                    <rect key="frame" x="1" y="1" width="302" height="172"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="haF-zB-uVO">
+                                            <rect key="frame" x="6" y="115" width="226" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="MIDIAnalyser" id="Q6D-tz-3Dn">
+                                                <font key="font" metaFont="systemUltraLight" size="43"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="dR7-5A-Tf4">
+                                            <rect key="frame" x="6" y="105" width="82" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 1.2.2" id="mjb-gG-Vpn">
+                                                <font key="font" metaFont="systemThin" size="14"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="eD6-nf-Yby">
+                                            <rect key="frame" x="6" y="42" width="277" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Support MIDIAnalyser by leaving feedback online." id="26e-DQ-R9A">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="Hcs-43-8E4">
+                                            <rect key="frame" x="6" y="0.0" width="278" height="42"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis. Published under the GNU General Public Licence v3.0." id="wb0-4g-i9b">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="lrg-E2-AJr">
+                                            <rect key="frame" x="6" y="69" width="294" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                    " id="Z5T-8c-10y">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                            </box>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VrR-zR-5CE">
+                                <rect key="frame" x="20" y="24" width="145" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="MIDIAnalyser" id="VG2-ab-gqi"/>
+                            </imageView>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="ghv-J3-goQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="816.5" y="568"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="hIz-AP-VOD">
+            <objects>
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="m2S-Jp-Qdl">
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="473"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <subviews>
+                            <popUpButton verticalHuggingPriority="750" id="r5W-2D-Iif">
+                                <rect key="frame" x="18" y="17" width="539" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="xlF-Qi-fgf" id="PnC-Bm-hr3">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="H23-t2-yeb">
+                                        <items>
+                                            <menuItem title="Item 1" state="on" id="xlF-Qi-fgf"/>
+                                            <menuItem title="Item 2" id="drC-ku-98k"/>
+                                            <menuItem title="Item 3" id="2Vn-Ag-Ouv"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                                <connections>
+                                    <action selector="sourceChanged:" target="XfG-lQ-9wD" id="RTh-rd-a1U"/>
+                                </connections>
+                            </popUpButton>
+                            <segmentedControl verticalHuggingPriority="750" id="dkW-SN-8cc">
+                                <rect key="frame" x="666" y="18" width="116" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="O1a-Zt-zg5">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Sharps" width="54" selected="YES"/>
+                                        <segment label="Flats" width="53" tag="1"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <box boxType="custom" cornerRadius="4" title="Chord Name" id="n21-d8-SJs">
+                                <rect key="frame" x="20" y="177" width="540" height="276"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" id="MM1-yb-FLy">
+                                    <rect key="frame" x="1" y="1" width="538" height="274"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sTQ-Pa-1oG">
+                                            <rect key="frame" x="167" y="114" width="205" height="47"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="center" title="chordName" id="Uca-iq-5m2">
+                                                <font key="font" metaFont="systemLight" size="40"/>
+                                                <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="sTQ-Pa-1oG" firstAttribute="centerX" secondItem="MM1-yb-FLy" secondAttribute="centerX" id="CPc-AE-nDo"/>
+                                        <constraint firstItem="sTQ-Pa-1oG" firstAttribute="centerY" secondItem="MM1-yb-FLy" secondAttribute="centerY" id="pEh-ID-ANO"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <connections>
+                                    <accessibilityConnection property="link" destination="AuA-4d-ud3" id="LGg-CZ-fkK"/>
+                                </connections>
+                            </box>
+                            <box boxType="custom" cornerRadius="4" title="Box" id="lNw-5f-fNB">
+                                <rect key="frame" x="580" y="177" width="200" height="276"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <view key="contentView" id="AuA-4d-ud3">
+                                    <rect key="frame" x="1" y="1" width="198" height="274"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="qDc-Mb-XC8">
+                                            <rect key="frame" x="18" y="20" width="162" height="234"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="listOfChordNames" id="CnE-qv-uOa">
+                                                <font key="font" metaFont="systemLight" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" cornerRadius="4" title="Keyboard" id="pCL-28-ffF">
+                                <rect key="frame" x="20" y="61" width="760" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" id="1RY-bf-U5M">
+                                    <rect key="frame" x="1" y="1" width="758" height="98"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                </view>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <button verticalHuggingPriority="750" id="3wf-H4-hBp">
+                                <rect key="frame" x="556" y="13" width="110" height="32"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <buttonCell key="cell" type="push" title="Show (no5)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="c9p-2l-Foe">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="accidentalsSelector" destination="dkW-SN-8cc" id="V5l-9c-WiW"/>
+                        <outlet property="chordLabel" destination="sTQ-Pa-1oG" id="bEm-1I-H3Y"/>
+                        <outlet property="keyboardBox" destination="pCL-28-ffF" id="aGJ-l0-igz"/>
+                        <outlet property="possibleChordsLabel" destination="qDc-Mb-XC8" id="ZZk-vd-DEq"/>
+                        <outlet property="showNo5" destination="3wf-H4-hBp" id="Fk2-aZ-W9H"/>
+                        <outlet property="showNo5Button" destination="3wf-H4-hBp" id="4AM-Qf-LUX"/>
+                        <outlet property="sourcePopUpButton" destination="r5W-2D-Iif" id="3s0-ZW-TGx"/>
+                    </connections>
+                </viewController>
+                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="75" y="874.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="MIDIAnalyser" width="512" height="512"/>
+    </resources>
+</document>
