@@ -18,13 +18,17 @@ This project is made to analyse input data from a MIDI controller and display th
 * Graphical visualisation of keys pressed.
 * Notes in range A0:C8 (88 keys)
 
-### Upcoming Features (Version 2.0.0)
+### Upcoming Features (Version 2+)
 * Bug fixes and performance improvements
 * Full rewrite of codebase
 * User preferences
 * Musical notation for notes played
 * Computer keyboard input: "virtual MIDI keyboard"
+* Alternative chord notation schemes
+* Voicing and substitution suggestions
 
+### Possible Features
+* Lead sheet generation
 
 ### Downloads
 
