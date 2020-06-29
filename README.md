@@ -30,8 +30,6 @@ This project is made to analyse input data from a MIDI controller and display th
 * User settings and preferences
 
 ### Possible Features
-* Lead sheet generation
-* Key signature detection
 * MIDI file analysis
 * MIDIkit rename
 * MIDI plugins / output to DAW
