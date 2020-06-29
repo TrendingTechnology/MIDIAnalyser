@@ -18,6 +18,14 @@ This project is made to analyse input data from a MIDI controller and display th
 * Graphical visualisation of keys pressed.
 * Notes in range A0:C8 (88 keys)
 
+### Upcoming Features
+* MIDI debug log / raw MIDI data
+* User settings and preferences
+* Virtual MIDI keyboard
+* Alternative chord notation schemes
+* Voicing and substitution suggestions
+
+
 ### Downloads
 
 [Download Latest Version 1.2.1](https://github.com/t-bre/MIDIAnalyser/releases/download/1.2.1/MIDIAnalyser.app.zip)
