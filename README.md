@@ -26,9 +26,14 @@ This project is made to analyse input data from a MIDI controller and display th
 * Computer keyboard input: "virtual MIDI keyboard"
 * Alternative chord notation schemes
 * Voicing and substitution suggestions
+* MIDI debug log / raw MIDI data
 
 ### Possible Features
 * Lead sheet generation
+* Key signature detection
+* MIDI file analysis
+* MIDIkit rename
+* MIDI plugins / output to DAW
 
 ### Downloads
 
