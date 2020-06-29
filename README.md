@@ -27,6 +27,7 @@ This project is made to analyse input data from a MIDI controller and display th
 * Alternative chord notation schemes
 * Voicing and substitution suggestions
 * MIDI debug log / raw MIDI data
+* User settings and preferences
 
 ### Possible Features
 * Lead sheet generation
