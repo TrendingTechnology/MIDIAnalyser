@@ -84,6 +84,7 @@ public class Keyboard {
         let noteNamesFlats  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
         let noteNamesMixed  = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
         
+        // pick note name depending on setting for accidentals
         switch(type) {
             
         case Accidentals.sharps:

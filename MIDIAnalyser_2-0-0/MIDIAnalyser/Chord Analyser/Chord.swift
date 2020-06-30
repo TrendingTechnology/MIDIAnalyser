@@ -45,6 +45,7 @@ class Chord {
         case sharpThirteen
     }
     
+    // strings to represent extensions
     let extensionNames: [String] = [
         "b9",
         "9",
@@ -128,9 +129,47 @@ class Chord {
             extensionString = extensionString.replacingOccurrences(of: ",)", with: ")", options: .literal, range: nil)
             
         }
-             
-        // generate the chord name (need to account for special cases) and estimate complexity
-        chordName = root + baseTonality.rawValue + primaryExtension.rawValue + extensionString + slashRoot
+            
+        // special formatting for sus chords with extensions
+        if (baseTonality == BaseTonality.sus2) || (baseTonality == BaseTonality.sus4) || (baseTonality == BaseTonality.sus2NoFive) || (baseTonality == BaseTonality.sus4NoFive) {
+            chordName = root + primaryExtension.rawValue + baseTonality.rawValue + extensionString + slashRoot
+        }
+        
+        // special formatting for 5 chords with extensions
+        else if (baseTonality == BaseTonality.five) && (primaryExtension != PrimaryExtension.none) {
+            chordName = root + primaryExtension.rawValue + "(no3)" + extensionString + slashRoot
+        }
+            
+        // diminished chords have primary extensions named differently
+        else if (baseTonality == BaseTonality.diminished) && (primaryExtension != PrimaryExtension.none) {
+            
+            switch primaryExtension {
+            
+            case PrimaryExtension.sixth:
+                chordName = root + baseTonality.rawValue + "7" + extensionString + slashRoot
+                
+            case PrimaryExtension.sixNine:
+                chordName = root + baseTonality.rawValue + "7" + "add(9)" + extensionString + slashRoot
+            
+            case PrimaryExtension.minorSeventh:
+                chordName = root + "m7b5" + extensionString + slashRoot
+                
+            case PrimaryExtension.majorSeventh:
+                chordName = root + "maj7b5" + extensionString + slashRoot
+                
+            case PrimaryExtension.none:
+                break
+                
+            }
+                
+        }
+        
+        // general chord naming format, no special cases
+        else {
+           chordName = root + baseTonality.rawValue + primaryExtension.rawValue + extensionString + slashRoot
+        }
+        
+        
         estimateComplexity()
         
         return chordName
