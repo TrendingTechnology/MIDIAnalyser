@@ -1,8 +1,8 @@
 # MIDIAnalyser
 ``` 
 Current version  :  1.2.1
-Last updated     :  13/02/2020
-Supported OS     :  macOS 10.14+
+Last updated     :  05/04/2020
+Supported OS     :  macOS 10.15+
 License          :  GPL-3.0
 ```
 
@@ -17,6 +17,22 @@ This project is made to analyse input data from a MIDI controller and display th
 * Alternative names for chords displayed.
 * Graphical visualisation of keys pressed.
 * Notes in range A0:C8 (88 keys)
+
+### Upcoming Features (Version 2+)
+* Bug fixes and performance improvements
+* Full rewrite of codebase
+* User preferences
+* Musical notation for notes played
+* Computer keyboard input: "virtual MIDI keyboard"
+* Alternative chord notation schemes
+* Voicing and substitution suggestions
+* MIDI debug log / raw MIDI data
+* User settings and preferences
+
+### Possible Features
+* MIDI file analysis
+* MIDIkit rename
+* MIDI plugins / output to DAW
 
 ### Downloads
 

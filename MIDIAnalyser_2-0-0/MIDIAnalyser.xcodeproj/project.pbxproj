@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		221D9D2A243E16990078B019 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D9D29243E16990078B019 /* Chord.swift */; };
 		221D9D2C243E25C40078B019 /* AnalysePermutationOldVersions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D9D2B243E25C40078B019 /* AnalysePermutationOldVersions.swift */; };
+		2290CD7C24AAC1F9002CE6C0 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */; };
 		22A6E88F2439FECD0091C295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E88E2439FECD0091C295 /* AppDelegate.swift */; };
 		22A6E8912439FECD0091C295 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8902439FECD0091C295 /* ViewController.swift */; };
 		22A6E8942439FECD0091C295 /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		221D9D29243E16990078B019 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		221D9D2B243E25C40078B019 /* AnalysePermutationOldVersions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalysePermutationOldVersions.swift; sourceTree = "<group>"; };
+		2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MIDIAnalyser/AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A6E88E2439FECD0091C295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		22A6E8902439FECD0091C295 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				22A6E89A2439FECE0091C295 /* Info.plist */,
 				22A6E89B2439FECE0091C295 /* MIDIAnalyser.entitlements */,
 				22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */,
+				2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */,
 			);
 			path = MIDIAnalyser;
 			sourceTree = "<group>";
@@ -181,6 +184,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22A6E8962439FECE0091C295 /* Assets.xcassets in Resources */,
+				2290CD7C24AAC1F9002CE6C0 /* AppIcon.icns in Resources */,
 				22A6E8992439FECE0091C295 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -332,7 +336,6 @@
 		22A6E8B52439FECE0091C295 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -356,7 +359,6 @@
 		22A6E8B62439FECE0091C295 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
