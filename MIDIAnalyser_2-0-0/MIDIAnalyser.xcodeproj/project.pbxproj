@@ -62,6 +62,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2290CD7D24ACB35F002CE6C0 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				22A6E8C3243A04450091C295 /* Keyboard.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
 		22A6E8822439FECD0091C295 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +90,7 @@
 		22A6E88D2439FECD0091C295 /* MIDIAnalyser */ = {
 			isa = PBXGroup;
 			children = (
+				2290CD7D24ACB35F002CE6C0 /* Keyboard */,
 				22A6E8BF243A03910091C295 /* Chord Analyser */,
 				22A6E8C0243A03A60091C295 /* View Controllers */,
 				22A6E88E2439FECD0091C295 /* AppDelegate.swift */,
@@ -99,7 +108,6 @@
 		22A6E8BF243A03910091C295 /* Chord Analyser */ = {
 			isa = PBXGroup;
 			children = (
-				22A6E8C3243A04450091C295 /* Keyboard.swift */,
 				22A6E8C1243A04370091C295 /* ChordAnalyser.swift */,
 				221D9D29243E16990078B019 /* Chord.swift */,
 			);
@@ -273,6 +281,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				"VALID_ARCHS[sdk=macosx*]" = "i386 x86_64";
 			};
 			name = Debug;
 		};
@@ -336,6 +345,8 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIDIAnalyser",
@@ -361,6 +372,8 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 3;
+				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIDIAnalyser",

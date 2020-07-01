@@ -19,6 +19,7 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
+                                                <segue destination="m2y-2R-Le9" kind="show" id="1Py-XF-bNf"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -130,7 +131,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="7" y="-114"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -151,7 +152,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="74" y="316"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -159,26 +160,204 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="473"/>
                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="gOC-b2-M4S">
-                                <rect key="frame" x="250" y="176" width="300" height="47"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="chordName" id="BoV-aH-6mD">
-                                    <font key="font" metaFont="systemLight" size="40"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <box boxType="custom" cornerRadius="4" title="Chord Name" id="hvJ-vu-tSE">
+                                <rect key="frame" x="20" y="177" width="540" height="276"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <view key="contentView" id="u0l-vA-BGv">
+                                    <rect key="frame" x="1" y="1" width="538" height="274"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gOC-b2-M4S">
+                                            <rect key="frame" x="167" y="114" width="205" height="47"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="chordName" id="BoV-aH-6mD">
+                                                <font key="font" metaFont="systemLight" size="40"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="gOC-b2-M4S" firstAttribute="centerY" secondItem="u0l-vA-BGv" secondAttribute="centerY" id="29U-g2-nEL"/>
+                                        <constraint firstItem="gOC-b2-M4S" firstAttribute="centerX" secondItem="u0l-vA-BGv" secondAttribute="centerX" id="dQk-RP-kvZ"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <box boxType="custom" cornerRadius="4" title="Keyboard" id="pSk-Yw-RwH">
+                                <rect key="frame" x="20" y="61" width="760" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <view key="contentView" id="dqv-qr-H08">
+                                    <rect key="frame" x="1" y="1" width="758" height="98"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="bg1-1J-ITl">
+                                            <rect key="frame" x="325" y="43" width="109" height="13"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" alignment="center" title="keyboardPlaceholder" id="LuN-M0-aIm">
+                                                <font key="font" metaFont="systemLight" size="10"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="bg1-1J-ITl" firstAttribute="centerX" secondItem="dqv-qr-H08" secondAttribute="centerX" id="hfi-Qq-ueD"/>
+                                        <constraint firstItem="bg1-1J-ITl" firstAttribute="centerY" secondItem="dqv-qr-H08" secondAttribute="centerY" id="pSg-nq-3e3"/>
+                                    </constraints>
+                                </view>
+                                <color key="borderColor" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
+                            <popUpButton focusRingType="none" verticalHuggingPriority="750" id="Zia-IT-buh">
+                                <rect key="frame" x="18" y="17" width="581" height="25"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="MIDI Input (To Do)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="k7q-81-fde" id="Mp8-Ex-W9D">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="WEB-pn-e1r">
+                                        <items>
+                                            <menuItem title="MIDI Input (To Do)" state="on" id="k7q-81-fde"/>
+                                            <menuItem title="Item 2" id="dsI-br-Ra1"/>
+                                            <menuItem title="Item 3" id="N1A-X7-pWV"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <segmentedControl verticalHuggingPriority="750" id="GiH-eQ-gKC">
+                                <rect key="frame" x="610" y="18" width="172" height="24"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                                <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="F7X-ch-YIh">
+                                    <font key="font" metaFont="system"/>
+                                    <segments>
+                                        <segment label="Sharps" width="54"/>
+                                        <segment label="Flats" width="53" tag="1"/>
+                                        <segment label="Mixed" selected="YES"/>
+                                    </segments>
+                                </segmentedCell>
+                            </segmentedControl>
+                            <box boxType="custom" cornerRadius="4" title="Box" id="FTY-jS-FB7">
+                                <rect key="frame" x="580" y="177" width="200" height="276"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" heightSizable="YES"/>
+                                <view key="contentView" id="rh7-tm-fKE">
+                                    <rect key="frame" x="1" y="1" width="198" height="274"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="SJX-oT-hNg">
+                                            <rect key="frame" x="18" y="20" width="162" height="234"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="listOfChordNames" id="nox-wq-fNv">
+                                                <font key="font" metaFont="systemLight" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
+                            </box>
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="accidentalsDisplayType" destination="GiH-eQ-gKC" id="Dcy-w9-joh"/>
                         <outlet property="chordNameLabel" destination="gOC-b2-M4S" id="s8U-L4-lTW"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="74" y="822"/>
+            <point key="canvasLocation" x="74" y="955.5"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="ZUz-Bt-CdP">
+            <objects>
+                <viewController id="pFP-uV-vQ2" sceneMemberID="viewController">
+                    <view key="view" id="YV3-mL-g4D">
+                        <rect key="frame" x="0.0" y="0.0" width="276" height="158"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ugk-L9-qlV">
+                                <rect key="frame" x="0.0" y="-10" width="276" height="158"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <view key="contentView" id="F7j-OS-VZc">
+                                    <rect key="frame" x="1" y="1" width="274" height="156"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="n7R-vi-Ung">
+                                            <rect key="frame" x="6" y="115" width="226" height="51"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="MIDIAnalyser" id="o6A-nc-fAL">
+                                                <font key="font" metaFont="systemUltraLight" size="43"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="fPD-cH-eNn">
+                                            <rect key="frame" x="6" y="105" width="85" height="17"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Version 2.0.0" id="CNI-Xy-rW3">
+                                                <font key="font" metaFont="systemThin" size="14"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="jT4-Vm-YUy">
+                                            <rect key="frame" x="6" y="36" width="277" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Support MIDIAnalyser by leaving feedback online." id="CMm-eb-hPP">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="0uA-Ra-g7B">
+                                            <rect key="frame" x="6" y="64" width="294" height="28"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                    " id="801-Rn-W4T">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="JSN-jX-8w2">
+                                            <rect key="frame" x="6" y="14" width="278" height="20"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis." id="SaE-c5-yBp">
+                                                <font key="font" metaFont="systemThin" size="11"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                            </box>
+                        </subviews>
+                    </view>
+                </viewController>
+                <customObject id="zTr-9B-iO5" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815" y="566"/>
+        </scene>
+        <!--Window Controller-->
+        <scene sceneID="dyd-7a-uRx">
+            <objects>
+                <windowController id="m2y-2R-Le9" sceneMemberID="viewController">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="Lus-dq-VJj">
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
+                        <rect key="contentRect" x="-116" y="1370" width="519" height="230"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <connections>
+                            <outlet property="delegate" destination="m2y-2R-Le9" id="4kF-uC-DYO"/>
+                        </connections>
+                    </window>
+                    <connections>
+                        <segue destination="pFP-uV-vQ2" kind="relationship" relationship="window.shadowedContentViewController" id="xew-GV-fuo"/>
+                    </connections>
+                </windowController>
+                <customObject id="iK9-Vh-byz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="815.5" y="231"/>
         </scene>
     </scenes>
 </document>

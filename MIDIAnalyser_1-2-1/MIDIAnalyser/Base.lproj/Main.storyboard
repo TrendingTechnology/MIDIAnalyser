@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -127,8 +127,8 @@
                 <windowController id="J36-rs-d4Y" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" appearanceType="darkAqua" frameAutosaveName="" animationBehavior="default" titlebarAppearsTransparent="YES" titleVisibility="hidden" id="ZiU-hi-vHQ">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-                        <rect key="contentRect" x="-116" y="1370" width="520" height="230"/>
-                        <rect key="screenRect" x="-541" y="900" width="2560" height="1440"/>
+                        <rect key="contentRect" x="-116" y="1370" width="520" height="231"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
                         <connections>
                             <outlet property="delegate" destination="J36-rs-d4Y" id="P5y-H2-VMW"/>
                         </connections>
@@ -139,7 +139,7 @@
                 </windowController>
                 <customObject id="Fza-2H-28k" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="822" y="174"/>
+            <point key="canvasLocation" x="822" y="174.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="1Wf-ni-dUV">
@@ -152,7 +152,7 @@
                             <box fixedFrame="YES" boxType="custom" cornerRadius="4" title="Box" transparent="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pSp-pb-o9S">
                                 <rect key="frame" x="185" y="8" width="304" height="174"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" ambiguous="YES" id="re2-l7-kDg">
+                                <view key="contentView" id="re2-l7-kDg">
                                     <rect key="frame" x="1" y="1" width="302" height="172"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -174,7 +174,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="eD6-nf-Yby">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="eD6-nf-Yby">
                                             <rect key="frame" x="6" y="42" width="277" height="20"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" title="Support MIDIAnalyser by leaving feedback online." id="26e-DQ-R9A">
@@ -183,7 +183,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="Hcs-43-8E4">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="Hcs-43-8E4">
                                             <rect key="frame" x="6" y="0.0" width="278" height="42"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" title="Copyright © 2020 Tim Brewis. Published under the GNU General Public Licence v3.0." id="wb0-4g-i9b">
@@ -192,7 +192,7 @@
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" ambiguous="YES" id="lrg-E2-AJr">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="lrg-E2-AJr">
                                             <rect key="frame" x="6" y="69" width="294" height="28"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" title="Visit https://github.com/t-bre/MIDIAnalyser for new versions and more information.                                    " id="Z5T-8c-10y">

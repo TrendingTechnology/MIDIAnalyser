@@ -232,7 +232,7 @@ class Chord {
         }
         
         if(isSlashChord) {
-            complexity += 1
+            complexity += 3
         }
           
     }

@@ -15,6 +15,7 @@ class ChordAnalyser {
     // variables
     var chordName: String = ""
     var possibleChordNames: [Chord] = []
+    var accidentals: Keyboard.Accidentals = Keyboard.Accidentals.mixed
     
     // analyser constants
     let intervalNames: [String] = ["unison",
@@ -74,16 +75,16 @@ class ChordAnalyser {
             
             possibleChordNames[0] = analysePermutation(intervals: intervalSets[0], root: uniqueNoteNames[0])
             possibleChordNames[0].estimateComplexity()
-            print(possibleChordNames[0].complexity, "\t", possibleChordNames[0].name())
+            // print(possibleChordNames[0].complexity, "\t", possibleChordNames[0].name())
             
             for i in 1...intervalSets.count - 1  {
                 possibleChordNames[i] = analysePermutation(intervals: intervalSets[i], root: uniqueNoteNames[i])
                 possibleChordNames[i].setSlash(noteNames[0])
                 possibleChordNames[i].estimateComplexity()
-                print(possibleChordNames[i].complexity, "\t", possibleChordNames[i].name())
+                // print(possibleChordNames[i].complexity, "\t", possibleChordNames[i].name())
             }
             
-            print("")
+            // print("")
             
             // determine most likely chord name
             chordName = mostLikelyChord(possibleChordNames).name()
@@ -315,7 +316,7 @@ class ChordAnalyser {
         
         for note in notes {
             // TODO: button to select sharps or flats here
-            noteNames[i] = Keyboard.noteNameOfKey(keyIndex: note, type: Keyboard.Accidentals.mixed)
+            noteNames[i] = Keyboard.noteNameOfKey(keyIndex: note, type: accidentals)
             i += 1
         }
         

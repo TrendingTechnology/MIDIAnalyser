@@ -10,9 +10,10 @@ import Cocoa
 import AudioKit
 
 class ViewController: NSViewController, AKMIDIListener {
-   
+    
     // GUI
     @IBOutlet var chordNameLabel: NSTextField!
+    @IBOutlet var accidentalsDisplayType: NSSegmentedControl!
     
     // MIDI handling
     var MIDI = AudioKit.midi
@@ -46,6 +47,9 @@ class ViewController: NSViewController, AKMIDIListener {
 
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
         
+        // update controls
+        pollAccidentalsSegmentedControl()
+        
         // update the keyboard state
         keys.setKeyState(MIDINumber: Int(noteNumber), state: true)
         analyser.analyse(keyStates: keys.keyStates)
@@ -56,6 +60,9 @@ class ViewController: NSViewController, AKMIDIListener {
     
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
        
+        // update controls
+       pollAccidentalsSegmentedControl()
+        
         // update the keyboard state
         keys.setKeyState(MIDINumber: Int(noteNumber), state: false)
         analyser.analyse(keyStates: keys.keyStates)
@@ -79,9 +86,26 @@ class ViewController: NSViewController, AKMIDIListener {
     func receivedMIDISystemCommand(_ data: [MIDIByte], portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
     }*/
     
+    // update the chord label
     func updateChordLabel(_ label: String) {
         DispatchQueue.main.async(execute: {
             self.chordNameLabel.stringValue = "\(label)"
+        })
+    }
+    
+    // check for changes to accidentals
+    func pollAccidentalsSegmentedControl() {
+        DispatchQueue.main.async(execute: {
+            switch self.accidentalsDisplayType.selectedSegment {
+            case 0:
+                self.analyser.accidentals = Keyboard.Accidentals.sharps
+            case 1:
+                self.analyser.accidentals = Keyboard.Accidentals.flats
+            case 2:
+                self.analyser.accidentals = Keyboard.Accidentals.mixed
+            default:
+                break
+            }
         })
     }
 
