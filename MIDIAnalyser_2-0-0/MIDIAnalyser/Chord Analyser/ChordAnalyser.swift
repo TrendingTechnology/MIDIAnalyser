@@ -14,7 +14,8 @@ class ChordAnalyser {
     
     // variables
     var chordName: String = ""
-    var possibleChordNames: [Chord] = []
+    var possibleChordNames: [String] = Array(repeating: "", count: 2)
+    var possibleChords: [Chord] = []
     var accidentals: Keyboard.Accidentals = Keyboard.Accidentals.mixed
     
     // analyser constants
@@ -50,8 +51,7 @@ class ChordAnalyser {
         
         // single notes
         if(nUniqueNotes == 1) {
-            // TODO: single note names
-            chordName = uniqueNoteNames[0] + "(note)"
+            chordName = uniqueNoteNames[0] + " (note)"
             
         }
             
@@ -71,28 +71,36 @@ class ChordAnalyser {
             let intervalSets: [[Int]] = generateIntervalSets(intervals)
             
             // iterate through interval sets and determine possible chord names
-            possibleChordNames = Array(repeating: Chord(""), count: intervalSets.count)
+            possibleChords = Array(repeating: Chord(""), count: intervalSets.count)
             
-            possibleChordNames[0] = analysePermutation(intervals: intervalSets[0], root: uniqueNoteNames[0])
-            possibleChordNames[0].estimateComplexity()
-            // print(possibleChordNames[0].complexity, "\t", possibleChordNames[0].name())
+            possibleChords[0] = analysePermutation(intervals: intervalSets[0], root: uniqueNoteNames[0])
+            possibleChords[0].estimateComplexity()
+            print(possibleChords[0].complexity, "\t", possibleChords[0].name())
             
             for i in 1...intervalSets.count - 1  {
-                possibleChordNames[i] = analysePermutation(intervals: intervalSets[i], root: uniqueNoteNames[i])
-                possibleChordNames[i].setSlash(noteNames[0])
-                possibleChordNames[i].estimateComplexity()
-                // print(possibleChordNames[i].complexity, "\t", possibleChordNames[i].name())
+                possibleChords[i] = analysePermutation(intervals: intervalSets[i], root: uniqueNoteNames[i])
+                possibleChords[i].setSlash(noteNames[0])
+                possibleChords[i].estimateComplexity()
+                print(possibleChords[i].complexity, "\t", possibleChords[i].name())
             }
             
-            // print("")
+            print("")
             
             // determine most likely chord name
-            chordName = mostLikelyChord(possibleChordNames).name()
+            chordName = mostLikelyChord(possibleChords).name()
+            
+            // record other possibilities
+            possibleChordNames = Array(repeating: "", count: possibleChords.count)
+            
+            for (index, chord) in possibleChords.enumerated() {
+                 possibleChordNames[index] = chord.name()
+            }
             
         }
         else {
             chordName = "-"
         }
+        
  
         
     }
@@ -233,24 +241,24 @@ class ChordAnalyser {
     }
     
     // pick the most likely chord
-    func mostLikelyChord(_ possibleChordNames: [Chord]) -> Chord {
+    func mostLikelyChord(_ possibleChords: [Chord]) -> Chord {
         
         var mostLikelyIndex = 0
         
-        for i in 0...(possibleChordNames.count - 1) {
+        for i in 0...(possibleChords.count - 1) {
             
-            if(possibleChordNames[i].complexity < possibleChordNames[mostLikelyIndex].complexity) {
+            if(possibleChords[i].complexity < possibleChords[mostLikelyIndex].complexity) {
                 mostLikelyIndex = i
             }
-            else if(possibleChordNames[i].complexity == possibleChordNames[mostLikelyIndex].complexity) {
-                if(possibleChordNames[i].name().count < possibleChordNames[mostLikelyIndex].name().count) {
+            else if(possibleChords[i].complexity == possibleChords[mostLikelyIndex].complexity) {
+                if(possibleChords[i].name().count < possibleChords[mostLikelyIndex].name().count) {
                     mostLikelyIndex = i
                 }
             }
             
         }
         
-        return possibleChordNames[mostLikelyIndex]
+        return possibleChords[mostLikelyIndex]
     }
     
     // work out how many keys pressed

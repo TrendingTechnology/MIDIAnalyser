@@ -264,6 +264,7 @@
                     <connections>
                         <outlet property="accidentalsDisplayType" destination="GiH-eQ-gKC" id="Dcy-w9-joh"/>
                         <outlet property="chordNameLabel" destination="gOC-b2-M4S" id="s8U-L4-lTW"/>
+                        <outlet property="possibleChordNamesLabel" destination="SJX-oT-hNg" id="ymw-aH-1GT"/>
                     </connections>
                 </viewController>
             </objects>

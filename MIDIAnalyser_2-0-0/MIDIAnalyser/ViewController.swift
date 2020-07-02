@@ -13,14 +13,19 @@ class ViewController: NSViewController, AKMIDIListener {
     
     // GUI
     @IBOutlet var chordNameLabel: NSTextField!
+    @IBOutlet var possibleChordNamesLabel: NSTextField!
     @IBOutlet var accidentalsDisplayType: NSSegmentedControl!
     
     // MIDI handling
     var MIDI = AudioKit.midi
-    var keys: Keyboard = Keyboard.init()
+    var keyboard: Keyboard = Keyboard.init()
     var analyser: ChordAnalyser = ChordAnalyser.init()
     
-
+    // callbacks for key presses http://blog.ericd.net/2016/10/10/ios-to-macos-reading-keyboard-input/
+    override var acceptsFirstResponder: Bool { return true }
+    override func becomeFirstResponder() -> Bool { return true }
+    override func resignFirstResponder() -> Bool { return true }
+    
     // initialisation
     override func viewDidLoad() {
         
@@ -31,6 +36,17 @@ class ViewController: NSViewController, AKMIDIListener {
         // MIDI initialisation
         MIDI.openInput(name: "MIDI Input")
         MIDI.addListener(self)
+        
+        // keypress detection
+        NSEvent.addLocalMonitorForEvents(matching: .keyUp) { (aEvent) -> NSEvent? in
+            self.keyUp(with: aEvent)
+            return aEvent
+        }
+
+        NSEvent.addLocalMonitorForEvents(matching: .keyDown) { (aEvent) -> NSEvent? in
+            self.keyDown(with: aEvent)
+            return aEvent
+        }
 
     }
     
@@ -48,12 +64,12 @@ class ViewController: NSViewController, AKMIDIListener {
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
         
         // update controls
-        pollAccidentalsSegmentedControl()
+        pollUI();
         
         // update the keyboard state
-        keys.setKeyState(MIDINumber: Int(noteNumber), state: true)
-        analyser.analyse(keyStates: keys.keyStates)
-        updateChordLabel(analyser.chordName)
+        keyboard.setKeyState(MIDINumber: Int(noteNumber), state: true)
+        analyser.analyse(keyStates: keyboard.keyStates)
+        updateChordLabels()
         
     }
 
@@ -61,12 +77,12 @@ class ViewController: NSViewController, AKMIDIListener {
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
        
         // update controls
-       pollAccidentalsSegmentedControl()
+        pollUI()
         
         // update the keyboard state
-        keys.setKeyState(MIDINumber: Int(noteNumber), state: false)
-        analyser.analyse(keyStates: keys.keyStates)
-        updateChordLabel(analyser.chordName)
+        keyboard.setKeyState(MIDINumber: Int(noteNumber), state: false)
+        analyser.analyse(keyStates: keyboard.keyStates)
+        updateChordLabels()
         
     }
 
@@ -85,18 +101,77 @@ class ViewController: NSViewController, AKMIDIListener {
     }
     func receivedMIDISystemCommand(_ data: [MIDIByte], portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
     }*/
+
+    // key press events
+    override func keyDown(with event: NSEvent) {
+        
+        super.keyDown(with: event)
+        
+        let MIDINumber = Keyboard.keycodeToMIDINumber(Int(event.keyCode))
+        
+        if MIDINumber != 0 {
+            keyboard.setKeyState(MIDINumber: MIDINumber, state: true)
+            pollUI();
+            analyser.analyse(keyStates: keyboard.keyStates)
+            updateChordLabels()
+        }
+        
+    }
     
-    // update the chord label
-    func updateChordLabel(_ label: String) {
+    override func keyUp(with event: NSEvent) {
+        
+        super.keyUp(with: event)
+        
+        let MIDINumber = Keyboard.keycodeToMIDINumber(Int(event.keyCode))
+        
+        if MIDINumber != 0 {
+            keyboard.setKeyState(MIDINumber: MIDINumber, state: false)
+            pollUI()
+            analyser.analyse(keyStates: keyboard.keyStates)
+            updateChordLabels()
+        }
+        
+    }
+    
+    
+    // update the chord labels
+    func updateChordLabels() {
         DispatchQueue.main.async(execute: {
-            self.chordNameLabel.stringValue = "\(label)"
+            
+            // main chord label
+            self.chordNameLabel.stringValue = "\(self.analyser.chordName)"
+            
+            // possible chords
+            var multiLineChordLabel =  ""
+            //analyser.possibleChords.sort(by: descending)
+            
+            if(self.analyser.possibleChords.count != 0) {
+                
+                for i in 0 ..< self.analyser.possibleChords.count {
+                    multiLineChordLabel += "\(self.analyser.possibleChordNames[i])\n"
+                }
+                
+            }
+            
+            self.possibleChordNamesLabel.stringValue = "\(multiLineChordLabel)"
+            
         })
     }
     
+    
+    // UI update checks
+    func pollUI() {
+        pollAccidentalsSegmentedControl()
+    }
+
+    
     // check for changes to accidentals
     func pollAccidentalsSegmentedControl() {
+        
         DispatchQueue.main.async(execute: {
+            
             switch self.accidentalsDisplayType.selectedSegment {
+            
             case 0:
                 self.analyser.accidentals = Keyboard.Accidentals.sharps
             case 1:
@@ -105,8 +180,11 @@ class ViewController: NSViewController, AKMIDIListener {
                 self.analyser.accidentals = Keyboard.Accidentals.mixed
             default:
                 break
+                
             }
+            
         })
+        
     }
 
     

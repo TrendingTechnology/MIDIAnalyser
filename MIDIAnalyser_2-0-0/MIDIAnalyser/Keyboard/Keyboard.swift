@@ -24,13 +24,35 @@ public class Keyboard {
     static var minMIDINumber = 21      // A0
     static var maxMIDINumber = 108     // C8
     
+    // dictionary for virtual MIDI keyboard
+    static var keycodeMIDINumberDictionary: [Int: Int] = [
+         0: 60, // C (middle)
+        13: 61,
+         1: 62, // D
+        14: 63,
+         2: 64, // E
+         3: 65, // F
+        17: 66,
+         5: 67, // G
+        16: 68,
+         4: 69, // A
+        32: 70,
+        38: 71, // B
+        40: 72, // C
+        31: 73,
+        37: 74, // D
+        35: 75
+    ]
+    
     // class variables
-    var keyStates: [Bool] = Array()     // state of all keys on keyboard
+    var keyStates: [Bool] = Array()             // state of all 88 keys on keyboard
+    var sustainedKeystates: [Bool] = Array()
     
     
     // initialisation
     init() {
         keyStates = Array(repeating: false, count: Keyboard.nKeys)
+
     }
     
     
@@ -40,9 +62,7 @@ public class Keyboard {
         let keyIndex = keyIndexOfMIDINumber(MIDINumber)
         
         if isValidKeyIndex(keyIndex) {
-            
             keyStates[keyIndex] = state
-            
         }
         
     }
@@ -101,7 +121,7 @@ public class Keyboard {
     
     
     // check if a key is white
-    static func isWhiteKey(keyIndex: Int) -> Bool {
+    static func isWhiteKey(_ keyIndex: Int) -> Bool {
         
                                   // A  // Bb  // B  // C
         let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
@@ -112,6 +132,19 @@ public class Keyboard {
         }
         
         return result
+    }
+    
+    // return key index for virtual midi keyboard
+    static func keycodeToMIDINumber(_ keyCode: Int) -> Int {
+        
+        // makesure the keycode is in the dictionary
+        if let MIDINumber: Int = keycodeMIDINumberDictionary[keyCode] {
+            return MIDINumber
+        }
+        else {
+            return 0
+        }
+        
     }
     
     
