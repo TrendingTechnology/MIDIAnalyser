@@ -1,6 +1,7 @@
 # MIDIAnalyser
 ``` 
 Current version  :  1.2.1
+Upcoming version :  2.0.0
 Last updated     :  30/06/2020
 Supported OS     :  macOS 10.15+
 ```
@@ -17,10 +18,13 @@ This project is made to analyse input data from a MIDI controller and display th
 * Graphical visualisation of keys pressed.
 * Notes in range A0:C8 (88 keys)
 
-### Upcoming Features
+### Upcoming Features (2.0.0)
+* Virtual MIDI keyboard
+* Sustain pedal support
+
+### Potential Features
 * MIDI debug log / raw MIDI data
 * User settings and preferences
-* Virtual MIDI keyboard
 * Alternative chord notation schemes
 * Voicing and substitution suggestions
 
