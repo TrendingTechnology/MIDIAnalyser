@@ -86,9 +86,27 @@ class ViewController: NSViewController, AKMIDIListener {
         
     }
 
-    /* other functions to be implemented:
     func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
+        
+        pollUI()
+        
+        // check for sustain pedal
+        if controller.magnitude == 64 {
+            
+            if value == 127 {
+                keyboard.sustainPressed()
+            } else {
+                keyboard.sustainReleased()
+                // if wanting chord to go away when sustain released, add these lines
+                //analyser.analyse(keyStates: keyboard.keyStates)
+                //updateChordLabels()
+            }
+            
+        }
+        
     }
+     
+     /*other functions to be implemented:
     func receivedMIDIPitchWheel(_ pitchWheelValue: MIDIWord, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
     }
     func receivedMIDIAftertouch(noteNumber: MIDINoteNumber, pressure: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {

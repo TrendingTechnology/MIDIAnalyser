@@ -46,13 +46,16 @@ public class Keyboard {
     
     // class variables
     var keyStates: [Bool] = Array()             // state of all 88 keys on keyboard
-    var sustainedKeystates: [Bool] = Array()
+    var sustainedKeyStates: [Bool] = Array()    // when sustain pedal pressed, keyStates kept constant and sustainedKeyStates updated instead
+                                                // on release of sustain pedal, keyStates updated to sustainedKeyStates
+    
+    var sustain: Bool = false
     
     
     // initialisation
     init() {
         keyStates = Array(repeating: false, count: Keyboard.nKeys)
-
+        sustainedKeyStates = Array(repeating: false, count: Keyboard.nKeys)
     }
     
     
@@ -62,7 +65,16 @@ public class Keyboard {
         let keyIndex = keyIndexOfMIDINumber(MIDINumber)
         
         if isValidKeyIndex(keyIndex) {
-            keyStates[keyIndex] = state
+            
+            if !sustain {
+                keyStates[keyIndex] = state
+            }
+            else if state {
+                keyStates[keyIndex] = state
+            }
+
+            sustainedKeyStates[keyIndex] = state
+            
         }
         
     }
@@ -71,6 +83,18 @@ public class Keyboard {
     // get the state of a single key
     func getKeyState(MIDINumber: Int) -> Bool {
         return keyStates[keyIndexOfMIDINumber(MIDINumber)]
+    }
+    
+    
+    // activate sustain
+    func sustainPressed() {
+        sustain = true
+        sustainedKeyStates = keyStates
+    }
+    
+    func sustainReleased() {
+        sustain = false
+        keyStates = sustainedKeyStates
     }
     
     
