@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.2 (swiftlang-1103.0.32.1 clang-1103.0.32.29)
+// swift-compiler-version: Apple Swift version 5.2.4 (swiftlang-1103.0.32.9 clang-1103.0.32.53)
 // swift-module-flags: -target x86_64-apple-macos10.12 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AudioKit
 import AVFoundation
 import Accelerate
@@ -328,6 +328,7 @@ extension AKOperation {
     get
     set
   }
+  open var loadedFile: AudioKit.AKAudioFile?
   @objc public init(volume: Swift.Double = 1, completionHandler: @escaping AudioKit.AKCCallback = {}, loadCompletionHandler: @escaping AudioKit.AKCCallback = {})
   @objc open func start()
   @objc open func stop()
@@ -916,36 +917,31 @@ extension AKComputedParameter {
       get
     }
   }
+  @objc public static let defaultAudioFormat: AVFoundation.AVAudioFormat
   @objc public static var sampleRate: Swift.Double {
     @objc get
     @objc set
   }
-  @objc public static var channelCount: Swift.UInt32
-  @objc public static var audioInputEnabled: Swift.Bool
-  @objc public static var playbackWhileMuted: Swift.Bool
-  @objc public static var mixWithOthers: Swift.Bool
-  @objc public static var audioFormat: AVFoundation.AVAudioFormat {
+  @objc public static var channelCount: Swift.UInt32 {
     @objc get
+    @objc set
   }
-  @objc public static var defaultToSpeaker: Swift.Bool
-  @objc public static var useBluetooth: Swift.Bool
-  @objc public static var allowAirPlay: Swift.Bool
+  @objc public static var audioInputEnabled: Swift.Bool
   @objc public static var rampDuration: Swift.Double
   @objc public static var notificationsEnabled: Swift.Bool
   @objc public static var bufferLength: AudioKit.AKSettings.BufferLength
+  @objc public static var recordingBufferLength: AudioKit.AKSettings.BufferLength
+  @objc public static var fixTruncatedRecordings: Swift.Bool
+  @objc public static var enableLogging: Swift.Bool
+  @objc deinit
+  @objc override dynamic public init()
+}
+extension AKSettings {
+  @objc public static var audioFormat: AVFoundation.AVAudioFormat
   @objc public static var ioBufferDuration: Swift.Double {
     @objc get
     @objc set
   }
-  @objc public static var recordingBufferLength: AudioKit.AKSettings.BufferLength
-  @objc public static var fixTruncatedRecordings: Swift.Bool
-  @objc public static var disableAVAudioSessionCategoryManagement: Swift.Bool
-  @objc public static var disableAudioSessionDeactivationOnStop: Swift.Bool
-  @objc public static var enableRouteChangeHandling: Swift.Bool
-  @objc public static var enableCategoryChangeHandling: Swift.Bool
-  @objc public static var enableLogging: Swift.Bool
-  @objc deinit
-  @objc override dynamic public init()
 }
 @objc @_inheritsConvenienceInitializers public class AKFMOscillatorAudioUnit : AudioKit.AKGeneratorAudioUnitBase {
   @objc override dynamic public func initDSP(withSampleRate sampleRate: Swift.Double, channelCount count: AVFoundation.AVAudioChannelCount) -> AudioKit.AKDSPRef
@@ -967,6 +963,10 @@ public func mixer(_ first: AudioKit.AKParameter, _ second: AudioKit.AKParameter,
 public func CheckError(_ error: Darwin.OSStatus)
 @objc open class AKMixer : AudioKit.AKNode, AudioKit.AKToggleable, AudioKit.AKInput {
   @objc dynamic open var volume: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var pan: Swift.Double {
     @objc get
     @objc set
   }
@@ -1124,6 +1124,7 @@ public func CheckError(_ error: Darwin.OSStatus)
   case positiveSawtooth
   case positiveReverseSawtooth
   case zero
+  case custom
   public typealias RawValue = Swift.Int
   public init?(rawValue: Swift.Int)
   public var rawValue: Swift.Int {
@@ -1139,6 +1140,9 @@ public func CheckError(_ error: Darwin.OSStatus)
   public typealias IndexDistance = Swift.Int
   public typealias Element = Swift.Float
   public typealias SubSequence = Swift.ArraySlice<AudioKit.AKTable.Element>
+  public var content: [AudioKit.AKTable.Element] {
+    get
+  }
   public var phase: Swift.Float {
     get
     set
@@ -1161,6 +1165,7 @@ public func CheckError(_ error: Darwin.OSStatus)
     set
   }
   @objc public init(_ type: AudioKit.AKTableType = .sine, phase: Swift.Float = 0, count: AudioKit.AKTable.IndexDistance = 4_096)
+  @objc public init(_ content: [AudioKit.AKTable.Element], phase: Swift.Float = 0)
   @objc convenience public init(file: AudioKit.AKAudioFile)
   public var phaseOffset: Swift.Int {
     @inline(__always) get
@@ -1218,6 +1223,9 @@ extension AKTable : Swift.RandomAccessCollection {
     public func hash(into hasher: inout Swift.Hasher)
   }
   public struct Fade {
+    public static var linearTaper: (in: Swift.Double, out: Swift.Double)
+    public static var audioTaper: (in: Swift.Double, out: Swift.Double)
+    public static var reverseAudioTaper: (in: Swift.Double, out: Swift.Double)
     public init()
     public static var minimumGain: Swift.Double
     public var maximumGain: Swift.Double
@@ -1225,22 +1233,24 @@ extension AKTable : Swift.RandomAccessCollection {
       get
       set
     }
-    public var inRampType: AudioKit.AKSettings.RampType {
+    public var inTaper: Swift.Double {
       get
       set
     }
-    public var outRampType: AudioKit.AKSettings.RampType {
-      get
-      set
-    }
-    public var inTimeOffset: Swift.Double
-    public var inStartGain: Swift.Double
+    public var inSkew: Swift.Double
     public var outTime: Swift.Double {
       get
       set
     }
-    public var outTimeOffset: Swift.Double
-    public var outStartGain: Swift.Double
+    public var outTaper: Swift.Double {
+      get
+      set
+    }
+    public var outSkew: Swift.Double
+    @available(*, deprecated, message: "Removed in favor of Taper")
+    public var inRampType: AudioKit.AKSettings.RampType
+    @available(*, deprecated, message: "Removed in favor of Taper")
+    public var outRampType: AudioKit.AKSettings.RampType
   }
   public struct Loop {
     public init()
@@ -1276,6 +1286,7 @@ extension AKTable : Swift.RandomAccessCollection {
     @objc get
     @objc set
   }
+  @objc open var offsetTime: Swift.Double
   @objc open var isPlaying: Swift.Bool {
     get
   }
@@ -1292,15 +1303,21 @@ extension AKTable : Swift.RandomAccessCollection {
   open func initialize(restartIfPlaying: Swift.Bool = true)
   @objc open func play()
   @objc open func stop()
-  public func createFader()
-  public func removeFader()
+  public func startFader()
+  public func bypassFader()
   public func resetFader()
-  public func fadeOut(with time: Swift.Double)
+  public func fadeOut(with time: Swift.Double, taper: Swift.Double? = nil)
   override open func detach()
   @objc override dynamic public init()
   @objc override public init(avAudioUnit: AVFoundation.AVAudioUnit, attach: Swift.Bool = super)
   @objc override public init(avAudioNode: AVFoundation.AVAudioNode, attach: Swift.Bool = super)
   @objc deinit
+}
+extension AKAbstractPlayer {
+  @available(*, unavailable, renamed: "startFader")
+  public func createFader()
+  @available(*, unavailable, renamed: "bypassFader")
+  public func removeFader()
 }
 @objc @_inheritsConvenienceInitializers public class AKAutoPannerAudioUnit : AudioKit.AKAudioUnitBase {
   @objc override dynamic public func initDSP(withSampleRate sampleRate: Swift.Double, channelCount count: AVFoundation.AVAudioChannelCount) -> AudioKit.AKDSPRef
@@ -1625,12 +1642,13 @@ public func ceil(_ duration: AudioKit.AKDuration) -> AudioKit.AKDuration
 extension AKComputedParameter {
   public func reverberateWithCostello(feedback: AudioKit.AKParameter = 0.6, cutoffFrequency: AudioKit.AKParameter = 4_000) -> AudioKit.AKStereoOperation
 }
-@objc @_hasMissingDesignatedInitializers open class AKDryWetMixer : AudioKit.AKNode, AudioKit.AKInput {
+@objc open class AKDryWetMixer : AudioKit.AKNode, AudioKit.AKInput {
   @objc dynamic open var balance: Swift.Double {
     @objc get
     @objc set
   }
   @objc dynamic open var isStarted: Swift.Bool
+  @objc override dynamic public init()
   @objc convenience public init(_ input1: AudioKit.AKNode, _ input2: AudioKit.AKNode, balance: Swift.Double = 0.5)
   @objc convenience public init(dry: AudioKit.AKNode, wet: AudioKit.AKNode, balance: Swift.Double = 0.5)
   public var inputNode: AVFoundation.AVAudioNode {
@@ -1725,7 +1743,10 @@ public func round(_ operation: AudioKit.AKOperation) -> AudioKit.AKOperation
   public typealias _Self = AudioKit.AKPhaseDistortionOscillatorBank
 }
 extension AudioKit {
-  @objc public static var format: AVFoundation.AVAudioFormat
+  @available(*, deprecated, renamed: "AKSettings.audioFormat")
+  @objc public static var format: AVFoundation.AVAudioFormat {
+    @objc get
+  }
 }
 @objc open class AKKorgLowPassFilter : AudioKit.AKNode, AudioKit.AKToggleable, AudioKit.AKComponent, AudioKit.AKInput {
   public typealias AKAudioUnitType = AudioKit.AKKorgLowPassFilterAudioUnit
@@ -2840,6 +2861,9 @@ public typealias AKMIDICallback = (AudioKit.MIDIByte, AudioKit.MIDIByte, AudioKi
   public var effectsCount: Swift.Int {
     get
   }
+  public var tailTime: Foundation.TimeInterval {
+    get
+  }
   public var availableEffects: [AVFoundation.AVAudioUnitComponent] {
     get
     set
@@ -2966,6 +2990,18 @@ extension AKComputedParameter {
     @objc get
     @objc set
   }
+  @objc dynamic open var vibratoFrequency: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var voiceVibratoDepth: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var voiceVibratoFrequency: Swift.Double {
+    @objc get
+    @objc set
+  }
   @objc dynamic open var filterCutoff: Swift.Double {
     @objc get
     @objc set
@@ -2986,11 +3022,19 @@ extension AKComputedParameter {
     @objc get
     @objc set
   }
+  @objc dynamic open var holdDuration: Swift.Double {
+    @objc get
+    @objc set
+  }
   @objc dynamic open var decayDuration: Swift.Double {
     @objc get
     @objc set
   }
   @objc dynamic open var sustainLevel: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var releaseHoldDuration: Swift.Double {
     @objc get
     @objc set
   }
@@ -3034,6 +3078,10 @@ extension AKComputedParameter {
     @objc get
     @objc set
   }
+  @objc dynamic open var restartVoiceLFO: Swift.Bool {
+    @objc get
+    @objc set
+  }
   @objc dynamic open var filterEnable: Swift.Bool {
     @objc get
     @objc set
@@ -3058,7 +3106,7 @@ extension AKComputedParameter {
     @objc get
     @objc set
   }
-  @objc public init(masterVolume: Swift.Double = 1.0, pitchBend: Swift.Double = 0.0, vibratoDepth: Swift.Double = 0.0, filterCutoff: Swift.Double = 4.0, filterStrength: Swift.Double = 20.0, filterResonance: Swift.Double = 0.0, attackDuration: Swift.Double = 0.0, decayDuration: Swift.Double = 0.0, sustainLevel: Swift.Double = 1.0, releaseDuration: Swift.Double = 0.0, filterEnable: Swift.Bool = false, filterAttackDuration: Swift.Double = 0.0, filterDecayDuration: Swift.Double = 0.0, filterSustainLevel: Swift.Double = 1.0, filterReleaseDuration: Swift.Double = 0.0, pitchAttackDuration: Swift.Double = 0.0, pitchDecayDuration: Swift.Double = 0.0, pitchSustainLevel: Swift.Double = 0.0, pitchReleaseDuration: Swift.Double = 0.0, pitchADSRSemitones: Swift.Double = 0.0, glideRate: Swift.Double = 0.0, loopThruRelease: Swift.Bool = true, isMonophonic: Swift.Bool = false, isLegato: Swift.Bool = false, keyTracking: Swift.Double = 1.0, filterEnvelopeVelocityScaling: Swift.Double = 0.0)
+  @objc public init(masterVolume: Swift.Double = 1.0, pitchBend: Swift.Double = 0.0, vibratoDepth: Swift.Double = 0.0, vibratoFrequency: Swift.Double = 5.0, voiceVibratoDepth: Swift.Double = 0.0, voiceVibratoFrequency: Swift.Double = 5.0, filterCutoff: Swift.Double = 4.0, filterStrength: Swift.Double = 20.0, filterResonance: Swift.Double = 0.0, attackDuration: Swift.Double = 0.0, holdDuration: Swift.Double = 0.0, decayDuration: Swift.Double = 0.0, sustainLevel: Swift.Double = 1.0, releaseHoldDuration: Swift.Double = 0.0, releaseDuration: Swift.Double = 0.0, restartVoiceLFO: Swift.Bool = false, filterEnable: Swift.Bool = false, filterAttackDuration: Swift.Double = 0.0, filterDecayDuration: Swift.Double = 0.0, filterSustainLevel: Swift.Double = 1.0, filterReleaseDuration: Swift.Double = 0.0, pitchAttackDuration: Swift.Double = 0.0, pitchDecayDuration: Swift.Double = 0.0, pitchSustainLevel: Swift.Double = 0.0, pitchReleaseDuration: Swift.Double = 0.0, pitchADSRSemitones: Swift.Double = 0.0, glideRate: Swift.Double = 0.0, loopThruRelease: Swift.Bool = true, isMonophonic: Swift.Bool = false, isLegato: Swift.Bool = false, keyTracking: Swift.Double = 1.0, filterEnvelopeVelocityScaling: Swift.Double = 0.0)
   @objc open func loadAKAudioFile(from sampleDescriptor: AudioKit.AKSampleDescriptor, file: AudioKit.AKAudioFile)
   @objc open func stopAllVoices()
   @objc open func restartVoices()
@@ -4003,6 +4051,7 @@ extension AKOperation {
 @objc open class AKFader : AudioKit.AKNode, AudioKit.AKToggleable, AudioKit.AKComponent, AudioKit.AKInput, AudioKit.AKAutomatable {
   public typealias AKAudioUnitType = AudioKit.AKFaderAudioUnit
   public static let ComponentDescription: AudioToolbox.AudioComponentDescription
+  public static var gainRange: Swift.ClosedRange<Swift.Double>
   @objc public var parameterAutomation: AudioKit.AKParameterAutomation? {
     @objc get
   }
@@ -4022,17 +4071,37 @@ extension AKOperation {
     @objc get
     @objc set
   }
+  @objc dynamic open var taper: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var skew: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var offset: Swift.Double {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var flipStereo: Swift.Bool {
+    @objc get
+    @objc set
+  }
+  @objc dynamic open var mixToMono: Swift.Bool {
+    @objc get
+    @objc set
+  }
   @objc dynamic open var isStarted: Swift.Bool {
     @objc get
   }
-  @objc public init(_ input: AudioKit.AKNode? = nil, gain: Swift.Double = 1)
-  @objc open func start()
-  @objc open func stop()
+  @objc public init(_ input: AudioKit.AKNode? = nil, gain: Swift.Double = 1, taper: Swift.Double = 1, skew: Swift.Double = 0, offset: Swift.Double = 0)
   override open func detach()
   @objc deinit
+  @objc open func start()
+  @objc open func stop()
   @objc public func startAutomation(at audioTime: AVFoundation.AVAudioTime?, duration: AVFoundation.AVAudioTime?)
   @objc public func stopAutomation()
-  public func addAutomationPoint(value: Swift.Double, at sampleTime: AudioToolbox.AUEventSampleTime, anchorTime: AudioToolbox.AUEventSampleTime, rampDuration: AudioToolbox.AUAudioFrameCount = 0, rampType: AudioKit.AKSettings.RampType = .linear)
+  public func addAutomationPoint(value: Swift.Double, at sampleTime: AudioToolbox.AUEventSampleTime, anchorTime: AudioToolbox.AUEventSampleTime, rampDuration: AudioToolbox.AUAudioFrameCount = 0, taper taperValue: Swift.Double? = nil, skew skewValue: Swift.Double? = nil, offset offsetValue: AudioToolbox.AUAudioFrameCount? = nil)
   @objc override dynamic public init()
   @objc override public init(avAudioUnit: AVFoundation.AVAudioUnit, attach: Swift.Bool = super)
   @objc override public init(avAudioNode: AVFoundation.AVAudioNode, attach: Swift.Bool = super)
@@ -5598,7 +5667,7 @@ extension AKComputedParameter {
     public func hash(into hasher: inout Swift.Hasher)
   }
   @objc public var playerNode: AVFoundation.AVAudioPlayerNode
-  @objc public var mixer: AVFoundation.AVAudioMixerNode
+  @objc public var mixerNode: AVFoundation.AVAudioMixerNode?
   @objc public var completionHandler: AudioKit.AKCallback? {
     @objc get
     @objc set
@@ -5629,10 +5698,8 @@ extension AKComputedParameter {
     @objc get
     @objc set
   }
-  @objc public var rampType: AudioKit.AKSettings.RampType {
-    @objc get
-    @objc set
-  }
+  @available(*, deprecated, message: "Removed in favor of Taper")
+  @objc public var rampType: AudioKit.AKSettings.RampType
   @objc public var frameCount: AVFoundation.AVAudioFrameCount {
     get
   }
