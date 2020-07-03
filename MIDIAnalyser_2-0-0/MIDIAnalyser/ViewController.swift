@@ -16,6 +16,10 @@ class ViewController: NSViewController, AKMIDIListener {
     @IBOutlet var possibleChordNamesLabel: NSTextField!
     @IBOutlet var accidentalsDisplayType: NSSegmentedControl!
     
+    // preference
+    
+    let defaults = UserDefaults.standard
+    
     // MIDI handling
     var MIDI = AudioKit.midi
     var keyboard: Keyboard = Keyboard.init()
@@ -47,7 +51,15 @@ class ViewController: NSViewController, AKMIDIListener {
             self.keyDown(with: aEvent)
             return aEvent
         }
-
+        
+        /*
+        if let name = defaults.string(forKey: "testKey") {
+            print(name)
+        }
+        else {
+            print("none")
+        }*/
+        
     }
     
     
@@ -70,6 +82,9 @@ class ViewController: NSViewController, AKMIDIListener {
         keyboard.setKeyState(MIDINumber: Int(noteNumber), state: true)
         analyser.analyse(keyStates: keyboard.keyStates)
         updateChordLabels()
+        
+        // set preferences
+        // defaults.set(analyser.chordName, forKey: "testKey")
         
     }
 
