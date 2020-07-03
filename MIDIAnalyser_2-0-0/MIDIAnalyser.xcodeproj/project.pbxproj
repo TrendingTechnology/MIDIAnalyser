@@ -16,26 +16,35 @@
 		22A6E8992439FECE0091C295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A6E8972439FECE0091C295 /* Main.storyboard */; };
 		22A6E8C2243A04370091C295 /* ChordAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8C1243A04370091C295 /* ChordAnalyser.swift */; };
 		22A6E8C4243A04450091C295 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8C3243A04450091C295 /* Keyboard.swift */; };
-		22A6E8C7243A1B190091C295 /* AudioKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 22A6E8C6243A1B190091C295 /* AudioKit.framework */; };
-		22A6E8C8243A1B190091C295 /* AudioKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 22A6E8C6243A1B190091C295 /* AudioKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
-/* Begin PBXCopyFilesBuildPhase section */
-		22A6E8C9243A1B190091C295 /* Embed Frameworks */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 10;
-			files = (
-				22A6E8C8243A1B190091C295 /* AudioKit.framework in Embed Frameworks */,
-			);
-			name = "Embed Frameworks";
-			runOnlyForDeploymentPostprocessing = 0;
+/* Begin PBXContainerItemProxy section */
+		223856E024AF768500F34A33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = C42F36CC1C0582E6000E937C;
+			remoteInfo = AudioKit;
 		};
-/* End PBXCopyFilesBuildPhase section */
+		223856E224AF768500F34A33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = EAFECEBD1F4EBBFE00A2B046;
+			remoteInfo = AudioKitUI;
+		};
+		223856E424AF768B00F34A33 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = C42F36CB1C0582E6000E937C;
+			remoteInfo = AudioKit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		221D9D29243E16990078B019 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
 		2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MIDIAnalyser/AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A6E88E2439FECD0091C295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -47,7 +56,6 @@
 		22A6E89B2439FECE0091C295 /* MIDIAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIDIAnalyser.entitlements; sourceTree = "<group>"; };
 		22A6E8C1243A04370091C295 /* ChordAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAnalyser.swift; sourceTree = "<group>"; };
 		22A6E8C3243A04450091C295 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
-		22A6E8C6243A1B190091C295 /* AudioKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioKit.framework; path = MIDIAnalyser/AudioKit.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +63,21 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A6E8C7243A1B190091C295 /* AudioKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		223856DC24AF768500F34A33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				223856E124AF768500F34A33 /* AudioKit.framework */,
+				223856E324AF768500F34A33 /* AudioKitUI.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		2290CD7D24ACB35F002CE6C0 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -75,7 +91,7 @@
 			children = (
 				22A6E88D2439FECD0091C295 /* MIDIAnalyser */,
 				22A6E88C2439FECD0091C295 /* Products */,
-				22A6E8C5243A1B190091C295 /* Frameworks */,
+				223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -121,14 +137,6 @@
 			path = "View Controllers";
 			sourceTree = "<group>";
 		};
-		22A6E8C5243A1B190091C295 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				22A6E8C6243A1B190091C295 /* AudioKit.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -139,11 +147,11 @@
 				22A6E8872439FECD0091C295 /* Sources */,
 				22A6E8882439FECD0091C295 /* Frameworks */,
 				22A6E8892439FECD0091C295 /* Resources */,
-				22A6E8C9243A1B190091C295 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				223856E524AF768B00F34A33 /* PBXTargetDependency */,
 			);
 			name = MIDIAnalyser;
 			productName = MIDIAnalyser;
@@ -176,12 +184,35 @@
 			mainGroup = 22A6E8822439FECD0091C295;
 			productRefGroup = 22A6E88C2439FECD0091C295 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 223856DC24AF768500F34A33 /* Products */;
+					ProjectRef = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				22A6E88A2439FECD0091C295 /* MIDIAnalyser */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		223856E124AF768500F34A33 /* AudioKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AudioKit.framework;
+			remoteRef = 223856E024AF768500F34A33 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		223856E324AF768500F34A33 /* AudioKitUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = AudioKitUI.framework;
+			remoteRef = 223856E224AF768500F34A33 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		22A6E8892439FECD0091C295 /* Resources */ = {
@@ -211,6 +242,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		223856E524AF768B00F34A33 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AudioKit;
+			targetProxy = 223856E424AF768B00F34A33 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		22A6E8972439FECE0091C295 /* Main.storyboard */ = {
@@ -345,8 +384,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIDIAnalyser",
@@ -372,8 +412,9 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
+				ENABLE_HARDENED_RUNTIME = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/MIDIAnalyser",

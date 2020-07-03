@@ -15,6 +15,8 @@ class ViewController: NSViewController, AKMIDIListener {
     @IBOutlet var chordNameLabel: NSTextField!
     @IBOutlet var possibleChordNamesLabel: NSTextField!
     @IBOutlet var accidentalsDisplayType: NSSegmentedControl!
+    @IBOutlet var sourcePopUpButton: NSPopUpButton!
+    
     
     // preference
     
@@ -38,8 +40,12 @@ class ViewController: NSViewController, AKMIDIListener {
         chordNameLabel.stringValue = "-"
         
         // MIDI initialisation
-        MIDI.openInput(name: "MIDI Input")
+        MIDI.openInput("(default)")
         MIDI.addListener(self)
+        
+        sourcePopUpButton.removeAllItems()
+        sourcePopUpButton.addItem(withTitle: "(select input)")
+        sourcePopUpButton.addItems(withTitles: MIDI.inputNames)
         
         // keypress detection
         NSEvent.addLocalMonitorForEvents(matching: .keyUp) { (aEvent) -> NSEvent? in
@@ -63,6 +69,26 @@ class ViewController: NSViewController, AKMIDIListener {
     }
     
     
+    @IBAction func sourceChanged(_ sender: NSPopUpButton) {
+
+        if sender.indexOfSelectedItem > 0 {
+            MIDI.closeAllInputs()
+            MIDI.openInput(MIDI.inputNames[sender.indexOfSelectedItem - 1])
+        }
+    }
+    
+    
+//    @IBAction func sourceChanged(_ sender: NSPopUpButton) {
+//
+//        print("source changed")
+//
+//        if sender.indexOfSelectedItem > 0 {
+//            MIDI.closeAllInputs()
+//            MIDI.openInput(MIDI.inputNames[sender.indexOfSelectedItem - 1])
+//        }
+//    }
+    
+    
     // something default
     override var representedObject: Any? {
         didSet {
@@ -73,7 +99,7 @@ class ViewController: NSViewController, AKMIDIListener {
     
     // MIDI event handlers
 
-    func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
+    func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
         
         // update controls
         pollUI();
@@ -89,7 +115,7 @@ class ViewController: NSViewController, AKMIDIListener {
     }
 
     
-    func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
+    func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
        
         // update controls
         pollUI()
@@ -101,7 +127,7 @@ class ViewController: NSViewController, AKMIDIListener {
         
     }
 
-    func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel, portID: MIDIUniqueID? = nil, offset: MIDITimeStamp = 0) {
+    func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel) {
         
         pollUI()
         
