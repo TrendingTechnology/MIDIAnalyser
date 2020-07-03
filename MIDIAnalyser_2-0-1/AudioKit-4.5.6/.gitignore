@@ -1,0 +1,40 @@
+# xcode noise
+build/
+DerivedData/
+*.pyc
+*~.nib/
+*.pbxuser
+*.perspective
+*.perspectivev3
+*.xcuserstate
+*.xccheckout
+*.xctimeline
+project.xcworkspace/
+xcuserdata/
+xcodebuild
+
+Playgrounds/**/*.framework
+Playgrounds/iOS/
+# Cocoapods
+Pods/
+Podfile.lock
+*.podspec.json
+
+# osx noise
+.DS_Store
+profile
+
+junk/
+docs/
+
+output/
+dev/
+
+Dev.playground
+
+# During Development
+AudioUnits
+
+# JUCE related
+Builds/
+JuceLibraryCode/

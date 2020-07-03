@@ -248,7 +248,7 @@
                                 <color key="borderColor" name="quaternaryLabelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="fillColor" name="underPageBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </box>
-                            <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" id="Uic-Ln-Vkk">
+                            <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uic-Ln-Vkk">
                                 <rect key="frame" x="18" y="17" width="582" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="(select input)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="iye-W7-xbp" id="jR6-7I-jSb">
