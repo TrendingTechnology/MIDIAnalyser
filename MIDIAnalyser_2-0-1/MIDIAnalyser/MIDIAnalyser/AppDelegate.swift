@@ -12,13 +12,17 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
 
     
-    private var mainWindow: MainWindow?
+    var mainWindow: MainWindow?
+    var mainViewController: MainViewController?
 
     
     func applicationDidFinishLaunching(_ notification: Notification) {
         
-        // create main window
+        // create main window and view controller
         mainWindow = MainWindow(screenSize: NSScreen.main?.frame.size ?? .zero)
+        
+        mainViewController = MainViewController()
+        (mainWindow!.contentView! as NSView).addSubview(mainViewController!.view)
         
     }
 

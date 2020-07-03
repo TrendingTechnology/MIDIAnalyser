@@ -8,9 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		221D9D2A243E16990078B019 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D9D29243E16990078B019 /* Chord.swift */; };
+		2238570324AFB5E100F34A33 /* MIDIListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238570224AFB5E100F34A33 /* MIDIListener.swift */; };
 		2290CD7C24AAC1F9002CE6C0 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */; };
 		22A6E88F2439FECD0091C295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E88E2439FECD0091C295 /* AppDelegate.swift */; };
-		22A6E8912439FECD0091C295 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8902439FECD0091C295 /* ViewController.swift */; };
+		22A6E8912439FECD0091C295 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8902439FECD0091C295 /* MainViewController.swift */; };
 		22A6E8942439FECD0091C295 /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */; };
 		22A6E8962439FECE0091C295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A6E8952439FECE0091C295 /* Assets.xcassets */; };
 		22A6E8992439FECE0091C295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A6E8972439FECE0091C295 /* Main.storyboard */; };
@@ -45,10 +46,11 @@
 /* Begin PBXFileReference section */
 		221D9D29243E16990078B019 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
+		2238570224AFB5E100F34A33 /* MIDIListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIListener.swift; sourceTree = "<group>"; };
 		2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MIDIAnalyser/AppIcon.icns; sourceTree = SOURCE_ROOT; };
 		22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22A6E88E2439FECD0091C295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22A6E8902439FECD0091C295 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		22A6E8902439FECD0091C295 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		22A6E8932439FECD0091C295 /* MIDIAnalyser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIDIAnalyser.xcdatamodel; sourceTree = "<group>"; };
 		22A6E8952439FECE0091C295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		22A6E8982439FECE0091C295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -82,6 +84,7 @@
 			isa = PBXGroup;
 			children = (
 				22A6E8C3243A04450091C295 /* Keyboard.swift */,
+				2238570224AFB5E100F34A33 /* MIDIListener.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -110,7 +113,7 @@
 				22A6E8BF243A03910091C295 /* Chord Analyser */,
 				22A6E8C0243A03A60091C295 /* View Controllers */,
 				22A6E88E2439FECD0091C295 /* AppDelegate.swift */,
-				22A6E8902439FECD0091C295 /* ViewController.swift */,
+				22A6E8902439FECD0091C295 /* MainViewController.swift */,
 				22A6E8952439FECE0091C295 /* Assets.xcassets */,
 				22A6E8972439FECE0091C295 /* Main.storyboard */,
 				22A6E89A2439FECE0091C295 /* Info.plist */,
@@ -233,10 +236,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				221D9D2A243E16990078B019 /* Chord.swift in Sources */,
-				22A6E8912439FECD0091C295 /* ViewController.swift in Sources */,
+				22A6E8912439FECD0091C295 /* MainViewController.swift in Sources */,
 				22A6E8C4243A04450091C295 /* Keyboard.swift in Sources */,
 				22A6E8C2243A04370091C295 /* ChordAnalyser.swift in Sources */,
 				22A6E88F2439FECD0091C295 /* AppDelegate.swift in Sources */,
+				2238570324AFB5E100F34A33 /* MIDIListener.swift in Sources */,
 				22A6E8942439FECD0091C295 /* MIDIAnalyser.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

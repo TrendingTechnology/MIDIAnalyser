@@ -13,6 +13,9 @@ import Cocoa
 class MainWindow : NSWindow {
     
     
+    private static let subviewBorder: CGFloat = CGFloat(20)
+    private static let buttonHeight: CGFloat = CGFloat(25)
+    
     var MIDI = MIDIListener()
     var sourcePopUpButton = NSPopUpButton()
 
@@ -42,13 +45,27 @@ class MainWindow : NSWindow {
         self.makeKeyAndOrderFront(nil)
         
         // MIDI input selection button
-        sourcePopUpButton = NSPopUpButton(frame: NSRect(x: 200, y: 200, width: 200, height: 25), pullsDown: true)
-        sourcePopUpButton.addItem(withTitle: "(select input)")
+        let sourcePopUpButtonFrame = NSRect(x: MainWindow.subviewBorder, y: MainWindow.subviewBorder, width: 200, height: MainWindow.buttonHeight)
+        sourcePopUpButton = NSPopUpButton(frame: sourcePopUpButtonFrame, pullsDown: false)
+        sourcePopUpButton.addItem(withTitle: "All inputs")
         sourcePopUpButton.addItems(withTitles: MIDI.availableInputs)
-        self.contentView?.addSubview(sourcePopUpButton)
+        sourcePopUpButton.autoenablesItems = true
+        sourcePopUpButton.setButtonType(.momentaryLight)
+        sourcePopUpButton.state = .on
+        sourcePopUpButton.target = self
+        sourcePopUpButton.action = #selector(sourceChanged)
         
-
+        // add subviews to window
+        self.contentView?.addSubview(sourcePopUpButton)
+    
         
     }
+    
+    
+    // handle sourcePopUpButton changes
+    @objc func sourceChanged(_ sender: NSPopUpButton) {
+        MIDI.inputChange(sender.indexOfSelectedItem)
+    }
+    
     
 }

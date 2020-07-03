@@ -19,6 +19,7 @@ class MIDIListener : AKMIDIListener {
         
         AudioKit.midi.openInput("(select input)")
         AudioKit.midi.addListener(self)
+        inputChange(0)
         
         availableInputs = AudioKit.midi.inputNames
         
@@ -40,6 +41,22 @@ class MIDIListener : AKMIDIListener {
     func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel) {
         
         print("controller")
+        
+    }
+    
+    func inputChange(_ index: Int) {
+        
+        // if one specific input opened, select it
+        if index > 0 {
+            AudioKit.midi.closeAllInputs()
+            AudioKit.midi.openInput(AudioKit.midi.inputNames[index - 1])
+        }
+        // otherwise take MIDI data from all inputs
+        else {
+            for inputName in AudioKit.midi.inputNames {
+                AudioKit.midi.openInput(inputName)
+            }
+        }
         
     }
     

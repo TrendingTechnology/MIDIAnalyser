@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		223856E724AF90E200F34A33 /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223856E624AF90E200F34A33 /* MainWindow.swift */; };
 		223856EA24AF9AD600F34A33 /* MIDIListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223856E924AF9AD600F34A33 /* MIDIListener.swift */; };
+		223856F924AFABDC00F34A33 /* ChordAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223856F824AFABDC00F34A33 /* ChordAnalyser.swift */; };
+		223856FB24AFABF400F34A33 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223856FA24AFABF400F34A33 /* Chord.swift */; };
+		223856FD24AFAC2200F34A33 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 223856FC24AFAC2200F34A33 /* Keyboard.swift */; };
+		2238570124AFB2F500F34A33 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238570024AFB2F500F34A33 /* MainViewController.swift */; };
 		2250377124AF66AC003E28AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2250377024AF66AC003E28AD /* AppDelegate.swift */; };
 		2250377624AF66AC003E28AD /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2250377424AF66AC003E28AD /* MIDIAnalyser.xcdatamodeld */; };
 		2250377824AF66B0003E28AD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2250377724AF66B0003E28AD /* Assets.xcassets */; };
@@ -41,8 +45,12 @@
 
 /* Begin PBXFileReference section */
 		223856E624AF90E200F34A33 /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
-		223856E924AF9AD600F34A33 /* MIDIListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MIDIListener.swift; path = MIDIAnalyser/MIDIListener.swift; sourceTree = SOURCE_ROOT; };
+		223856E924AF9AD600F34A33 /* MIDIListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MIDIListener.swift; path = MIDIAnalyser/Keyboard/MIDIListener.swift; sourceTree = SOURCE_ROOT; };
 		223856EB24AF9B1000F34A33 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "../AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
+		223856F824AFABDC00F34A33 /* ChordAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAnalyser.swift; sourceTree = "<group>"; };
+		223856FA24AFABF400F34A33 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		223856FC24AFAC2200F34A33 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		2238570024AFB2F500F34A33 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		2250376D24AF66AC003E28AD /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2250377024AF66AC003E28AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2250377524AF66AC003E28AD /* MIDIAnalyser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIDIAnalyser.xcdatamodel; sourceTree = "<group>"; };
@@ -67,6 +75,7 @@
 			isa = PBXGroup;
 			children = (
 				223856E624AF90E200F34A33 /* MainWindow.swift */,
+				2238570024AFB2F500F34A33 /* MainViewController.swift */,
 			);
 			path = Windows;
 			sourceTree = "<group>";
@@ -78,6 +87,24 @@
 				223856F324AF9B1000F34A33 /* AudioKitUI.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		223856F624AFAB9A00F34A33 /* Keyboard */ = {
+			isa = PBXGroup;
+			children = (
+				223856E924AF9AD600F34A33 /* MIDIListener.swift */,
+				223856FC24AFAC2200F34A33 /* Keyboard.swift */,
+			);
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		223856F724AFABB600F34A33 /* Chord Analyser */ = {
+			isa = PBXGroup;
+			children = (
+				223856F824AFABDC00F34A33 /* ChordAnalyser.swift */,
+				223856FA24AFABF400F34A33 /* Chord.swift */,
+			);
+			path = "Chord Analyser";
 			sourceTree = "<group>";
 		};
 		2250376424AF66AC003E28AD = {
@@ -102,7 +129,8 @@
 			children = (
 				225037A324AF6843003E28AD /* main.swift */,
 				2250377024AF66AC003E28AD /* AppDelegate.swift */,
-				223856E924AF9AD600F34A33 /* MIDIListener.swift */,
+				223856F624AFAB9A00F34A33 /* Keyboard */,
+				223856F724AFABB600F34A33 /* Chord Analyser */,
 				223856E824AF9AB300F34A33 /* Windows */,
 				2250377724AF66B0003E28AD /* Assets.xcassets */,
 				2250377C24AF66B0003E28AD /* Info.plist */,
@@ -207,9 +235,13 @@
 			files = (
 				223856E724AF90E200F34A33 /* MainWindow.swift in Sources */,
 				223856EA24AF9AD600F34A33 /* MIDIListener.swift in Sources */,
+				223856FD24AFAC2200F34A33 /* Keyboard.swift in Sources */,
 				2250377124AF66AC003E28AD /* AppDelegate.swift in Sources */,
 				2250377624AF66AC003E28AD /* MIDIAnalyser.xcdatamodeld in Sources */,
 				225037A424AF6843003E28AD /* main.swift in Sources */,
+				2238570124AFB2F500F34A33 /* MainViewController.swift in Sources */,
+				223856F924AFABDC00F34A33 /* ChordAnalyser.swift in Sources */,
+				223856FB24AFABF400F34A33 /* Chord.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
