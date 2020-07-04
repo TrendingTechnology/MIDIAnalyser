@@ -11,6 +11,8 @@ import Foundation
 
 class ChordNotesMessage {
     
+    static let ChordNotesMessageName = "chordNotes"
+    
     var notes: [Int]
     
     init(_ notes: [Int]) {

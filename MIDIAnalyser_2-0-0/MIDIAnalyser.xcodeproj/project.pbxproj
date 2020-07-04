@@ -20,7 +20,10 @@
 		22626B1B24AFFF3E002814EC /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1A24AFFF3E002814EC /* Chord.swift */; };
 		22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1C24AFFF56002814EC /* ChordAnalyser.swift */; };
 		22626B1F24B00883002814EC /* ChordNotesMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1E24B00883002814EC /* ChordNotesMessage.swift */; };
-		22626B2424B0132A002814EC /* ChordNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2324B0132A002814EC /* ChordNameView.swift */; };
+		22626B2624B0B760002814EC /* KeyboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2524B0B760002814EC /* KeyboardViewController.swift */; };
+		22626B2924B0BD78002814EC /* WhiteKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2824B0BD78002814EC /* WhiteKeyView.swift */; };
+		22626B2B24B0BF0F002814EC /* KeyboardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2A24B0BF0F002814EC /* KeyboardView.swift */; };
+		22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2C24B0D7A3002814EC /* BlackKeyView.swift */; };
 		22F5441F24AFDF9800692D16 /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5441E24AFDF9800692D16 /* MIDIMessage.swift */; };
 		22F5442D24AFE19600692D16 /* MIDINoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5442C24AFE19600692D16 /* MIDINoteMessage.swift */; };
 /* End PBXBuildFile section */
@@ -66,7 +69,10 @@
 		22626B1A24AFFF3E002814EC /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
 		22626B1C24AFFF56002814EC /* ChordAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAnalyser.swift; sourceTree = "<group>"; };
 		22626B1E24B00883002814EC /* ChordNotesMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNotesMessage.swift; sourceTree = "<group>"; };
-		22626B2324B0132A002814EC /* ChordNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameView.swift; sourceTree = "<group>"; };
+		22626B2524B0B760002814EC /* KeyboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardViewController.swift; sourceTree = "<group>"; };
+		22626B2824B0BD78002814EC /* WhiteKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhiteKeyView.swift; sourceTree = "<group>"; };
+		22626B2A24B0BF0F002814EC /* KeyboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardView.swift; sourceTree = "<group>"; };
+		22626B2C24B0D7A3002814EC /* BlackKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackKeyView.swift; sourceTree = "<group>"; };
 		22F5441E24AFDF9800692D16 /* MIDIMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
 		22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
 		22F5442C24AFE19600692D16 /* MIDINoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDINoteMessage.swift; sourceTree = "<group>"; };
@@ -105,11 +111,11 @@
 			children = (
 				2238571924AFB79D00F34A33 /* Main.storyboard */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
-				2238571224AFB79B00F34A33 /* MainViewController.swift */,
 				2238575924AFD58800F34A33 /* MIDI */,
 				2238574A24AFB89700F34A33 /* Keyboard */,
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
-				22626B2224B011AF002814EC /* Views */,
+				22626B2224B011AF002814EC /* View Controllers */,
+				22626B2724B0BD60002814EC /* Custom Views */,
 				2238571724AFB79D00F34A33 /* Assets.xcassets */,
 				2238571C24AFB79D00F34A33 /* Info.plist */,
 				2238571D24AFB79D00F34A33 /* MIDIAnalyser.entitlements */,
@@ -150,12 +156,23 @@
 			path = ChordAnalyser;
 			sourceTree = "<group>";
 		};
-		22626B2224B011AF002814EC /* Views */ = {
+		22626B2224B011AF002814EC /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				22626B2324B0132A002814EC /* ChordNameView.swift */,
+				2238571224AFB79B00F34A33 /* MainViewController.swift */,
+				22626B2524B0B760002814EC /* KeyboardViewController.swift */,
 			);
-			path = Views;
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		22626B2724B0BD60002814EC /* Custom Views */ = {
+			isa = PBXGroup;
+			children = (
+				22626B2A24B0BF0F002814EC /* KeyboardView.swift */,
+				22626B2824B0BD78002814EC /* WhiteKeyView.swift */,
+				22626B2C24B0D7A3002814EC /* BlackKeyView.swift */,
+			);
+			path = "Custom Views";
 			sourceTree = "<group>";
 		};
 		22F5442224AFE14D00692D16 /* Products */ = {
@@ -263,17 +280,20 @@
 			files = (
 				2238571324AFB79B00F34A33 /* MainViewController.swift in Sources */,
 				2238571124AFB79B00F34A33 /* AppDelegate.swift in Sources */,
+				22626B2924B0BD78002814EC /* WhiteKeyView.swift in Sources */,
 				22626B1B24AFFF3E002814EC /* Chord.swift in Sources */,
 				2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */,
 				2238574D24AFB92000F34A33 /* MIDIHardwareListener.swift in Sources */,
 				22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */,
 				22F5441F24AFDF9800692D16 /* MIDIMessage.swift in Sources */,
 				2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */,
+				22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */,
+				22626B2B24B0BF0F002814EC /* KeyboardView.swift in Sources */,
 				22F5442D24AFE19600692D16 /* MIDINoteMessage.swift in Sources */,
 				2238575224AFBA1D00F34A33 /* Key.swift in Sources */,
 				22238D4024AFEE7000974B83 /* MIDIControlMessage.swift in Sources */,
+				22626B2624B0B760002814EC /* KeyboardViewController.swift in Sources */,
 				22626B1F24B00883002814EC /* ChordNotesMessage.swift in Sources */,
-				22626B2424B0132A002814EC /* ChordNameView.swift in Sources */,
 				2238575824AFD57C00F34A33 /* MIDINotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

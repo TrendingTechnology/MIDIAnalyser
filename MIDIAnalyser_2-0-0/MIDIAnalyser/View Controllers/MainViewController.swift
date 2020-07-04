@@ -10,18 +10,29 @@ import Cocoa
 
 class MainViewController: NSViewController {
     
-    
+    // analysis and MIDI
     var MIDI = MIDIHardwareListener()
-    var keyboard = Keyboard()
+    //var keyboard = Keyboard()
     var analyser = ChordAnalyser()
     
+    // child view controllers
+    private var keyboardViewController: KeyboardViewController?
+    
 
+    // view loaded setup
     override func viewDidLoad() {
+        
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        guard let keyboardViewControllerFetched = children.first as? KeyboardViewController else {
+            fatalError("missing keyboardViewController")
+        }
+        
+        keyboardViewController = keyboardViewControllerFetched
+        
     }
 
+    // default
     override var representedObject: Any? {
         didSet {
         // Update the view, if already loaded.

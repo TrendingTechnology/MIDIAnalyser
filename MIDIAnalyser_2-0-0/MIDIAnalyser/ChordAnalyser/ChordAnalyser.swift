@@ -29,13 +29,10 @@ class ChordAnalyser {
                                    "minor 7th", "major 7th",
                                    "octave"]
     
-    static let analyseNotificationName = "analyse"
-    
-    
     // initialisation
     init() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(analyse), name: NSNotification.Name(rawValue: ChordAnalyser.analyseNotificationName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(analyse), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
         
     }
     

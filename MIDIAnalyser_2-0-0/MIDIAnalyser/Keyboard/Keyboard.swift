@@ -82,7 +82,7 @@ class Keyboard {
                     sustainedKeys[keyIndex].state = true
                 }
                 
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordAnalyser.analyseNotificationName), object: ChordNotesMessage(keysPressed()))
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
                 
             }
             
@@ -99,6 +99,8 @@ class Keyboard {
                 else {
                     sustainedKeys[keyIndex].state = false
                 }
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
                 
             }
             
@@ -149,6 +151,20 @@ class Keyboard {
         
         return keyStates
         
+    }
+    
+    
+    // check if a key index belongs to a white key
+    static func isWhiteKeyIndex(_ keyIndex: Int) -> Bool {
+                                  // A
+        let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
+        var result: Bool = false
+        
+        if isWhiteKey[keyIndex % 12] {
+            result =  true
+        }
+        
+        return result
     }
     
     

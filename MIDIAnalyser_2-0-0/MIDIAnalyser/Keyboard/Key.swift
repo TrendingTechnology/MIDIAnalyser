@@ -23,9 +23,9 @@ class Key: NSCopying {
     
     
     // lists of possible note names
-    static let noteNamesSharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-    static let noteNamesFlats  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-    static let noteNamesMixed  = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
+    static let noteNamesSharps = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
+    static let noteNamesFlats  = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab"]
+    static let noteNamesMixed  = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
     
     
     // key data
@@ -34,7 +34,7 @@ class Key: NSCopying {
     var MIDINumber: Int
     var keyType: KeyType
     var index: Int
-    
+
     
     // initialisation
     init(keyType: KeyType, MIDINumber: Int, octave: Int, index: Int) {
@@ -52,13 +52,13 @@ class Key: NSCopying {
         switch format {
         
         case .sharps:
-            return Key.noteNamesSharps[(MIDINumber - 3) % 12] // need to fix this magic number by reordering noteNamesSharps etc
+            return Key.noteNamesSharps[MIDINumber % 12] // need to fix this magic number by reordering noteNamesSharps etc
             
         case .flats:
-            return Key.noteNamesFlats[(MIDINumber - 3) % 12]
+            return Key.noteNamesFlats[MIDINumber % 12]
             
         case .mixed:
-            return Key.noteNamesMixed[(MIDINumber - 3) % 12]
+            return Key.noteNamesMixed[MIDINumber % 12]
             
         }
         
