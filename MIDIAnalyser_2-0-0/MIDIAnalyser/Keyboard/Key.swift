@@ -1,0 +1,74 @@
+//
+//  Key.swift
+//  MIDIAnalyser
+//
+//  Created by Tim Brewis on 03/07/2020.
+//  Copyright © 2020 Tim Brewis. All rights reserved.
+//
+
+import Foundation
+
+
+class Key: NSCopying {
+    
+    
+    // enumerated types
+    enum NoteNameFormat {
+        case sharps, flats, mixed
+    }
+    
+    enum KeyType {
+        case white, black
+    }
+    
+    
+    // lists of possible note names
+    static let noteNamesSharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
+    static let noteNamesFlats  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
+    static let noteNamesMixed  = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
+    
+    
+    // key data
+    var state: Bool
+    var octave: Int
+    var MIDINumber: Int
+    var keyType: KeyType
+    var index: Int
+    
+    
+    // initialisation
+    init(keyType: KeyType, MIDINumber: Int, octave: Int, index: Int) {
+        state = false
+        self.MIDINumber = MIDINumber
+        self.octave = octave
+        self.keyType = keyType
+        self.index = index
+    }
+    
+    
+    // return the note name of the key in the specified format
+    static func noteName(format: NoteNameFormat, MIDINumber: Int) -> String {
+        
+        switch format {
+        
+        case .sharps:
+            return Key.noteNamesSharps[(MIDINumber - 3) % 12] // need to fix this magic number by reordering noteNamesSharps etc
+            
+        case .flats:
+            return Key.noteNamesFlats[(MIDINumber - 3) % 12]
+            
+        case .mixed:
+            return Key.noteNamesMixed[(MIDINumber - 3) % 12]
+            
+        }
+        
+    }
+    
+    
+    // function for copying key objects
+    func copy(with zone: NSZone? = nil) -> Any {
+        let copy = Key(keyType: keyType, MIDINumber: MIDINumber, octave: octave, index: index)
+        return copy
+    }
+    
+}

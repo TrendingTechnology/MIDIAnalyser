@@ -2,7 +2,7 @@
 //  AppDelegate.swift
 //  MIDIAnalyser
 //
-//  Created by Tim Brewis on 05/04/2020.
+//  Created by Tim Brewis on 03/07/2020.
 //  Copyright © 2020 Tim Brewis. All rights reserved.
 //
 
@@ -19,11 +19,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationWillTerminate(_ aNotification: Notification) {
         // Insert code here to tear down your application
-    }
-    
-    // terminate the application when red X pressed
-    func applicationShouldTerminateAfterLastWindowClosed(_ sender: NSApplication) -> Bool {
-        return true
     }
 
     // MARK: - Core Data stack

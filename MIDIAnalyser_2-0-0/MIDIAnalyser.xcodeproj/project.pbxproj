@@ -3,40 +3,45 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 50;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		221D9D2A243E16990078B019 /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 221D9D29243E16990078B019 /* Chord.swift */; };
-		2238570324AFB5E100F34A33 /* MIDIListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238570224AFB5E100F34A33 /* MIDIListener.swift */; };
-		2290CD7C24AAC1F9002CE6C0 /* AppIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */; };
-		22A6E88F2439FECD0091C295 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E88E2439FECD0091C295 /* AppDelegate.swift */; };
-		22A6E8912439FECD0091C295 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8902439FECD0091C295 /* MainViewController.swift */; };
-		22A6E8942439FECD0091C295 /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */; };
-		22A6E8962439FECE0091C295 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22A6E8952439FECE0091C295 /* Assets.xcassets */; };
-		22A6E8992439FECE0091C295 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22A6E8972439FECE0091C295 /* Main.storyboard */; };
-		22A6E8C2243A04370091C295 /* ChordAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8C1243A04370091C295 /* ChordAnalyser.swift */; };
-		22A6E8C4243A04450091C295 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22A6E8C3243A04450091C295 /* Keyboard.swift */; };
+		22238D4024AFEE7000974B83 /* MIDIControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22238D3F24AFEE7000974B83 /* MIDIControlMessage.swift */; };
+		2238571124AFB79B00F34A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238571024AFB79B00F34A33 /* AppDelegate.swift */; };
+		2238571324AFB79B00F34A33 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238571224AFB79B00F34A33 /* ViewController.swift */; };
+		2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2238571424AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld */; };
+		2238571824AFB79D00F34A33 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2238571724AFB79D00F34A33 /* Assets.xcassets */; };
+		2238571B24AFB79D00F34A33 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2238571924AFB79D00F34A33 /* Main.storyboard */; };
+		2238574D24AFB92000F34A33 /* MIDIHardwareListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238574C24AFB91F00F34A33 /* MIDIHardwareListener.swift */; };
+		2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238574F24AFB9E800F34A33 /* Keyboard.swift */; };
+		2238575224AFBA1D00F34A33 /* Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238575124AFBA1D00F34A33 /* Key.swift */; };
+		2238575824AFD57C00F34A33 /* MIDINotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238575724AFD57C00F34A33 /* MIDINotificationCenter.swift */; };
+		22626B1B24AFFF3E002814EC /* Chord.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1A24AFFF3E002814EC /* Chord.swift */; };
+		22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1C24AFFF56002814EC /* ChordAnalyser.swift */; };
+		22626B1F24B00883002814EC /* ChordNotesMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B1E24B00883002814EC /* ChordNotesMessage.swift */; };
+		22F5441F24AFDF9800692D16 /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5441E24AFDF9800692D16 /* MIDIMessage.swift */; };
+		22F5442D24AFE19600692D16 /* MIDINoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F5442C24AFE19600692D16 /* MIDINoteMessage.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		223856E024AF768500F34A33 /* PBXContainerItemProxy */ = {
+		22F5442624AFE14E00692D16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			containerPortal = 22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = C42F36CC1C0582E6000E937C;
 			remoteInfo = AudioKit;
 		};
-		223856E224AF768500F34A33 /* PBXContainerItemProxy */ = {
+		22F5442824AFE14E00692D16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			containerPortal = 22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = EAFECEBD1F4EBBFE00A2B046;
 			remoteInfo = AudioKitUI;
 		};
-		223856E424AF768B00F34A33 /* PBXContainerItemProxy */ = {
+		22F5442A24AFE16000692D16 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+			containerPortal = 22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */;
 			proxyType = 1;
 			remoteGlobalIDString = C42F36CB1C0582E6000E937C;
 			remoteInfo = AudioKit;
@@ -44,24 +49,29 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		221D9D29243E16990078B019 /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
-		223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
-		2238570224AFB5E100F34A33 /* MIDIListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIListener.swift; sourceTree = "<group>"; };
-		2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = AppIcon.icns; path = MIDIAnalyser/AppIcon.icns; sourceTree = SOURCE_ROOT; };
-		22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		22A6E88E2439FECD0091C295 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		22A6E8902439FECD0091C295 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
-		22A6E8932439FECD0091C295 /* MIDIAnalyser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIDIAnalyser.xcdatamodel; sourceTree = "<group>"; };
-		22A6E8952439FECE0091C295 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		22A6E8982439FECE0091C295 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		22A6E89A2439FECE0091C295 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		22A6E89B2439FECE0091C295 /* MIDIAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIDIAnalyser.entitlements; sourceTree = "<group>"; };
-		22A6E8C1243A04370091C295 /* ChordAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAnalyser.swift; sourceTree = "<group>"; };
-		22A6E8C3243A04450091C295 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		22238D3F24AFEE7000974B83 /* MIDIControlMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIControlMessage.swift; sourceTree = "<group>"; };
+		2238570D24AFB79B00F34A33 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2238571024AFB79B00F34A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2238571224AFB79B00F34A33 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2238571524AFB79B00F34A33 /* MIDIAnalyser.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MIDIAnalyser.xcdatamodel; sourceTree = "<group>"; };
+		2238571724AFB79D00F34A33 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2238571A24AFB79D00F34A33 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		2238571C24AFB79D00F34A33 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2238571D24AFB79D00F34A33 /* MIDIAnalyser.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MIDIAnalyser.entitlements; sourceTree = "<group>"; };
+		2238574C24AFB91F00F34A33 /* MIDIHardwareListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIHardwareListener.swift; sourceTree = "<group>"; };
+		2238574F24AFB9E800F34A33 /* Keyboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keyboard.swift; sourceTree = "<group>"; };
+		2238575124AFBA1D00F34A33 /* Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Key.swift; sourceTree = "<group>"; };
+		2238575724AFD57C00F34A33 /* MIDINotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDINotificationCenter.swift; sourceTree = "<group>"; };
+		22626B1A24AFFF3E002814EC /* Chord.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chord.swift; sourceTree = "<group>"; };
+		22626B1C24AFFF56002814EC /* ChordAnalyser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAnalyser.swift; sourceTree = "<group>"; };
+		22626B1E24B00883002814EC /* ChordNotesMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNotesMessage.swift; sourceTree = "<group>"; };
+		22F5441E24AFDF9800692D16 /* MIDIMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDIMessage.swift; sourceTree = "<group>"; };
+		22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
+		22F5442C24AFE19600692D16 /* MIDINoteMessage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDINoteMessage.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		22A6E8882439FECD0091C295 /* Frameworks */ = {
+		2238570A24AFB79B00F34A33 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -71,195 +81,206 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		223856DC24AF768500F34A33 /* Products */ = {
+		2238570424AFB79B00F34A33 = {
 			isa = PBXGroup;
 			children = (
-				223856E124AF768500F34A33 /* AudioKit.framework */,
-				223856E324AF768500F34A33 /* AudioKitUI.framework */,
+				2238570F24AFB79B00F34A33 /* MIDIAnalyser */,
+				2238570E24AFB79B00F34A33 /* Products */,
+				22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		2238570E24AFB79B00F34A33 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2238570D24AFB79B00F34A33 /* MIDIAnalyser.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		2290CD7D24ACB35F002CE6C0 /* Keyboard */ = {
+		2238570F24AFB79B00F34A33 /* MIDIAnalyser */ = {
 			isa = PBXGroup;
 			children = (
-				22A6E8C3243A04450091C295 /* Keyboard.swift */,
-				2238570224AFB5E100F34A33 /* MIDIListener.swift */,
-			);
-			path = Keyboard;
-			sourceTree = "<group>";
-		};
-		22A6E8822439FECD0091C295 = {
-			isa = PBXGroup;
-			children = (
-				22A6E88D2439FECD0091C295 /* MIDIAnalyser */,
-				22A6E88C2439FECD0091C295 /* Products */,
-				223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */,
-			);
-			sourceTree = "<group>";
-		};
-		22A6E88C2439FECD0091C295 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		22A6E88D2439FECD0091C295 /* MIDIAnalyser */ = {
-			isa = PBXGroup;
-			children = (
-				2290CD7D24ACB35F002CE6C0 /* Keyboard */,
-				22A6E8BF243A03910091C295 /* Chord Analyser */,
-				22A6E8C0243A03A60091C295 /* View Controllers */,
-				22A6E88E2439FECD0091C295 /* AppDelegate.swift */,
-				22A6E8902439FECD0091C295 /* MainViewController.swift */,
-				22A6E8952439FECE0091C295 /* Assets.xcassets */,
-				22A6E8972439FECE0091C295 /* Main.storyboard */,
-				22A6E89A2439FECE0091C295 /* Info.plist */,
-				22A6E89B2439FECE0091C295 /* MIDIAnalyser.entitlements */,
-				22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */,
-				2290CD7B24AAC1F9002CE6C0 /* AppIcon.icns */,
+				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
+				2238571224AFB79B00F34A33 /* ViewController.swift */,
+				2238575924AFD58800F34A33 /* MIDI */,
+				2238574A24AFB89700F34A33 /* Keyboard */,
+				22626B1824AFFF15002814EC /* ChordAnalyser */,
+				2238571724AFB79D00F34A33 /* Assets.xcassets */,
+				2238571924AFB79D00F34A33 /* Main.storyboard */,
+				2238571C24AFB79D00F34A33 /* Info.plist */,
+				2238571D24AFB79D00F34A33 /* MIDIAnalyser.entitlements */,
+				2238571424AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld */,
 			);
 			path = MIDIAnalyser;
 			sourceTree = "<group>";
 		};
-		22A6E8BF243A03910091C295 /* Chord Analyser */ = {
+		2238574A24AFB89700F34A33 /* Keyboard */ = {
 			isa = PBXGroup;
 			children = (
-				22A6E8C1243A04370091C295 /* ChordAnalyser.swift */,
-				221D9D29243E16990078B019 /* Chord.swift */,
+				2238574F24AFB9E800F34A33 /* Keyboard.swift */,
+				2238575124AFBA1D00F34A33 /* Key.swift */,
 			);
-			path = "Chord Analyser";
+			path = Keyboard;
 			sourceTree = "<group>";
 		};
-		22A6E8C0243A03A60091C295 /* View Controllers */ = {
+		2238575924AFD58800F34A33 /* MIDI */ = {
 			isa = PBXGroup;
 			children = (
+				2238574C24AFB91F00F34A33 /* MIDIHardwareListener.swift */,
+				2238575724AFD57C00F34A33 /* MIDINotificationCenter.swift */,
+				22F5441E24AFDF9800692D16 /* MIDIMessage.swift */,
+				22F5442C24AFE19600692D16 /* MIDINoteMessage.swift */,
+				22238D3F24AFEE7000974B83 /* MIDIControlMessage.swift */,
 			);
-			path = "View Controllers";
+			name = MIDI;
+			path = Keyboard;
+			sourceTree = "<group>";
+		};
+		22626B1824AFFF15002814EC /* ChordAnalyser */ = {
+			isa = PBXGroup;
+			children = (
+				22626B1A24AFFF3E002814EC /* Chord.swift */,
+				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
+				22626B1E24B00883002814EC /* ChordNotesMessage.swift */,
+			);
+			path = ChordAnalyser;
+			sourceTree = "<group>";
+		};
+		22F5442224AFE14D00692D16 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				22F5442724AFE14E00692D16 /* AudioKit.framework */,
+				22F5442924AFE14E00692D16 /* AudioKitUI.framework */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		22A6E88A2439FECD0091C295 /* MIDIAnalyser */ = {
+		2238570C24AFB79B00F34A33 /* MIDIAnalyser */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 22A6E8B42439FECE0091C295 /* Build configuration list for PBXNativeTarget "MIDIAnalyser" */;
+			buildConfigurationList = 2238573624AFB79D00F34A33 /* Build configuration list for PBXNativeTarget "MIDIAnalyser" */;
 			buildPhases = (
-				22A6E8872439FECD0091C295 /* Sources */,
-				22A6E8882439FECD0091C295 /* Frameworks */,
-				22A6E8892439FECD0091C295 /* Resources */,
+				2238570924AFB79B00F34A33 /* Sources */,
+				2238570A24AFB79B00F34A33 /* Frameworks */,
+				2238570B24AFB79B00F34A33 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				223856E524AF768B00F34A33 /* PBXTargetDependency */,
+				22F5442B24AFE16000692D16 /* PBXTargetDependency */,
 			);
 			name = MIDIAnalyser;
 			productName = MIDIAnalyser;
-			productReference = 22A6E88B2439FECD0091C295 /* MIDIAnalyser.app */;
+			productReference = 2238570D24AFB79B00F34A33 /* MIDIAnalyser.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		22A6E8832439FECD0091C295 /* Project object */ = {
+		2238570524AFB79B00F34A33 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1140;
+				LastSwiftUpdateCheck = 1150;
 				LastUpgradeCheck = 1150;
 				ORGANIZATIONNAME = "Tim Brewis";
 				TargetAttributes = {
-					22A6E88A2439FECD0091C295 = {
-						CreatedOnToolsVersion = 11.4;
+					2238570C24AFB79B00F34A33 = {
+						CreatedOnToolsVersion = 11.5;
 					};
 				};
 			};
-			buildConfigurationList = 22A6E8862439FECD0091C295 /* Build configuration list for PBXProject "MIDIAnalyser" */;
-			compatibilityVersion = "Xcode 10.0";
+			buildConfigurationList = 2238570824AFB79B00F34A33 /* Build configuration list for PBXProject "MIDIAnalyser" */;
+			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 22A6E8822439FECD0091C295;
-			productRefGroup = 22A6E88C2439FECD0091C295 /* Products */;
+			mainGroup = 2238570424AFB79B00F34A33;
+			productRefGroup = 2238570E24AFB79B00F34A33 /* Products */;
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = 223856DC24AF768500F34A33 /* Products */;
-					ProjectRef = 223856DB24AF768500F34A33 /* AudioKit For macOS.xcodeproj */;
+					ProductGroup = 22F5442224AFE14D00692D16 /* Products */;
+					ProjectRef = 22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				22A6E88A2439FECD0091C295 /* MIDIAnalyser */,
+				2238570C24AFB79B00F34A33 /* MIDIAnalyser */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		223856E124AF768500F34A33 /* AudioKit.framework */ = {
+		22F5442724AFE14E00692D16 /* AudioKit.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AudioKit.framework;
-			remoteRef = 223856E024AF768500F34A33 /* PBXContainerItemProxy */;
+			remoteRef = 22F5442624AFE14E00692D16 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		223856E324AF768500F34A33 /* AudioKitUI.framework */ = {
+		22F5442924AFE14E00692D16 /* AudioKitUI.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = AudioKitUI.framework;
-			remoteRef = 223856E224AF768500F34A33 /* PBXContainerItemProxy */;
+			remoteRef = 22F5442824AFE14E00692D16 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
-		22A6E8892439FECD0091C295 /* Resources */ = {
+		2238570B24AFB79B00F34A33 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				22A6E8962439FECE0091C295 /* Assets.xcassets in Resources */,
-				2290CD7C24AAC1F9002CE6C0 /* AppIcon.icns in Resources */,
-				22A6E8992439FECE0091C295 /* Main.storyboard in Resources */,
+				2238571824AFB79D00F34A33 /* Assets.xcassets in Resources */,
+				2238571B24AFB79D00F34A33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		22A6E8872439FECD0091C295 /* Sources */ = {
+		2238570924AFB79B00F34A33 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				221D9D2A243E16990078B019 /* Chord.swift in Sources */,
-				22A6E8912439FECD0091C295 /* MainViewController.swift in Sources */,
-				22A6E8C4243A04450091C295 /* Keyboard.swift in Sources */,
-				22A6E8C2243A04370091C295 /* ChordAnalyser.swift in Sources */,
-				22A6E88F2439FECD0091C295 /* AppDelegate.swift in Sources */,
-				2238570324AFB5E100F34A33 /* MIDIListener.swift in Sources */,
-				22A6E8942439FECD0091C295 /* MIDIAnalyser.xcdatamodeld in Sources */,
+				2238571324AFB79B00F34A33 /* ViewController.swift in Sources */,
+				2238571124AFB79B00F34A33 /* AppDelegate.swift in Sources */,
+				22626B1B24AFFF3E002814EC /* Chord.swift in Sources */,
+				2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */,
+				2238574D24AFB92000F34A33 /* MIDIHardwareListener.swift in Sources */,
+				22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */,
+				22F5441F24AFDF9800692D16 /* MIDIMessage.swift in Sources */,
+				2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */,
+				22F5442D24AFE19600692D16 /* MIDINoteMessage.swift in Sources */,
+				2238575224AFBA1D00F34A33 /* Key.swift in Sources */,
+				22238D4024AFEE7000974B83 /* MIDIControlMessage.swift in Sources */,
+				22626B1F24B00883002814EC /* ChordNotesMessage.swift in Sources */,
+				2238575824AFD57C00F34A33 /* MIDINotificationCenter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		223856E524AF768B00F34A33 /* PBXTargetDependency */ = {
+		22F5442B24AFE16000692D16 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AudioKit;
-			targetProxy = 223856E424AF768B00F34A33 /* PBXContainerItemProxy */;
+			targetProxy = 22F5442A24AFE16000692D16 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		22A6E8972439FECE0091C295 /* Main.storyboard */ = {
+		2238571924AFB79D00F34A33 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				22A6E8982439FECE0091C295 /* Base */,
+				2238571A24AFB79D00F34A33 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -267,7 +288,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		22A6E8B22439FECE0091C295 /* Debug */ = {
+		2238573424AFB79D00F34A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -303,6 +324,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -321,14 +343,14 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "-lc++";
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				"VALID_ARCHS[sdk=macosx*]" = "i386 x86_64";
 			};
 			name = Debug;
 		};
-		22A6E8B32439FECE0091C295 /* Release */ = {
+		2238573524AFB79D00F34A33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -364,6 +386,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -375,62 +398,51 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				OTHER_LDFLAGS = "-lc++";
 				SDKROOT = macosx;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 			};
 			name = Release;
 		};
-		22A6E8B52439FECE0091C295 /* Debug */ = {
+		2238573724AFB79D00F34A33 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MIDIAnalyser",
-				);
 				INFOPLIST_FILE = MIDIAnalyser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.0.0;
-				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = timbrewis.MIDIAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
-		22A6E8B62439FECE0091C295 /* Release */ = {
+		2238573824AFB79D00F34A33 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 5;
+				CURRENT_PROJECT_VERSION = 6;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				ENABLE_HARDENED_RUNTIME = YES;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/MIDIAnalyser",
-				);
 				INFOPLIST_FILE = MIDIAnalyser/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 2.0.0;
-				OTHER_LDFLAGS = "-lc++";
 				PRODUCT_BUNDLE_IDENTIFIER = timbrewis.MIDIAnalyser;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -440,20 +452,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		22A6E8862439FECD0091C295 /* Build configuration list for PBXProject "MIDIAnalyser" */ = {
+		2238570824AFB79B00F34A33 /* Build configuration list for PBXProject "MIDIAnalyser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				22A6E8B22439FECE0091C295 /* Debug */,
-				22A6E8B32439FECE0091C295 /* Release */,
+				2238573424AFB79D00F34A33 /* Debug */,
+				2238573524AFB79D00F34A33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		22A6E8B42439FECE0091C295 /* Build configuration list for PBXNativeTarget "MIDIAnalyser" */ = {
+		2238573624AFB79D00F34A33 /* Build configuration list for PBXNativeTarget "MIDIAnalyser" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				22A6E8B52439FECE0091C295 /* Debug */,
-				22A6E8B62439FECE0091C295 /* Release */,
+				2238573724AFB79D00F34A33 /* Debug */,
+				2238573824AFB79D00F34A33 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -461,17 +473,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		22A6E8922439FECD0091C295 /* MIDIAnalyser.xcdatamodeld */ = {
+		2238571424AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				22A6E8932439FECD0091C295 /* MIDIAnalyser.xcdatamodel */,
+				2238571524AFB79B00F34A33 /* MIDIAnalyser.xcdatamodel */,
 			);
-			currentVersion = 22A6E8932439FECD0091C295 /* MIDIAnalyser.xcdatamodel */;
+			currentVersion = 2238571524AFB79B00F34A33 /* MIDIAnalyser.xcdatamodel */;
 			path = MIDIAnalyser.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};
 /* End XCVersionGroup section */
 	};
-	rootObject = 22A6E8832439FECD0091C295 /* Project object */;
+	rootObject = 2238570524AFB79B00F34A33 /* Project object */;
 }

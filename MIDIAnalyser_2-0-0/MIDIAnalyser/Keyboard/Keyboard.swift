@@ -2,172 +2,152 @@
 //  Keyboard.swift
 //  MIDIAnalyser
 //
-//  Created by Tim Brewis on 05/04/2020.
+//  Created by Tim Brewis on 03/07/2020.
 //  Copyright © 2020 Tim Brewis. All rights reserved.
 //
 
 import Foundation
 
-
-public class Keyboard {
+class Keyboard {
     
-    
-    // enumerated types
-    enum KeyType {case whiteKey, blackKey}
-    enum Accidentals {case sharps, flats, mixed}
     
     // keyboard constants
     static var nKeys: Int = 88
     static var nWhiteKeys: Int = 52
     static var nBlackKeys: Int = 36
-    
-    static var minMIDINumber = 21      // A0
-    static var maxMIDINumber = 108     // C8
-    
-    // dictionary for virtual MIDI keyboard
-    static var keycodeMIDINumberDictionary: [Int: Int] = [
-         0: 60, // C (middle)
-        13: 61,
-         1: 62, // D
-        14: 63,
-         2: 64, // E
-         3: 65, // F
-        17: 66,
-         5: 67, // G
-        16: 68,
-         4: 69, // A
-        32: 70,
-        38: 71, // B
-        40: 72, // C
-        31: 73,
-        37: 74, // D
-        35: 75
-    ]
+    static var minMIDINumber: Int = 21  // A0
+    static var maxMIDINumber: Int = 108 // C8
+
     
     // class variables
-    var keyStates: [Bool] = Array()             // state of all 88 keys on keyboard
-    var sustainedKeyStates: [Bool] = Array()    // when sustain pedal pressed, keyStates kept constant and sustainedKeyStates updated instead
-                                                // on release of sustain pedal, keyStates updated to sustainedKeyStates
-    
-    var sustain: Bool = false
+    var keys: [Key] = Array()
+    var sustainedKeys: [Key] = Array()
+    var sustainPressed: Bool = false
     
     
     // initialisation
     init() {
-        keyStates = Array(repeating: false, count: Keyboard.nKeys)
-        sustainedKeyStates = Array(repeating: false, count: Keyboard.nKeys)
-    }
-    
-    
-    // update the state of a single key
-    func setKeyState(MIDINumber: Int, state: Bool) {
         
-        let keyIndex = keyIndexOfMIDINumber(MIDINumber)
+        // generate the key objects
+        let octaveKeyTypes: [Key.KeyType] = [.white, .black, .white, .white, .black, .white, .black, .white, .white, .black, .white, .black]
         
-        if isValidKeyIndex(keyIndex) {
+        for MIDINumber in Keyboard.minMIDINumber...Keyboard.maxMIDINumber {
             
-            if !sustain {
-                keyStates[keyIndex] = state
-            }
-            else if state {
-                keyStates[keyIndex] = state
-            }
-
-            sustainedKeyStates[keyIndex] = state
+            let octave: Int = (MIDINumber - Keyboard.minMIDINumber + 9) / 12
+            let index: Int = MIDINumber - Keyboard.minMIDINumber
+            let keyType: Key.KeyType = octaveKeyTypes[index % 12]
+            let key: Key = Key(keyType: keyType , MIDINumber: MIDINumber, octave: octave, index: index)
+            
+            keys.append(key)
+            sustainedKeys.append(key.copy() as! Key)
             
         }
         
+        // add observers
+        MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
+        MIDINotificationCenter.observe(type: .noteOff, observer: self, selector: #selector(keyUpdate))
+        MIDINotificationCenter.observe(type: .control, observer: self, selector: #selector(keyUpdate))
+  
     }
     
     
-    // get the state of a single key
-    func getKeyState(MIDINumber: Int) -> Bool {
-        return keyStates[keyIndexOfMIDINumber(MIDINumber)]
-    }
-    
-    
-    // activate sustain
-    func sustainPressed() {
-        sustain = true
-        sustainedKeyStates = keyStates
-    }
-    
-    func sustainReleased() {
-        sustain = false
-        keyStates = sustainedKeyStates
-    }
-    
-    
-    // check if a key index is valid
-    func isValidKeyIndex(_ keyIndex: Int) -> Bool {
-        
-        var result: Bool = false
-        
-        if keyIndex >= 0 && keyIndex <= Keyboard.nKeys {
-            result = true
-        }
-        else {
-            print("invalid key index")
-        }
-        
-        return result
-    }
-    
-    
-    // convert a MIDI number to a key index
-    func keyIndexOfMIDINumber(_ MIDINumber: Int) -> Int {
+    // get the index in for the key array for a particular MIDI number
+    static func keyIndexOfMIDINumber(_ MIDINumber: Int) -> Int {
         return MIDINumber - Keyboard.minMIDINumber
     }
     
-    
-    // get the note name of a particular key
-    static func noteNameOfKey(keyIndex: Int, type: Accidentals) -> String {
-        
-        // lists of possible note names
-        let noteNamesSharps = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"]
-        let noteNamesFlats  = ["C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab", "A", "Bb", "B"]
-        let noteNamesMixed  = ["C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab", "A", "Bb", "B"]
-        
-        // pick note name depending on setting for accidentals
-        switch(type) {
-            
-        case Accidentals.sharps:
-            return noteNamesSharps[keyIndex % 12]
-
-        case Accidentals.flats:
-            return noteNamesFlats[keyIndex % 12]
-            
-        case Accidentals.mixed:
-            return noteNamesMixed[keyIndex % 12]
-
-        }
+    // get the MIDI number for a particular index in the key array
+    static func MIDINumberOfKeyIndex(_ keyIndex: Int) -> Int {
+        return keyIndex + Keyboard.minMIDINumber
     }
     
     
-    // check if a key is white
-    static func isWhiteKey(_ keyIndex: Int) -> Bool {
+    // event handler
+    @objc func keyUpdate(_ notification: Notification) {
+                
+        switch notification.name.rawValue {
         
-                                  // A  // Bb  // B  // C
-        let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
-        var result: Bool = false
+        // case for noteOn messages
+        case MIDINotificationCenter.MIDINotificationType.noteOn.rawValue:
+            
+            if let message = notification.object as? MIDINoteMessage {
+                
+                let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
+                
+                if !sustainPressed {
+                    keys[keyIndex].state = true
+                }
+                else {
+                    keys[keyIndex].state = true
+                    sustainedKeys[keyIndex].state = true
+                }
+                
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordAnalyser.analyseNotificationName), object: ChordNotesMessage(keysPressed()))
+                
+            }
+            
+        // case for noteOff messages
+        case MIDINotificationCenter.MIDINotificationType.noteOff.rawValue:
+            
+            if let message = notification.object as? MIDINoteMessage {
+                
+                let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
+                
+                if !sustainPressed {
+                    keys[keyIndex].state = false
+                }
+                else {
+                    sustainedKeys[keyIndex].state = false
+                }
+                
+            }
+            
+        // case for control messages
+        case MIDINotificationCenter.MIDINotificationType.control.rawValue:
+            
+            if let message = notification.object as? MIDIControlMessage {
+                
+                // sustain pedal
+                if message.controlMessageType == MIDIControlMessage.MIDIControlMessageType.sustain {
+                    
+                    if message.value == 127 {
+                        sustainPressed = true
+                        for i in 0 ..< keys.count {
+                            sustainedKeys[i].state = keys[i].state
+                        }
+                    }
+                    else {
+                        sustainPressed = false
+                        for i in 0 ..< keys.count {
+                            keys[i].state = sustainedKeys[i].state
+                        }
+                    }
+                    
+                }
+                
+            }
         
-        if isWhiteKey[keyIndex % 12] {
-            result = true
+        // default case, other notifications or objects
+        default:
+            break
+            
         }
         
-        return result
     }
     
-    // return key index for virtual midi keyboard
-    static func keycodeToMIDINumber(_ keyCode: Int) -> Int {
+    
+    // return all MIDINumbers currently pressed
+    func keysPressed() -> [Int] {
         
-        // makesure the keycode is in the dictionary
-        if let MIDINumber: Int = keycodeMIDINumberDictionary[keyCode] {
-            return MIDINumber
+        var keyStates: [Int] = Array()
+        
+        for key in keys {
+            if key.state {
+                keyStates.append(key.MIDINumber)
+            }
         }
-        else {
-            return 0
-        }
+        
+        return keyStates
         
     }
     
