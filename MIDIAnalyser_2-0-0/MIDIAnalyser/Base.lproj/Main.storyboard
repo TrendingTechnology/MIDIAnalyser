@@ -22,7 +22,11 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
-                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW"/>
+                                        <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
+                                            <connections>
+                                                <segue destination="EbB-rI-K9s" kind="show" id="pOm-rl-c9C"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -678,7 +682,15 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="76" y="-283"/>
+        </scene>
+        <!--Preferences-->
+        <scene sceneID="cdZ-ST-DCL">
+            <objects>
+                <controllerPlaceholder storyboardName="Preferences" id="EbB-rI-K9s" sceneMemberID="viewController"/>
+                <customObject id="HqZ-2b-vvh" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="245" y="-102"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -706,14 +718,21 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="496"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uad-kK-MyT">
+                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uad-kK-MyT" userLabel="KeyboardView Container">
                                 <rect key="frame" x="23" y="20" width="754" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <connections>
                                     <segue destination="dPZ-ca-YkX" kind="embed" id="Wrk-T7-zwo"/>
+                                </connections>
+                            </containerView>
+                            <containerView id="22d-Ia-sGi" userLabel="ChordNameView Container" customClass="ChordNameView" customModule="MIDIAnalyser" customModuleProvider="target">
+                                <rect key="frame" x="20" y="280" width="760" height="100"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                <connections>
+                                    <segue destination="tf1-ff-UWm" kind="embed" id="A93-fx-SCM"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -727,7 +746,7 @@
         <scene sceneID="FYD-Sm-rrn">
             <objects>
                 <viewController id="dPZ-ca-YkX" customClass="KeyboardViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="YHm-mr-3Pc">
+                    <view key="view" id="YHm-mr-3Pc" customClass="KeyboardView" customModule="MIDIAnalyser" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="754" height="105"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
@@ -735,6 +754,19 @@
                 <customObject id="e9L-zn-jdH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="74" y="1303"/>
+        </scene>
+        <!--Chord Name View Controller-->
+        <scene sceneID="3iB-BJ-P1g">
+            <objects>
+                <viewController title="Chord Name View Controller" id="tf1-ff-UWm" customClass="ChordNameViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="Dwu-NL-UlI" customClass="ChordNameView" customModule="MIDIAnalyser" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="760" height="100"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                    </view>
+                </viewController>
+                <customObject id="Ed4-7G-z4V" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="965" y="677"/>
         </scene>
     </scenes>
 </document>

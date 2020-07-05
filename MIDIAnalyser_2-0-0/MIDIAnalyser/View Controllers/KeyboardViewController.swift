@@ -15,6 +15,7 @@ class KeyboardViewController: NSViewController {
     private var keyboardView: KeyboardView!
     
 
+    // initialisation on view load
     override func viewDidLoad() {
         
         // superclass loaded
@@ -32,72 +33,64 @@ class KeyboardViewController: NSViewController {
         MIDINotificationCenter.observe(type: .noteOff, observer: self, selector: #selector(keyUpdate))
         MIDINotificationCenter.observe(type: .control, observer: self, selector: #selector(keyUpdate))
         
-        
     }
 
+    
     @objc func keyUpdate(_ notification: Notification) {
         
-        
-        let whiteKeyDictionary: [Int : Int] = [0 : 0, // A0
-                                               2 : 1,
-                                               3 : 2,
-                                               5 : 3,
-                                               7 : 4,
-                                               8 : 5,
-                                               10 : 6,
-                                               
-                                               12 : 7,
-                                               14 : 8,
-                                               15 : 9,
-                                               17 : 10,
-                                               19 : 11,
-                                               20 : 12,
-                                               22 : 13,
-                                               
-                                               24 : 14,
-                                               26 : 15,
-                                               27 : 16,
-                                               29 : 17,
-                                               31 : 18,
-                                               32 : 19,
-                                               34 : 20,
-            
-                                               36 : 21,
-                                               38 : 22,
-                                               39 : 23,
-                                               41 : 24,
-                                               43 : 25,
-                                               44 : 26,
-                                               46 : 27,
-                                               
-                                               48 : 28,
-                                               50 : 29,
-                                               51 : 30,
-                                               53 : 31,
-                                               55 : 32,
-                                               56 : 33,
-                                               58 : 34,
-                                               
-                                               60 : 35,
-                                               62 : 36,
-                                               63 : 37,
-                                               65 : 38,
-                                               67 : 39,
-                                               68 : 40,
-                                               70 : 41,
-                                               
-                                               72 : 42,
-                                               74 : 43,
-                                               75 : 44,
-                                               77 : 45,
-                                               79 : 46,
-                                               80 : 47,
-                                               82 : 48,
-                                               
-                                               84 : 49,
-                                               86 : 50,
-                                               87 : 51
-                                               // 2 1 2 2 1 2
+        let whiteKeyDictionary: [Int : Int] = [
+               0 : 0, // A0
+               2 : 1,
+               3 : 2,
+               5 : 3,
+               7 : 4,
+               8 : 5,
+               10 : 6,
+               12 : 7,
+               14 : 8,
+               15 : 9,
+               17 : 10,
+               19 : 11,
+               20 : 12,
+               22 : 13,
+               24 : 14,
+               26 : 15,
+               27 : 16,
+               29 : 17,
+               31 : 18,
+               32 : 19,
+               34 : 20,
+               36 : 21,
+               38 : 22,
+               39 : 23,
+               41 : 24,
+               43 : 25,
+               44 : 26,
+               46 : 27,
+               48 : 28,
+               50 : 29,
+               51 : 30,
+               53 : 31,
+               55 : 32,
+               56 : 33,
+               58 : 34,
+               60 : 35,
+               62 : 36,
+               63 : 37,
+               65 : 38,
+               67 : 39,
+               68 : 40,
+               70 : 41,
+               72 : 42,
+               74 : 43,
+               75 : 44,
+               77 : 45,
+               79 : 46,
+               80 : 47,
+               82 : 48,
+               84 : 49,
+               86 : 50,
+               87 : 51
         ]
         
         let blackKeyDictionary: [Int : Int] = [
@@ -173,51 +166,34 @@ class KeyboardViewController: NSViewController {
         // case for noteOff messages
         case MIDINotificationCenter.MIDINotificationType.noteOff.rawValue:
             
-            if let message = notification.object as? MIDINoteMessage {
+        if let message = notification.object as? MIDINoteMessage {
+            
+            let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
+            
+            if Keyboard.isWhiteKeyIndex(keyIndex) {
                 
-                let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
-                
-                if Keyboard.isWhiteKeyIndex(keyIndex) {
-                    
-                    if let whiteKeyIndex = whiteKeyDictionary[keyIndex] {
-                        DispatchQueue.main.async {
-                            self.keyboardView.whiteKeys[whiteKeyIndex].fillColor = self.keyboardView.whiteKeys[whiteKeyIndex].defaultColor
-                        }
+                if let whiteKeyIndex = whiteKeyDictionary[keyIndex] {
+                    DispatchQueue.main.async {
+                        self.keyboardView.whiteKeys[whiteKeyIndex].fillColor = self.keyboardView.whiteKeys[whiteKeyIndex].defaultColor
                     }
-                    
                 }
-                else {
-                    if let blackKeyIndex = blackKeyDictionary[keyIndex] {
-                        DispatchQueue.main.async {
-                            self.keyboardView.blackKeys[blackKeyIndex].fillColor = self.keyboardView.blackKeys[blackKeyIndex].defaultColor
-                        }
+                
+            }
+            else {
+                if let blackKeyIndex = blackKeyDictionary[keyIndex] {
+                    DispatchQueue.main.async {
+                        self.keyboardView.blackKeys[blackKeyIndex].fillColor = self.keyboardView.blackKeys[blackKeyIndex].defaultColor
                     }
                 }
             }
+        }
             
-        // case for control messages
-//        case MIDINotificationCenter.MIDINotificationType.control.rawValue:
-//
-//            if let message = notification.object as? MIDIControlMessage {
-//
-//                // sustain pedal
-//                if message.controlMessageType == MIDIControlMessage.MIDIControlMessageType.sustain {
-//
-//                    if message.value == 127 {
-//                    }
-//                    else {
-//                    }
-//                }
-//
-//            }
-//
         // default case, other notifications or objects
         default:
             break
             
         }
 
-        
     }
     
 }

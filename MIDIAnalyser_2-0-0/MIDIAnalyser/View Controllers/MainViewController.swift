@@ -12,23 +12,36 @@ class MainViewController: NSViewController {
     
     // analysis and MIDI
     var MIDI = MIDIHardwareListener()
-    //var keyboard = Keyboard()
     var analyser = ChordAnalyser()
     
     // child view controllers
     private var keyboardViewController: KeyboardViewController?
+    private var chordNameViewController: ChordNameViewController?
+    
+    // colour palette
+    private var backgroundColor: NSColor = .controlColor
     
 
     // view loaded setup
     override func viewDidLoad() {
         
+        // superclass load
         super.viewDidLoad()
 
-        guard let keyboardViewControllerFetched = children.first as? KeyboardViewController else {
-            fatalError("missing keyboardViewController")
+        // fetch child controllers
+        guard let keyboardViewControllerFetched = children[0] as? KeyboardViewController else {
+            fatalError("Missing keyboardViewController")
+        }
+        
+        guard let chordNameViewControllerFetched = children[1] as? ChordNameViewController else {
+            fatalError("Missing chordNameViewController")
         }
         
         keyboardViewController = keyboardViewControllerFetched
+        chordNameViewController = chordNameViewControllerFetched
+        
+        self.view.wantsLayer = true
+        //self.view.layer?.backgroundColor = self.backgroundColor.cgColor
         
     }
 

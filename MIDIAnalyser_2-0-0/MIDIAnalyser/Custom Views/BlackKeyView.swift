@@ -35,10 +35,10 @@ class BlackKeyView: NSBox {
         // setup appearance
         self.boxType = .custom
         self.cornerRadius = 1
-        self.borderWidth = 1
+        self.borderWidth = 0.5
         self.fillColor = defaultColor
         self.borderColor = NSColor.black
-        self.borderType = .noBorder // groove
+        self.borderType = .grooveBorder // groove
         self.focusRingType = .none
         self.appearance = NSAppearance(named: .darkAqua)
         
