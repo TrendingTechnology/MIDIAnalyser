@@ -35,10 +35,11 @@
 		22D72FF824B29C3F0039EA90 /* MIDIHardwareListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FF724B29C3F0039EA90 /* MIDIHardwareListener.swift */; };
 		22D72FFE24B29C540039EA90 /* MIDIControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FF924B29C530039EA90 /* MIDIControlMessage.swift */; };
 		22D72FFF24B29C540039EA90 /* MIDINotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FFA24B29C540039EA90 /* MIDINotificationCenter.swift */; };
-		22D7300024B29C540039EA90 /* MIDITypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FFB24B29C540039EA90 /* MIDITypingListener.swift */; };
 		22D7300124B29C540039EA90 /* MIDINoteMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FFC24B29C540039EA90 /* MIDINoteMessage.swift */; };
 		22D7300224B29C540039EA90 /* MIDIMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FFD24B29C540039EA90 /* MIDIMessage.swift */; };
 		22D7300424B2AAFB0039EA90 /* PreferencesNotificationCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7300324B2AAFB0039EA90 /* PreferencesNotificationCenter.swift */; };
+		22D7300624B347B30039EA90 /* MIDITypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7300524B347B30039EA90 /* MIDITypingListener.swift */; };
+		22D7300824B35C9B0039EA90 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D7300724B35C9B0039EA90 /* About.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,10 +98,11 @@
 		22D72FF724B29C3F0039EA90 /* MIDIHardwareListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIHardwareListener.swift; path = MIDIAnalyser/MIDI/MIDIHardwareListener.swift; sourceTree = SOURCE_ROOT; };
 		22D72FF924B29C530039EA90 /* MIDIControlMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIControlMessage.swift; path = MIDIAnalyser/MIDI/MIDIControlMessage.swift; sourceTree = SOURCE_ROOT; };
 		22D72FFA24B29C540039EA90 /* MIDINotificationCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDINotificationCenter.swift; path = MIDIAnalyser/MIDI/MIDINotificationCenter.swift; sourceTree = SOURCE_ROOT; };
-		22D72FFB24B29C540039EA90 /* MIDITypingListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDITypingListener.swift; path = MIDIAnalyser/MIDI/MIDITypingListener.swift; sourceTree = SOURCE_ROOT; };
 		22D72FFC24B29C540039EA90 /* MIDINoteMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDINoteMessage.swift; path = MIDIAnalyser/MIDI/MIDINoteMessage.swift; sourceTree = SOURCE_ROOT; };
 		22D72FFD24B29C540039EA90 /* MIDIMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIMessage.swift; path = MIDIAnalyser/MIDI/MIDIMessage.swift; sourceTree = SOURCE_ROOT; };
 		22D7300324B2AAFB0039EA90 /* PreferencesNotificationCenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesNotificationCenter.swift; sourceTree = "<group>"; };
+		22D7300524B347B30039EA90 /* MIDITypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDITypingListener.swift; sourceTree = "<group>"; };
+		22D7300724B35C9B0039EA90 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -137,6 +139,7 @@
 			children = (
 				2238571924AFB79D00F34A33 /* Main.storyboard */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
+				22D7300724B35C9B0039EA90 /* About.storyboard */,
 				2238575924AFD58800F34A33 /* MIDI */,
 				2238574A24AFB89700F34A33 /* Keyboard */,
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
@@ -166,11 +169,11 @@
 			isa = PBXGroup;
 			children = (
 				22D72FF724B29C3F0039EA90 /* MIDIHardwareListener.swift */,
-				22D72FFB24B29C540039EA90 /* MIDITypingListener.swift */,
 				22D72FFA24B29C540039EA90 /* MIDINotificationCenter.swift */,
 				22D72FFD24B29C540039EA90 /* MIDIMessage.swift */,
 				22D72FF924B29C530039EA90 /* MIDIControlMessage.swift */,
 				22D72FFC24B29C540039EA90 /* MIDINoteMessage.swift */,
+				22D7300524B347B30039EA90 /* MIDITypingListener.swift */,
 			);
 			name = MIDI;
 			path = Keyboard;
@@ -307,6 +310,7 @@
 			files = (
 				22BE3E5724B24DE400C66299 /* Preferences.storyboard in Resources */,
 				2238571824AFB79D00F34A33 /* Assets.xcassets in Resources */,
+				22D7300824B35C9B0039EA90 /* About.storyboard in Resources */,
 				2238571B24AFB79D00F34A33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -326,7 +330,6 @@
 				22D72FFF24B29C540039EA90 /* MIDINotificationCenter.swift in Sources */,
 				22D7300124B29C540039EA90 /* MIDINoteMessage.swift in Sources */,
 				22626B1B24AFFF3E002814EC /* Chord.swift in Sources */,
-				22D7300024B29C540039EA90 /* MIDITypingListener.swift in Sources */,
 				2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */,
 				229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */,
 				22AD1CAC24B288C3007389E4 /* Preferences.swift in Sources */,
@@ -336,6 +339,7 @@
 				22D7300424B2AAFB0039EA90 /* PreferencesNotificationCenter.swift in Sources */,
 				22D72FFE24B29C540039EA90 /* MIDIControlMessage.swift in Sources */,
 				22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */,
+				22D7300624B347B30039EA90 /* MIDITypingListener.swift in Sources */,
 				2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */,
 				22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */,
 				229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */,

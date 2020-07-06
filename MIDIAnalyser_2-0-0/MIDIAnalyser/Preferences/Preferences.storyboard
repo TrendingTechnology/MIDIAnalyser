@@ -40,7 +40,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sq3-vN-ghN">
                                 <rect key="frame" x="134" y="78" width="114" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="MIDI typing" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5TF-wl-g1a">
+                                <buttonCell key="cell" type="check" title="MIDI typing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5TF-wl-g1a">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -73,6 +73,7 @@
                         </subviews>
                     </view>
                     <connections>
+                        <outlet property="MIDITypingButton" destination="sq3-vN-ghN" id="ulE-7a-QRr"/>
                         <outlet property="inputDevicePopUpButton" destination="vsN-Aq-uR8" id="t4x-iQ-znf"/>
                     </connections>
                 </viewController>
@@ -85,11 +86,11 @@
             <objects>
                 <viewController title="Analysis" id="DIQ-uh-wSv" customClass="PreferencesAnalysisViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="HVO-ZM-x9b">
-                        <rect key="frame" x="0.0" y="0.0" width="370" height="255"/>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="289"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OCd-E6-yc1">
-                                <rect key="frame" x="25" y="90" width="195" height="16"/>
+                                <rect key="frame" x="25" y="124" width="195" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Treat slash roots as extensions:" id="Loh-Rd-nIT">
                                     <font key="font" metaFont="system"/>
@@ -98,7 +99,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y7J-Ig-sI3">
-                                <rect key="frame" x="94" y="121" width="126" height="16"/>
+                                <rect key="frame" x="94" y="155" width="126" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Chord name format:" id="0ym-rp-80c">
                                     <font key="font" metaFont="system"/>
@@ -107,7 +108,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPE-NK-ZoW">
-                                <rect key="frame" x="224" y="84" width="123" height="25"/>
+                                <rect key="frame" x="224" y="118" width="123" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Always" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="7x2-Y0-CGp" id="sZn-UG-qug">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -121,8 +122,23 @@
                                     </menu>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pnt-fe-cTc">
+                                <rect key="frame" x="223" y="17" width="123" height="25"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <popUpButtonCell key="cell" type="push" title="Mixed" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="VAg-6t-vPp" id="M9V-6h-8XP">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <menu key="menu" id="xsX-0q-P4I">
+                                        <items>
+                                            <menuItem title="Mixed" state="on" id="VAg-6t-vPp"/>
+                                            <menuItem title="Sharps" id="RGM-D5-l0S"/>
+                                            <menuItem title="Flats" id="Nbg-Fr-Eq0"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5O-DD-GVZ">
-                                <rect key="frame" x="224" y="115" width="123" height="25"/>
+                                <rect key="frame" x="224" y="149" width="123" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="EQe-xI-lND" id="PRK-yk-k8I">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -137,7 +153,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UGW-Gm-1m2">
-                                <rect key="frame" x="64" y="59" width="156" height="16"/>
+                                <rect key="frame" x="64" y="93" width="156" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Abbreviate chord names:" id="vmd-Fn-XcR">
                                     <font key="font" metaFont="system"/>
@@ -146,7 +162,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-aa-KKJ">
-                                <rect key="frame" x="225" y="58" width="101" height="18"/>
+                                <rect key="frame" x="225" y="92" width="101" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Ignore (no 5)" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="G2T-Tk-dR9">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -154,7 +170,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K21-kx-aj5">
-                                <rect key="frame" x="225" y="38" width="101" height="18"/>
+                                <rect key="frame" x="225" y="72" width="101" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Ignore (no 3)" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="jKn-vD-lBz">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -162,7 +178,7 @@
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oj-AG-Zbw">
-                                <rect key="frame" x="225" y="18" width="120" height="18"/>
+                                <rect key="frame" x="225" y="52" width="120" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <buttonCell key="cell" type="check" title="Hide slash roots" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="A97-YI-Lty">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -170,18 +186,27 @@
                                 </buttonCell>
                             </button>
                             <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FoN-vz-EUb">
-                                <rect key="frame" x="20" y="155" width="330" height="80"/>
+                                <rect key="frame" x="20" y="189" width="330" height="80"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="qxE-fT-ywl" kind="embed" id="a2C-W5-I8u"/>
                                 </connections>
                             </containerView>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bjn-BX-6ul">
+                                <rect key="frame" x="133" y="23" width="79" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Accidentals:" id="pam-Nt-9u4">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                 </viewController>
                 <customObject id="wRC-wS-GGD" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-644" y="559"/>
+            <point key="canvasLocation" x="-644" y="575.5"/>
         </scene>
         <!--Chord Name Example View Controller-->
         <scene sceneID="QVQ-D2-DbC">

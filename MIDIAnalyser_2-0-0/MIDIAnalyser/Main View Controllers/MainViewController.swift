@@ -27,21 +27,6 @@ class MainViewController: NSViewController {
         
         // superclass load
         super.viewDidLoad()
-
-        // fetch child controllers
-        guard let keyboardViewControllerFetched = children[1] as? KeyboardViewController else {
-            fatalError("Missing keyboardViewController")
-        }
-        
-        guard let chordNameViewControllerFetched = children[0] as? ChordNameViewController else {
-            fatalError("Missing chordNameViewController")
-        }
-        
-        keyboardViewController = keyboardViewControllerFetched
-        chordNameViewController = chordNameViewControllerFetched
-        
-        self.view.wantsLayer = true
-        //self.view.layer?.backgroundColor = self.backgroundColor.cgColor
         
     }
 

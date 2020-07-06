@@ -16,7 +16,6 @@ class ChordNameView: NSView {
     
     
     // initialisation
-    
     required init?(coder: NSCoder) {
         
         // superclass initialisation

@@ -13,6 +13,7 @@ class KeyboardViewController: NSViewController {
     // keyboard and its view
     var keyboard = Keyboard()
     private var keyboardView: KeyboardView!
+    private var typingListener: MIDITypingListener = MIDITypingListener()
     
 
     // initialisation on view load
@@ -32,6 +33,9 @@ class KeyboardViewController: NSViewController {
         MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
         MIDINotificationCenter.observe(type: .noteOff, observer: self, selector: #selector(keyUpdate))
         MIDINotificationCenter.observe(type: .control, observer: self, selector: #selector(keyUpdate))
+        
+        // add typing listener
+        typingListener.startListening()
         
     }
 
