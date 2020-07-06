@@ -8,11 +8,12 @@
 
 import Cocoa
 
+
 class MainViewController: NSViewController {
+    
     
     // analysis and MIDI
     var MIDI = MIDIHardwareListener()
-    var analyser = ChordAnalyser()
     
     // child view controllers
     private var keyboardViewController: KeyboardViewController?
@@ -30,10 +31,11 @@ class MainViewController: NSViewController {
         
     }
 
+    
     // default
     override var representedObject: Any? {
         didSet {
-        // Update the view, if already loaded.
+            // update the view, if already loaded.
         }
     }
 

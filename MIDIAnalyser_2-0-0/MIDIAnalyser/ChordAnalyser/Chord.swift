@@ -8,7 +8,9 @@
 
 import Foundation
 
+
 class Chord {
+    
     
     // enumerated types
     enum BaseTonality: String {
@@ -45,6 +47,7 @@ class Chord {
         case sharpThirteen
     }
     
+    
     // strings to represent extensions
     let extensionNames: [String] = [
         "b9",
@@ -69,12 +72,14 @@ class Chord {
     
     var complexity: Int = 1
     
+    
     // initialisation
     init(_ rootNote: String) {
         root = rootNote
     }
     
-    // chord functions
+    
+    // chord data functions
     func addExtension(_ ext: Extension) {
         extensions[ext.rawValue] = true
         hasExtensions = true
@@ -109,7 +114,7 @@ class Chord {
         root = rootNote
     }
     
-    // naming
+    // name generating function
     func name() -> String {
         
         // generate string of extensions

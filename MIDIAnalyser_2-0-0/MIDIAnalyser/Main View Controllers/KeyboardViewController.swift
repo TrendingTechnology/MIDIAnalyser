@@ -8,9 +8,11 @@
 
 import Cocoa
 
+
 class KeyboardViewController: NSViewController {
     
-    // keyboard and its view
+    
+    // keyboard, view controllers and listener
     var keyboard = Keyboard()
     private var keyboardView: KeyboardView!
     private var typingListener: MIDITypingListener = MIDITypingListener()
@@ -23,11 +25,10 @@ class KeyboardViewController: NSViewController {
         super.viewDidLoad()
         
         // create the view
-        keyboardView = KeyboardView(frame: self.view.frame)
-        self.view.addSubview(keyboardView)
-        
         // note that the container view is slightly smaller than this view
         // to crop the rounding of the tops of the keys
+        keyboardView = KeyboardView(frame: view.frame)
+        view.addSubview(keyboardView)
         
         // add observers
         MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
@@ -40,10 +41,11 @@ class KeyboardViewController: NSViewController {
     }
 
     
+    // key updated function
     @objc func keyUpdate(_ notification: Notification) {
         
         let whiteKeyDictionary: [Int : Int] = [
-               0 : 0, // A0
+               0 : 0,
                2 : 1,
                3 : 2,
                5 : 3,
@@ -135,8 +137,7 @@ class KeyboardViewController: NSViewController {
             83 : 34
         ]
         
-        
-        
+        // which type of message received
         switch notification.name.rawValue {
         
         // case for noteOn messages

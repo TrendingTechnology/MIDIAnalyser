@@ -10,9 +10,11 @@ import Cocoa
 
 class ChordNameViewController: NSViewController {
     
+    
     // views
     private var chordNameView: ChordNameView!
-
+    private var chordAnalyser = ChordAnalyser()
+    
     
     // initialisation on view load
     override func viewDidLoad() {
@@ -24,7 +26,6 @@ class ChordNameViewController: NSViewController {
         chordNameView = ChordNameView(frame: self.view.frame)
         self.view.addSubview(chordNameView)
 
-        
     }
     
 }

@@ -186,11 +186,11 @@
             <objects>
                 <viewController id="XfG-lQ-9wD" customClass="MainViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
+                        <rect key="frame" x="0.0" y="0.0" width="800" height="412"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <containerView id="22d-Ia-sGi" userLabel="ChordNameView Container" customClass="ChordNameView" customModule="MIDIAnalyser" customModuleProvider="target">
-                                <rect key="frame" x="20" y="280" width="760" height="100"/>
+                                <rect key="frame" x="20" y="292" width="760" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="tf1-ff-UWm" kind="embed" id="A93-fx-SCM"/>
@@ -215,7 +215,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="74" y="875"/>
+            <point key="canvasLocation" x="74" y="881"/>
         </scene>
         <!--Keyboard View Controller-->
         <scene sceneID="FYD-Sm-rrn">

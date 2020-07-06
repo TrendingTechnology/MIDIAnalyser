@@ -12,7 +12,8 @@ import Foundation
 
 class ChordAnalyser {
     
-    // variables
+    
+    // analyser variables
     var chordName: String = ""
     var possibleChordNames: [String] = Array(repeating: "", count: 2)
     var possibleChords: [Chord] = []
