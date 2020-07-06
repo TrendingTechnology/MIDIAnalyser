@@ -230,21 +230,21 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <colorWell fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="A4L-8c-MnL">
-                                <rect key="frame" x="193" y="20" width="44" height="23"/>
+                                <rect key="frame" x="178" y="20" width="44" height="23"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <color key="color" name="systemBlueColor" catalog="System" colorSpace="catalog"/>
                             </colorWell>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="PJP-NF-QdO">
-                                <rect key="frame" x="64" y="24" width="123" height="16"/>
+                                <rect key="frame" x="56" y="24" width="116" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Pressed key colour:" id="p0U-Xg-fzp">
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Pressed key color:" id="p0U-Xg-fzp">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="XkG-C3-K6a">
-                                <rect key="frame" x="137" y="54" width="50" height="16"/>
+                                <rect key="frame" x="122" y="54" width="50" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Theme:" id="Zyf-pD-hDn">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -253,7 +253,7 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TrK-iy-lfz">
-                                <rect key="frame" x="191" y="48" width="139" height="25"/>
+                                <rect key="frame" x="176" y="48" width="139" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="Always dark" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="NwL-dl-rXV" id="KeJ-a4-Yov">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
