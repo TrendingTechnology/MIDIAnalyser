@@ -2,14 +2,14 @@
 ``` 
 Current version  :  1.2.1
 Upcoming version :  2.0.0
-Last updated     :  30/06/2020
+Last updated     :  06/07/2020
 Supported OS     :  macOS 10.15+
 ```
 
 ### Description
 This project is made to analyse input data from a MIDI controller and display the chord played in real time.
 
-<img src="./Archive/Demo/MIDIAnalyser%201.2.0.png" width="800" class="center">
+<img src="./Info/MIDIAnalyser%201.2.0.png" width="800" class="center">
 
 ### Features
 * Real time analysis.
@@ -19,14 +19,13 @@ This project is made to analyse input data from a MIDI controller and display th
 * Notes in range A0:C8 (88 keys)
 
 ### Upcoming Features (2.0.0)
-* Virtual MIDI keyboard
+* User preferences
+* Improved formatting of chord name
+* Virtual MIDI keyboard (typing)
 * Sustain pedal support
-
-### Potential Features
-* MIDI debug log / raw MIDI data
-* User settings and preferences
-* Alternative chord notation schemes
-* Voicing and substitution suggestions
+* New app icon
+* Improved chord naming algorithm
+* Bug fixes for MIDI input
 
 
 ### Downloads
