@@ -1,5 +1,5 @@
 //
-//  PreferencesViewController.swift
+//  PreferencesAnalysisViewController.swift
 //  MIDIAnalyser
 //
 //  Created by Tim Brewis on 05/07/2020.
@@ -8,8 +8,8 @@
 
 import Cocoa
 
-class PreferencesViewController: NSViewController {
-
+class PreferencesAnalysisViewController: NSViewController {
+        
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,8 +21,7 @@ class PreferencesViewController: NSViewController {
     override func viewDidAppear() {
         super.viewDidAppear()
         
-        // update
-        
+
     }
     
 }

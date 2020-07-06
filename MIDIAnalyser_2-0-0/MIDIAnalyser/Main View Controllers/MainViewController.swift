@@ -29,11 +29,11 @@ class MainViewController: NSViewController {
         super.viewDidLoad()
 
         // fetch child controllers
-        guard let keyboardViewControllerFetched = children[0] as? KeyboardViewController else {
+        guard let keyboardViewControllerFetched = children[1] as? KeyboardViewController else {
             fatalError("Missing keyboardViewController")
         }
         
-        guard let chordNameViewControllerFetched = children[1] as? ChordNameViewController else {
+        guard let chordNameViewControllerFetched = children[0] as? ChordNameViewController else {
             fatalError("Missing chordNameViewController")
         }
         

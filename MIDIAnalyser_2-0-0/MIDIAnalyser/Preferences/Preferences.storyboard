@@ -8,13 +8,13 @@
         <!--MIDI-->
         <scene sceneID="uL1-3W-jaO">
             <objects>
-                <viewController title="MIDI" id="bY9-qg-pCh" customClass="PreferencesViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="MIDI" id="bY9-qg-pCh" customClass="PreferencesMIDIViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="QvT-yb-ynQ">
-                        <rect key="frame" x="0.0" y="0.0" width="370" height="123"/>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="145"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="vsN-Aq-uR8">
-                                <rect key="frame" x="134" y="79" width="160" height="25"/>
+                                <rect key="frame" x="134" y="101" width="160" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <popUpButtonCell key="cell" type="push" title="All devices" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="QWN-Jg-uZZ" id="QhI-kd-RCr">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -29,7 +29,7 @@
                                 </popUpButtonCell>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AjL-9i-RU0">
-                                <rect key="frame" x="47" y="85" width="83" height="16"/>
+                                <rect key="frame" x="47" y="107" width="83" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Input device:" id="oab-pQ-0Yi">
                                     <font key="font" metaFont="system"/>
@@ -38,23 +38,23 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sq3-vN-ghN">
-                                <rect key="frame" x="134" y="56" width="114" height="20"/>
+                                <rect key="frame" x="134" y="78" width="114" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="MIDI typing" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="5TF-wl-g1a">
+                                <buttonCell key="cell" type="check" title="MIDI typing" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="5TF-wl-g1a">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="40I-DP-JWA">
-                                <rect key="frame" x="134" y="18" width="196" height="20"/>
+                                <rect key="frame" x="134" y="40" width="196" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Releasing clears chord name" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ayZ-FC-bKG">
+                                <buttonCell key="cell" type="check" title="Releasing clears chord name" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="ayZ-FC-bKG">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dk4-Gc-8F1">
-                                <rect key="frame" x="40" y="20" width="90" height="16"/>
+                                <rect key="frame" x="40" y="42" width="90" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Sustain pedal:" id="gdY-3P-mHZ">
                                     <font key="font" metaFont="system"/>
@@ -62,17 +62,28 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tHx-yN-XPc">
+                                <rect key="frame" x="134" y="18" width="196" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                <buttonCell key="cell" type="check" title="Affects keyboard visualiser" bezelStyle="regularSquare" imagePosition="left" enabled="NO" state="on" inset="2" id="i3O-8U-fhg">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                            </button>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="inputDevicePopUpButton" destination="vsN-Aq-uR8" id="t4x-iQ-znf"/>
+                    </connections>
                 </viewController>
                 <customObject id="FVN-rk-8NZ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1071" y="493"/>
+            <point key="canvasLocation" x="-1071" y="503.5"/>
         </scene>
         <!--Analysis-->
         <scene sceneID="3uS-zi-hKY">
             <objects>
-                <viewController title="Analysis" id="DIQ-uh-wSv" customClass="PreferencesViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Analysis" id="DIQ-uh-wSv" customClass="PreferencesAnalysisViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="HVO-ZM-x9b">
                         <rect key="frame" x="0.0" y="0.0" width="370" height="255"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -98,7 +109,7 @@
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xPE-NK-ZoW">
                                 <rect key="frame" x="224" y="84" width="123" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Always" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="7x2-Y0-CGp" id="sZn-UG-qug">
+                                <popUpButtonCell key="cell" type="push" title="Always" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="7x2-Y0-CGp" id="sZn-UG-qug">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="2ty-fU-EPO">
@@ -113,7 +124,7 @@
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5O-DD-GVZ">
                                 <rect key="frame" x="224" y="115" width="123" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="EQe-xI-lND" id="PRK-yk-k8I">
+                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="EQe-xI-lND" id="PRK-yk-k8I">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="VfY-vf-06F">
@@ -137,7 +148,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8Oj-aa-KKJ">
                                 <rect key="frame" x="225" y="58" width="101" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Ignore (no 5)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="G2T-Tk-dR9">
+                                <buttonCell key="cell" type="check" title="Ignore (no 5)" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="G2T-Tk-dR9">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -145,7 +156,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="K21-kx-aj5">
                                 <rect key="frame" x="225" y="38" width="101" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Ignore (no 3)" bezelStyle="regularSquare" imagePosition="left" inset="2" id="jKn-vD-lBz">
+                                <buttonCell key="cell" type="check" title="Ignore (no 3)" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="jKn-vD-lBz">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -153,7 +164,7 @@
                             <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8oj-AG-Zbw">
                                 <rect key="frame" x="225" y="18" width="120" height="18"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <buttonCell key="cell" type="check" title="Hide slash roots" bezelStyle="regularSquare" imagePosition="left" inset="2" id="A97-YI-Lty">
+                                <buttonCell key="cell" type="check" title="Hide slash roots" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="A97-YI-Lty">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -185,10 +196,10 @@
             </objects>
             <point key="canvasLocation" x="-177" y="492"/>
         </scene>
-        <!--Appearance-->
+        <!--Colors-->
         <scene sceneID="FuZ-Dl-FcK">
             <objects>
-                <viewController title="Appearance" id="43w-LP-wVK" customClass="PreferencesViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Colors" id="43w-LP-wVK" customClass="PreferencesColorsViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="caE-Nr-EOy">
                         <rect key="frame" x="0.0" y="0.0" width="370" height="92"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -217,9 +228,9 @@
                                 </textFieldCell>
                             </textField>
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TrK-iy-lfz">
-                                <rect key="frame" x="191" y="48" width="116" height="25"/>
+                                <rect key="frame" x="191" y="48" width="139" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Always dark" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="NwL-dl-rXV" id="KeJ-a4-Yov">
+                                <popUpButtonCell key="cell" type="push" title="Always dark" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="NwL-dl-rXV" id="KeJ-a4-Yov">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="4PI-RL-eAr">
@@ -233,6 +244,9 @@
                             </popUpButton>
                         </subviews>
                     </view>
+                    <connections>
+                        <outlet property="pressedKeyColorWell" destination="A4L-8c-MnL" id="HPi-G4-71R"/>
+                    </connections>
                 </viewController>
                 <customObject id="iAc-uS-4RM" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,7 +259,7 @@
                     <tabViewItems>
                         <tabViewItem label="MIDI" image="PreferencesMIDI" id="9Gs-hV-aYm"/>
                         <tabViewItem label="Analysis" image="PreferencesAnalysis" id="iHA-OO-KR2"/>
-                        <tabViewItem label="Appearance" id="G1t-Aw-Ksi"/>
+                        <tabViewItem label="Colors" image="PreferencesAppearance" id="G1t-Aw-Ksi"/>
                     </tabViewItems>
                     <viewControllerTransitionOptions key="transitionOptions" allowUserInteraction="YES"/>
                     <tabView key="tabView" type="noTabsNoBorder" id="wS8-m6-nMs">
@@ -271,7 +285,7 @@
         <scene sceneID="5Pz-BT-I8J">
             <objects>
                 <windowController id="QE6-Ik-RDq" userLabel="Preferences" customClass="PreferencesWindowController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="LeO-hR-efU">
+                    <window key="window" title="MIDIAnalyser Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="LeO-hR-efU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="294" y="323" width="370" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>
@@ -291,6 +305,7 @@
     </scenes>
     <resources>
         <image name="PreferencesAnalysis" width="512" height="512"/>
+        <image name="PreferencesAppearance" width="512" height="512"/>
         <image name="PreferencesMIDI" width="512" height="512"/>
     </resources>
 </document>

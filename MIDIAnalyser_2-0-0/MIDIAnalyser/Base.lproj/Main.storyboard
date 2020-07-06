@@ -721,18 +721,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="800" height="400"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uad-kK-MyT" userLabel="KeyboardView Container">
-                                <rect key="frame" x="23" y="20" width="754" height="100"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <segue destination="dPZ-ca-YkX" kind="embed" id="Wrk-T7-zwo"/>
-                                </connections>
-                            </containerView>
                             <containerView id="22d-Ia-sGi" userLabel="ChordNameView Container" customClass="ChordNameView" customModule="MIDIAnalyser" customModuleProvider="target">
                                 <rect key="frame" x="20" y="280" width="760" height="100"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                 <connections>
                                     <segue destination="tf1-ff-UWm" kind="embed" id="A93-fx-SCM"/>
+                                </connections>
+                            </containerView>
+                            <containerView fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uad-kK-MyT" userLabel="KeyboardView Container">
+                                <rect key="frame" x="36" y="20" width="728" height="100"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <segue destination="dPZ-ca-YkX" kind="embed" id="Wrk-T7-zwo"/>
                                 </connections>
                             </containerView>
                         </subviews>
@@ -747,7 +747,7 @@
             <objects>
                 <viewController id="dPZ-ca-YkX" customClass="KeyboardViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="YHm-mr-3Pc" customClass="KeyboardView" customModule="MIDIAnalyser" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="754" height="105"/>
+                        <rect key="frame" x="0.0" y="0.0" width="728" height="105"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
                 </viewController>

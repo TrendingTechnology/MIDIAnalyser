@@ -11,22 +11,23 @@ import AudioKit
 
 
 class MIDIHardwareListener: AKMIDIListener {
-    
-    
-    // list of available inputs
-    public var availableInputs: [String] = Array()
-    
-    
+        
     // initialisation
     init() {
         
         // open MIDI inputs
         AudioKit.midi.openInput("(select input)")
         AudioKit.midi.addListener(self)
-        inputChange(0)
         
-        // record the available inputs
-        availableInputs = AudioKit.midi.inputNames
+        // open the user preferred input
+        if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
+            if AudioKit.midi.inputNames.contains(preferredInputDevice) {
+                AudioKit.midi.openInput(preferredInputDevice)
+            }
+        }
+        else {
+            MIDIHardwareListener.inputChange("All inputs")
+        }
         
     }
     
@@ -55,12 +56,12 @@ class MIDIHardwareListener: AKMIDIListener {
     }
     
     // input change handler
-    func inputChange(_ index: Int) {
+    static func inputChange(_ input: String) {
         
         // if one specific input selected, open it
-        if index > 0 {
+        if input != "All inputs" {
             AudioKit.midi.closeAllInputs()
-            AudioKit.midi.openInput(AudioKit.midi.inputNames[index - 1])
+            AudioKit.midi.openInput(input)
         }
         // otherwise open all inputs
         else {
@@ -69,6 +70,14 @@ class MIDIHardwareListener: AKMIDIListener {
             }
         }
         
+    }
+    
+    
+    // list all available inputs
+    static func listInputs() -> [String] {
+        var inputs: [String] = AudioKit.midi.inputNames
+        inputs.insert("All inputs", at: 0)
+        return inputs
     }
     
     

@@ -49,12 +49,13 @@ class KeyboardView: NSView {
 
             let whiteKeyFrame = NSRect(x: CGFloat(self.frame.origin.x) + CGFloat(i) * whiteKeyWidth,
                                        y: CGFloat(self.frame.origin.y),
-                                       width: CGFloat(whiteKeyWidth - 0.5), // -2
+                                       width: CGFloat(whiteKeyWidth - 1), // -2
                                        height: whiteKeyHeight)
 
             let whiteKey = WhiteKeyView(frame: whiteKeyFrame)
             whiteKeys.append(whiteKey)
         }
+        
 
         let blackKeyOffsets = [0,  1,  1,  2,  2,  2,
                                    3,  3,  4,  4,  4,

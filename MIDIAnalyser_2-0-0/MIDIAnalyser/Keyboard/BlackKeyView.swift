@@ -1,23 +1,18 @@
 //
-//  KeyView.swift
+//  BlackKeyView.swift
 //  MIDIAnalyser
 //
 //  Created by Tim Brewis on 04/07/2020.
 //  Copyright © 2020 Tim Brewis. All rights reserved.
 //
 
-import Foundation
 import Cocoa
 
-class WhiteKeyView: NSBox {
+class BlackKeyView: NSBox {
     
     // colours and shape
     var pressedColor: NSColor = NSColor.systemBlue
-    let defaultColor: NSColor = NSColor.labelColor
-    
-
-    // key state
-    var state: Bool = false
+    let defaultColor: NSColor = NSColor.black
     
     // initialisation
     required init?(coder: NSCoder) {
@@ -34,13 +29,18 @@ class WhiteKeyView: NSBox {
         
         // setup appearance
         self.boxType = .custom
-        self.cornerRadius = 3
+        self.cornerRadius = 1
         self.borderWidth = 1
         self.fillColor = defaultColor
-        self.borderColor = NSColor.secondaryLabelColor
-        self.borderType = .noBorder // groove
+        self.borderColor = NSColor.black
+        self.borderType = .grooveBorder // groove
         self.focusRingType = .none
         self.appearance = NSAppearance(named: .darkAqua)
+        
+        // load preferred pressed colour from userDefaults
+        if let colorData = Preferences.load(key: .PressedKeyColor) as? [CGFloat] {
+            self.pressedColor = NSColor(calibratedRed: colorData[0], green: colorData[1], blue: colorData[2], alpha: colorData[3])
+        }
         
     }
     
@@ -51,6 +51,11 @@ class WhiteKeyView: NSBox {
 
         // superclass drawing
         super.draw(dirtyRect)
+        
+        // load preferred pressed colour from userDefaults
+        if let colorData = Preferences.load(key: .PressedKeyColor) as? [CGFloat] {
+            self.pressedColor = NSColor(calibratedRed: colorData[0], green: colorData[1], blue: colorData[2], alpha: colorData[3])
+        }
 
     }
     
