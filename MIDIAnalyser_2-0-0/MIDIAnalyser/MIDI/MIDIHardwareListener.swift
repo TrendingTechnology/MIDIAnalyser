@@ -24,6 +24,9 @@ class MIDIHardwareListener: AKMIDIListener {
             if AudioKit.midi.inputNames.contains(preferredInputDevice) {
                 AudioKit.midi.openInput(preferredInputDevice)
             }
+            else {
+                MIDIHardwareListener.inputChange("All inputs")
+            }
         }
         else {
             MIDIHardwareListener.inputChange("All inputs")

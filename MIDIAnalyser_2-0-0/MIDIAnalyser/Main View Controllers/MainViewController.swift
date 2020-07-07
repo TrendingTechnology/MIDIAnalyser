@@ -13,7 +13,7 @@ class MainViewController: NSViewController {
     
     
     // analysis and MIDI
-    var MIDI = MIDIHardwareListener()
+    private var MIDI = MIDIHardwareListener()
     
     // child view controllers
     private var keyboardViewController: KeyboardViewController?
@@ -30,15 +30,6 @@ class MainViewController: NSViewController {
         super.viewDidLoad()
         
     }
-
-    
-    // default
-    override var representedObject: Any? {
-        didSet {
-            // update the view, if already loaded.
-        }
-    }
-
 
 }
 

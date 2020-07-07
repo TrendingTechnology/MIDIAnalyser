@@ -117,65 +117,74 @@ class Chord {
     // name generating function
     func name() -> String {
         
-        // generate string of extensions
-        var extensionString: String = ""
         
-        if(hasExtensions) {
-        
-            extensionString = "add("
+        if root != "" {
+            // generate string of extensions
+            var extensionString: String = ""
             
-            for i in 0...(extensions.count - 1) {
-                if extensions[i] {
-                    extensionString += extensionNames[i] + ","
+            if(hasExtensions) {
+            
+                extensionString = "add("
+                
+                for i in 0...(extensions.count - 1) {
+                    if extensions[i] {
+                        extensionString += extensionNames[i] + ","
+                    }
                 }
-            }
-            
-            extensionString += ")"
-            extensionString = extensionString.replacingOccurrences(of: ",)", with: ")", options: .literal, range: nil)
-            
-        }
-            
-        // special formatting for sus chords with extensions
-        if (baseTonality == BaseTonality.sus2) || (baseTonality == BaseTonality.sus4) || (baseTonality == BaseTonality.sus2NoFive) || (baseTonality == BaseTonality.sus4NoFive) {
-            chordName = root + primaryExtension.rawValue + baseTonality.rawValue + extensionString + slashRoot
-        }
-        
-        // special formatting for 5 chords with extensions
-        else if (baseTonality == BaseTonality.five) && (primaryExtension != PrimaryExtension.none) {
-            chordName = root + primaryExtension.rawValue + "(no3)" + extensionString + slashRoot
-        }
-            
-        // diminished chords have primary extensions named differently
-        else if (baseTonality == BaseTonality.diminished) && (primaryExtension != PrimaryExtension.none) {
-            
-            switch primaryExtension {
-            
-            case PrimaryExtension.sixth:
-                chordName = root + baseTonality.rawValue + "7" + extensionString + slashRoot
                 
-            case PrimaryExtension.sixNine:
-                chordName = root + baseTonality.rawValue + "7" + "add(9)" + extensionString + slashRoot
-            
-            case PrimaryExtension.minorSeventh:
-                chordName = root + "m7b5" + extensionString + slashRoot
-                
-            case PrimaryExtension.majorSeventh:
-                chordName = root + "maj7b5" + extensionString + slashRoot
-                
-            case PrimaryExtension.none:
-                break
+                extensionString += ")"
+                extensionString = extensionString.replacingOccurrences(of: ",)", with: ")", options: .literal, range: nil)
                 
             }
                 
+            // special formatting for sus chords with extensions
+            if (baseTonality == BaseTonality.sus2) || (baseTonality == BaseTonality.sus4) || (baseTonality == BaseTonality.sus2NoFive) || (baseTonality == BaseTonality.sus4NoFive) {
+                chordName = root + primaryExtension.rawValue + baseTonality.rawValue + extensionString + slashRoot
+            }
+            
+            // special formatting for 5 chords with extensions
+            else if (baseTonality == BaseTonality.five) && (primaryExtension != PrimaryExtension.none) {
+                chordName = root + primaryExtension.rawValue + "(no3)" + extensionString + slashRoot
+            }
+                
+            // diminished chords have primary extensions named differently
+            else if (baseTonality == BaseTonality.diminished) && (primaryExtension != PrimaryExtension.none) {
+                
+                switch primaryExtension {
+                
+                case PrimaryExtension.sixth:
+                    chordName = root + baseTonality.rawValue + "7" + extensionString + slashRoot
+                    
+                case PrimaryExtension.sixNine:
+                    chordName = root + baseTonality.rawValue + "7" + "add(9)" + extensionString + slashRoot
+                
+                case PrimaryExtension.minorSeventh:
+                    chordName = root + "m7b5" + extensionString + slashRoot
+                    
+                case PrimaryExtension.majorSeventh:
+                    chordName = root + "maj7b5" + extensionString + slashRoot
+                    
+                case PrimaryExtension.none:
+                    break
+                    
+                }
+                    
+            }
+            
+            // general chord naming format, no special cases
+            else {
+               chordName = root + baseTonality.rawValue + primaryExtension.rawValue + extensionString + slashRoot
+            }
+            
+            // replace sharp and flat symbols
+            chordName = chordName.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
+            chordName = chordName.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
+            
+            estimateComplexity()
         }
-        
-        // general chord naming format, no special cases
         else {
-           chordName = root + baseTonality.rawValue + primaryExtension.rawValue + extensionString + slashRoot
+            chordName = ""
         }
-        
-        
-        estimateComplexity()
         
         return chordName
     }
@@ -193,7 +202,7 @@ class Chord {
             complexity += 2
         }
         else if (baseTonality == .sus2) || (baseTonality == .sus4) {
-            complexity += 2
+            complexity += 3
         }
         else if (baseTonality == .five) {
             complexity += 1
@@ -202,7 +211,7 @@ class Chord {
             complexity += 0
         }
         else { // no5
-            complexity += 4
+            complexity += 5
         }
         
         // primary extension
@@ -218,22 +227,22 @@ class Chord {
             complexity += 3
         }
         if(extensions[Extension.sharpNine.rawValue]) {
-            complexity += 4
+            complexity += 3
         }
         if(extensions[Extension.eleven.rawValue]) {
             complexity += 3
         }
         if(extensions[Extension.sharpEleven.rawValue]) {
-            complexity += 4
+            complexity += 3
         }
         if(extensions[Extension.flatThirteen.rawValue]) {
-            complexity += 4
+            complexity += 3
         }
         if(extensions[Extension.thirteen.rawValue]) {
             complexity += 3
         }
         if(extensions[Extension.sharpThirteen.rawValue]) {
-            complexity += 4
+            complexity += 3
         }
         
         if(isSlashChord) {

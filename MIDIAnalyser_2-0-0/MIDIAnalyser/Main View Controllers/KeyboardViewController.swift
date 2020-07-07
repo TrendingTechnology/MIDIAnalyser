@@ -13,7 +13,7 @@ class KeyboardViewController: NSViewController {
     
     
     // keyboard, view controllers and listener
-    var keyboard = Keyboard()
+    private var keyboard = Keyboard()
     private var keyboardView: KeyboardView!
     private var typingListener: MIDITypingListener = MIDITypingListener()
     
@@ -27,8 +27,8 @@ class KeyboardViewController: NSViewController {
         // create the view
         // note that the container view is slightly smaller than this view
         // to crop the rounding of the tops of the keys
-        keyboardView = KeyboardView(frame: view.frame)
-        view.addSubview(keyboardView)
+        self.keyboardView = KeyboardView(frame: view.frame)
+        self.view.addSubview(keyboardView)
         
         // add observers
         MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
@@ -36,7 +36,7 @@ class KeyboardViewController: NSViewController {
         MIDINotificationCenter.observe(type: .control, observer: self, selector: #selector(keyUpdate))
         
         // add typing listener
-        typingListener.startListening()
+        self.typingListener.startListening()
         
     }
 

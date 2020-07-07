@@ -16,6 +16,7 @@ class ChordAnalyser {
     // analyser variables
     var chordName: String = ""
     var possibleChordNames: [String] = Array(repeating: "", count: 2)
+    var chord: Chord = Chord("")
     var possibleChords: [Chord] = []
     var accidentals: Key.NoteNameFormat = Key.NoteNameFormat.mixed
     
@@ -103,7 +104,8 @@ class ChordAnalyser {
             print("")
             
             // determine most likely chord name
-            chordName = mostLikelyChord(possibleChords).name()
+            chord = mostLikelyChord(possibleChords)
+            chordName = chord.name()
             
             // record other possibilities
             possibleChordNames = Array(repeating: "", count: possibleChords.count)
@@ -112,9 +114,12 @@ class ChordAnalyser {
                  possibleChordNames[index] = chord.name()
             }
             
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chord))
+            
         }
         else {
             chordName = "-"
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(Chord("")))
         }
         
         
