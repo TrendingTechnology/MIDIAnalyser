@@ -21,6 +21,8 @@ class Preferences {
         case AbbreviateIgnoreNo5 = "AbbreviateIgnoreNo5"
         case AbbreviateIgnoreNo3 = "AbbreviateIgnoreNo3"
         case AbbreviateHideSlashRoots = "AbbreviateHideSlashRoots"
+        case SingleNoteInputDisplayed = "SingleNoteInputDisplayed"
+        case IntervalInputDisplayed = "IntervalInputDisplayed"
         case ColorTheme = "ColorTheme"
         case PressedKeyColor = "PressedKeyColor"
     }
