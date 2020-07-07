@@ -180,6 +180,13 @@ class Chord {
             chordName = chordName.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
             chordName = chordName.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
             
+            // jazz notation to do
+//            chordName = chordName.replacingOccurrences(of: "maj7", with: "\u{0394}7", options: .literal, range: nil)
+//            chordName = chordName.replacingOccurrences(of: "dim", with: "\u{00B0}", options: .literal, range: nil)
+//            chordName = chordName.replacingOccurrences(of: "aug", with: "+", options: .literal, range: nil) // alt: \u{FF0B}
+//            chordName = chordName.replacingOccurrences(of: "m7\u{266D}5", with: "\u{00F8}", options: .literal, range: nil)
+//            chordName = chordName.replacingOccurrences(of: "m", with: "-", options: .literal, range: nil) // alt: \u{FF0D}
+//
             estimateComplexity()
         }
         else {
