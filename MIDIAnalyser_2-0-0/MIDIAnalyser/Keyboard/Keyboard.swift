@@ -72,17 +72,19 @@ class Keyboard {
             
             if let message = notification.object as? MIDINoteMessage {
                 
-                let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
-                
-                if !sustainPressed {
-                    keys[keyIndex].state = true
+                if message.noteNumber >= Keyboard.minMIDINumber && message.noteNumber <= Keyboard.maxMIDINumber {
+                    let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
+                    
+                    if !sustainPressed {
+                        keys[keyIndex].state = true
+                    }
+                    else {
+                        keys[keyIndex].state = true
+                        sustainedKeys[keyIndex].state = true
+                    }
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
                 }
-                else {
-                    keys[keyIndex].state = true
-                    sustainedKeys[keyIndex].state = true
-                }
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
                 
             }
             
@@ -91,17 +93,18 @@ class Keyboard {
             
             if let message = notification.object as? MIDINoteMessage {
                 
-                let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
-                
-                if !sustainPressed {
-                    keys[keyIndex].state = false
+                if message.noteNumber >= Keyboard.minMIDINumber && message.noteNumber <= Keyboard.maxMIDINumber {
+                    let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
+                    
+                    if !sustainPressed {
+                        keys[keyIndex].state = false
+                    }
+                    else {
+                        sustainedKeys[keyIndex].state = false
+                    }
+                    
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
                 }
-                else {
-                    sustainedKeys[keyIndex].state = false
-                }
-                
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
-                
             }
             
         // case for control messages
@@ -160,8 +163,13 @@ class Keyboard {
         let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
         var result: Bool = false
         
-        if isWhiteKey[keyIndex % 12] {
-            result =  true
+        if keyIndex >= 0 && keyIndex < Keyboard.nKeys {
+            if isWhiteKey[keyIndex % 12] {
+                result =  true
+            }
+        }
+        else {
+            print("isWhiteKeyIndex: invalid key index: ", keyIndex)
         }
         
         return result

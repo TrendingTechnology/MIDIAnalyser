@@ -140,12 +140,12 @@
                             <popUpButton focusRingType="none" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="h5O-DD-GVZ">
                                 <rect key="frame" x="224" y="208" width="123" height="25"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="EQe-xI-lND" id="PRK-yk-k8I">
+                                <popUpButtonCell key="cell" type="push" title="Default" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="borderAndBezel" focusRingType="none" imageScaling="proportionallyDown" inset="2" selectedItem="EQe-xI-lND" id="PRK-yk-k8I">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="VfY-vf-06F">
                                         <items>
-                                            <menuItem title="Default" id="EQe-xI-lND"/>
+                                            <menuItem title="Default" state="on" id="EQe-xI-lND"/>
                                             <menuItem title="Jazz" id="EYv-ae-UMi"/>
                                         </items>
                                     </menu>
@@ -334,7 +334,7 @@
         <scene sceneID="5Pz-BT-I8J">
             <objects>
                 <windowController id="QE6-Ik-RDq" userLabel="Preferences" customClass="PreferencesWindowController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="MIDIAnalyser Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" id="LeO-hR-efU">
+                    <window key="window" title="MIDIAnalyser Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" frameAutosaveName="" animationBehavior="default" tabbingMode="disallowed" id="LeO-hR-efU">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <rect key="contentRect" x="294" y="323" width="370" height="300"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1080"/>

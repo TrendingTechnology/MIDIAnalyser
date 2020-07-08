@@ -24,11 +24,14 @@
 		22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B2C24B0D7A3002814EC /* BlackKeyView.swift */; };
 		22626B3224B1155C002814EC /* ChordNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B3124B1155C002814EC /* ChordNameViewController.swift */; };
 		22626B3624B1383F002814EC /* ChordNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22626B3524B1383F002814EC /* ChordNameView.swift */; };
+		2276C61824B556ED00A155CB /* GrandStaffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276C61724B556ED00A155CB /* GrandStaffViewController.swift */; };
+		2276C61C24B6063300A155CB /* StaffLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276C61B24B6063300A155CB /* StaffLineView.swift */; };
 		2286EC0A24B291B0003914F3 /* PreferencesAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2286EC0824B291B0003914F3 /* PreferencesAnalysisViewController.swift */; };
 		2286EC0D24B29214003914F3 /* PreferencesColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2286EC0C24B29214003914F3 /* PreferencesColorsViewController.swift */; };
 		229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */; };
 		229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */; };
 		229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678E124B24B5300A8C71E /* PreferencesWindowController.swift */; };
+		229B1B7524B543E000A84F41 /* GrandStaffView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229B1B7424B543E000A84F41 /* GrandStaffView.swift */; };
 		22AD1CA624B263FB007389E4 /* ChordNameExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CA524B263FB007389E4 /* ChordNameExampleView.swift */; };
 		22AD1CA924B26552007389E4 /* ChordNameExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CA824B26552007389E4 /* ChordNameExampleViewController.swift */; };
 		22AD1CAC24B288C3007389E4 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CAB24B288C3007389E4 /* Preferences.swift */; };
@@ -89,11 +92,14 @@
 		22626B2C24B0D7A3002814EC /* BlackKeyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlackKeyView.swift; sourceTree = "<group>"; };
 		22626B3124B1155C002814EC /* ChordNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameViewController.swift; sourceTree = "<group>"; };
 		22626B3524B1383F002814EC /* ChordNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameView.swift; sourceTree = "<group>"; };
+		2276C61724B556ED00A155CB /* GrandStaffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandStaffViewController.swift; sourceTree = "<group>"; };
+		2276C61B24B6063300A155CB /* StaffLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffLineView.swift; sourceTree = "<group>"; };
 		2286EC0824B291B0003914F3 /* PreferencesAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesAnalysisViewController.swift; sourceTree = "<group>"; };
 		2286EC0C24B29214003914F3 /* PreferencesColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesColorsViewController.swift; sourceTree = "<group>"; };
 		229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesMIDIViewController.swift; sourceTree = "<group>"; };
 		229678E124B24B5300A8C71E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
+		229B1B7424B543E000A84F41 /* GrandStaffView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandStaffView.swift; sourceTree = "<group>"; };
 		22AD1CA524B263FB007389E4 /* ChordNameExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameExampleView.swift; sourceTree = "<group>"; };
 		22AD1CA824B26552007389E4 /* ChordNameExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameExampleViewController.swift; sourceTree = "<group>"; };
 		22AD1CAB24B288C3007389E4 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
@@ -142,12 +148,13 @@
 			isa = PBXGroup;
 			children = (
 				2238571924AFB79D00F34A33 /* Main.storyboard */,
+				2238571224AFB79B00F34A33 /* MainViewController.swift */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
 				22D7300724B35C9B0039EA90 /* About.storyboard */,
 				2238575924AFD58800F34A33 /* MIDI */,
 				2238574A24AFB89700F34A33 /* Keyboard */,
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
-				22626B2224B011AF002814EC /* Main View Controllers */,
+				22626B2224B011AF002814EC /* GrandStaff */,
 				22AD1CAA24B28871007389E4 /* Preferences */,
 				2238571724AFB79D00F34A33 /* Assets.xcassets */,
 				2238571C24AFB79D00F34A33 /* Info.plist */,
@@ -162,6 +169,7 @@
 			children = (
 				2238574F24AFB9E800F34A33 /* Keyboard.swift */,
 				2238575124AFBA1D00F34A33 /* Key.swift */,
+				22626B2524B0B760002814EC /* KeyboardViewController.swift */,
 				22626B2A24B0BF0F002814EC /* KeyboardView.swift */,
 				22626B2824B0BD78002814EC /* WhiteKeyView.swift */,
 				22626B2C24B0D7A3002814EC /* BlackKeyView.swift */,
@@ -197,13 +205,14 @@
 			path = ChordAnalyser;
 			sourceTree = "<group>";
 		};
-		22626B2224B011AF002814EC /* Main View Controllers */ = {
+		22626B2224B011AF002814EC /* GrandStaff */ = {
 			isa = PBXGroup;
 			children = (
-				2238571224AFB79B00F34A33 /* MainViewController.swift */,
-				22626B2524B0B760002814EC /* KeyboardViewController.swift */,
+				2276C61724B556ED00A155CB /* GrandStaffViewController.swift */,
+				229B1B7424B543E000A84F41 /* GrandStaffView.swift */,
+				2276C61B24B6063300A155CB /* StaffLineView.swift */,
 			);
-			path = "Main View Controllers";
+			path = GrandStaff;
 			sourceTree = "<group>";
 		};
 		22AD1CAA24B28871007389E4 /* Preferences */ = {
@@ -336,9 +345,12 @@
 				22D72FFF24B29C540039EA90 /* MIDINotificationCenter.swift in Sources */,
 				225A1C8D24B4E5DF00415515 /* ChordMessage.swift in Sources */,
 				22D7300124B29C540039EA90 /* MIDINoteMessage.swift in Sources */,
+				229B1B7524B543E000A84F41 /* GrandStaffView.swift in Sources */,
 				22626B1B24AFFF3E002814EC /* Chord.swift in Sources */,
 				2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */,
+				2276C61C24B6063300A155CB /* StaffLineView.swift in Sources */,
 				229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */,
+				2276C61824B556ED00A155CB /* GrandStaffViewController.swift in Sources */,
 				22D7300A24B4CC140039EA90 /* ChordNameViewTextField.swift in Sources */,
 				22AD1CAC24B288C3007389E4 /* Preferences.swift in Sources */,
 				229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */,

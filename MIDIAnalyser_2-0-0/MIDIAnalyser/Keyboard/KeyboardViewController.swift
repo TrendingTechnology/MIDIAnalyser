@@ -134,7 +134,8 @@ class KeyboardViewController: NSViewController {
             76 : 31,
             78 : 32,
             81 : 33,
-            83 : 34
+            83 : 34,
+            85 : 35
         ]
         
         // which type of message received
@@ -157,7 +158,7 @@ class KeyboardViewController: NSViewController {
                 
                 }
                 else {
-                    print(keyIndex)
+
                     if let blackKeyIndex = blackKeyDictionary[keyIndex] {
                         DispatchQueue.main.async {
                             self.keyboardView.blackKeys[blackKeyIndex].fillColor = self.keyboardView.blackKeys[blackKeyIndex].pressedColor
