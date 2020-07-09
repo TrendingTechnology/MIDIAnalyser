@@ -70,6 +70,9 @@ class GrandStaffView: NSView {
         self.addSubview(bassClefTextField)
         self.addSubview(trebleClefTextField)
         
+        // observers
+        NotificationCenter.default.addObserver(self, selector: #selector(drawNotes), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
+        
     }
     
 
@@ -130,7 +133,7 @@ class GrandStaffView: NSView {
         
         // fetch and setup graphics context
         guard let context = NSGraphicsContext.current?.cgContext else{
-            fatalError("Missing NSGraphicsContext in StaffView")
+            fatalError("Missing NSGraphicsContext in GrandStaffView")
         }
         
         context.setStrokeColor(CGColor.white)
@@ -243,6 +246,90 @@ class GrandStaffView: NSView {
         self.addSubview(accidental) /// need better view management here, array of accidentals to be appended and deleted on redraw
         
     }
+    
+    @objc func drawNotes(_ notification: Notification) {
+        
+        // stem rules:
+        // - stem length = 1 octave
+        // - if the note furthest from the middle line is above the middle line, the stem of the chord points downwards.
+        // - if the note furthest from the middle line is below the middle line, the stem of the chord points upwards.
+        // - could just ignore stems
+        
+        // notehead position rules
+        // - seconds to the right
+        
+        // deconstruct notification
+        var notes: [Int] = Array()
+        
+        if let message = notification.object as? ChordNotesMessage {
+            notes = message.notes
+        }
+        
+        if notes.count != 0 {
+        
+            let note: GrandStaffNote = GrandStaffNote(MIDINumber: notes[0])
+            
+            drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
+                         line: note.lineToDrawOn,
+                         direction: .left,
+                         requiresLedgerLine: note.requiresLedgerLine)
+        }
+
+        
+    }
+    
+    private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool) {
+        
+        // work out dimensions
+        let noteHead: NSTextField = NSTextField(string: GrandStaffNote.noteHeadCode)
+        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
+        
+        // set up the view
+        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
+        noteHead.textColor = .white
+        noteHead.isBordered = false
+        noteHead.isEditable = false
+        noteHead.drawsBackground = false
+        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
+        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
+        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+        
+        // draw the view
+        self.addSubview(noteHead)
+        
+        // ledger line
+        if requiresLedgerLine {
+            
+            // fetch and setup graphics context
+            guard let context = NSGraphicsContext.current?.cgContext else{
+                fatalError("Missing NSGraphicsContext in GrandStaffView")
+            }
+            
+            context.setStrokeColor(CGColor.white)
+            
+            let halfPixelOffset: CGFloat = 0.5
+            
+            do {
+                
+                let startPoint: CGPoint = CGPoint(x: noteHead.frame.origin.x,
+                                                  y: staff.frame.origin.y + halfPixelOffset * 2 + staff.lineSpacing * CGFloat(line))
+                let endPoint: CGPoint = CGPoint(x: startPoint.x + 15,
+                                                y: startPoint.y)
+                
+                context.setLineWidth(2)
+                context.beginPath()
+                context.move(to: startPoint)
+                context.addLine(to: endPoint)
+                context.strokePath()
+
+                
+            }
+        }
+        
+        
+    }
+    
+    
     
 }
 

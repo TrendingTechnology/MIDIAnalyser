@@ -33,6 +33,7 @@
 		228FF40624B689A90006E880 /* emmentaler.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 228FF40424B689A90006E880 /* emmentaler.ttf */; };
 		228FF40A24B68BFD0006E880 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 228FF40324B689A90006E880 /* LICENSE.txt */; };
 		228FF40B24B68BFD0006E880 /* emmentaler.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 228FF40424B689A90006E880 /* emmentaler.ttf */; };
+		228FF40D24B6A6720006E880 /* GrandStaffNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FF40C24B6A6720006E880 /* GrandStaffNote.swift */; };
 		229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */; };
 		229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */; };
 		229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678E124B24B5300A8C71E /* PreferencesWindowController.swift */; };
@@ -118,6 +119,7 @@
 		228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandStaffKeySignature.swift; sourceTree = "<group>"; };
 		228FF40324B689A90006E880 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
 		228FF40424B689A90006E880 /* emmentaler.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = emmentaler.ttf; sourceTree = "<group>"; };
+		228FF40C24B6A6720006E880 /* GrandStaffNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandStaffNote.swift; sourceTree = "<group>"; };
 		229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesMIDIViewController.swift; sourceTree = "<group>"; };
 		229678E124B24B5300A8C71E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				2276C61724B556ED00A155CB /* GrandStaffViewController.swift */,
 				229B1B7424B543E000A84F41 /* GrandStaffView.swift */,
 				2276C61B24B6063300A155CB /* StaffLineView.swift */,
+				228FF40C24B6A6720006E880 /* GrandStaffNote.swift */,
 				228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */,
 			);
 			path = GrandStaff;
@@ -398,6 +401,7 @@
 				22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */,
 				22D7300624B347B30039EA90 /* MIDITypingListener.swift in Sources */,
 				2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */,
+				228FF40D24B6A6720006E880 /* GrandStaffNote.swift in Sources */,
 				22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */,
 				229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */,
 				22626B2B24B0BF0F002814EC /* KeyboardView.swift in Sources */,
