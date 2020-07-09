@@ -15,10 +15,19 @@ class GrandStaffView: NSView {
     // subviews
     private var bassStaff: StaffLineView = StaffLineView(frame: NSRect())
     private var trebleStaff: StaffLineView = StaffLineView(frame: NSRect())
-    var bassClefTextField: NSTextField = NSTextField()
-    var trebleClefTextField: NSTextField = NSTextField()
-
-
+    private var bassClefTextField: NSTextField = NSTextField()
+    private var trebleClefTextField: NSTextField = NSTextField()
+    
+    // dimensions
+    private var staffHeight: CGFloat = 0
+    private var staffLineSpacing: CGFloat = 0
+    private var highestTrebleLedgerLine: Int = 3 // note E6
+    private var lowestTrebleLedgerLine: Int = 1 // note C4
+    private var highestBassLedgerLine: Int = 1 // note C4
+    private var lowestBassLedgerLine: Int = 3 // note A1
+    
+    private var musicalSymbolsFont: String = "Emmentaler-26"
+    
     // initialisation
     required init?(coder: NSCoder) {
         
@@ -31,12 +40,12 @@ class GrandStaffView: NSView {
         
         // superclass initialisation
         super.init(frame: frame)
-//        self.wantsLayer = true
-//        self.layer?.backgroundColor = .black
+        self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
         
         // clef characters
-        self.bassClefTextField.stringValue = "\u{1D122}"
-        self.trebleClefTextField.stringValue = "\u{1D11E}"
+        self.bassClefTextField.stringValue = "\u{1D122}" // E1A7
+        self.trebleClefTextField.stringValue = "\u{E1AA}" // 1D11E
         
         // text fields for clefs
         self.bassClefTextField.isEditable = false
@@ -72,40 +81,47 @@ class GrandStaffView: NSView {
         // call the drawing functions
         drawStaffLines()
         drawVerticalLines()
-        drawClefs()        
+        drawClefs()
+        drawKeySignature(GrandStaffKeySignature.Dbmajor)
         
     }
     
     private func drawStaffLines() {
 
         let staffSize: NSSize = NSSize(width: self.frame.width, height: 46) // (h - 2) /4 must be whole number
+                                                                            // 46
         
         let staffSpacing: CGFloat = 50
-        let bassStaffOrigin: NSPoint = NSPoint(x: self.frame.origin.x, y: 50)
+        let bassStaffOrigin: NSPoint = NSPoint(x: self.frame.origin.x,
+                                               y: self.frame.origin.y + (self.frame.size.height - staffSpacing) / 2 - staffSize.height)
         let trebleStaffOrigin: NSPoint = NSPoint(x: bassStaffOrigin.x,
                                                  y: bassStaffOrigin.y + staffSize.height + staffSpacing)
         
         bassStaff.frame = NSRect(origin: bassStaffOrigin, size: staffSize)
         trebleStaff.frame = NSRect(origin: trebleStaffOrigin, size: staffSize)
+        
+        // calculate dimensions for use in this class
+        bassStaff.calculateDimensions()
+        trebleStaff.calculateDimensions()
+
     }
     
     
     private func drawClefs() {
         
-        let lineSpacing: CGFloat = bassStaff.frame.height / CGFloat(bassStaff.numberOfLines - 1) - 2 * bassStaff.lineWidth / CGFloat(bassStaff.numberOfLines - 1)
-            
-        bassClefTextField.font = NSFont.systemFont(ofSize: lineSpacing * 4.6, weight: .thin)
-        bassClefTextField.frame.origin.x = self.frame.origin.x + lineSpacing / 2
-        bassClefTextField.frame.origin.y = bassStaff.frame.origin.y + lineSpacing + lineSpacing * 0.15
-        bassClefTextField.frame.size.height = lineSpacing * 4.4
-        bassClefTextField.frame.size.width = lineSpacing * 4
+        // draw the bass clef with some magic numbers
+        bassClefTextField.font = NSFont(name: musicalSymbolsFont, size: bassStaff.lineSpacing * 4.6)
+        bassClefTextField.frame.origin.x = self.frame.origin.x + bassStaff.lineSpacing / 2
+        bassClefTextField.frame.origin.y = bassStaff.frame.origin.y - bassStaff.lineSpacing + bassStaff.lineSpacing * 0.2
+        bassClefTextField.frame.size.height = bassStaff.lineSpacing * 8 // 4.4
+        bassClefTextField.frame.size.width = bassStaff.lineSpacing * 4 // 4
         
-        trebleClefTextField.font = NSFont.systemFont(ofSize: lineSpacing * 9, weight: .thin)
-        trebleClefTextField.frame.origin.x = self.frame.origin.x + lineSpacing / 2
-        trebleClefTextField.frame.origin.y = trebleStaff.frame.origin.y - 2 * lineSpacing + lineSpacing * 0.05
-        trebleClefTextField.frame.size.height = lineSpacing * 10
-        trebleClefTextField.frame.size.width = lineSpacing * 4
-        // trebleClefTextField.drawsBackground = true
+        // draw the treble clef with some magic numbers
+        trebleClefTextField.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 4.5)
+        trebleClefTextField.frame.origin.x = self.frame.origin.x + trebleStaff.lineSpacing / 2
+        trebleClefTextField.frame.origin.y = trebleStaff.frame.origin.y - 2.95 * trebleStaff.lineSpacing
+        trebleClefTextField.frame.size.height = trebleStaff.lineSpacing * 10 // 10
+        trebleClefTextField.frame.size.width = trebleStaff.lineSpacing * 4 // 4
 
     }
     
@@ -172,8 +188,61 @@ class GrandStaffView: NSView {
         }
         
     }
-
-
+    
+    private func drawKeySignature(_ key: GrandStaffKeySignature) {
+     
+        // draw sharps on treble clef lines
+        for accidental in key.accidentals {
+            
+            
+            if key.isSharpsKey {
+                drawAccidentalOnStaff(staff: trebleStaff,
+                                      line: accidental.trebleStaffLineNumber,
+                                      position: accidental.order,
+                                      accidental: "\u{E10E}")
+                drawAccidentalOnStaff(staff: bassStaff,
+                                      line: accidental.trebleStaffLineNumber,
+                                      position: accidental.order,
+                                      accidental: "\u{E10E}")
+                
+                //drawSharpOnStaff(staff: trebleStaff, line: accidental.trebleStaffLineNumber, position: accidental.order)
+                //drawSharpOnStaff(staff: bassStaff, line: accidental.bassStaffLineNumber, position: accidental.order)
+            }
+            else {
+                drawAccidentalOnStaff(staff: trebleStaff,
+                                      line: accidental.trebleStaffLineNumber,
+                                      position: accidental.order,
+                                      accidental: "\u{E11A}")
+                drawAccidentalOnStaff(staff: bassStaff,
+                                      line: accidental.trebleStaffLineNumber,
+                                      position: accidental.order,
+                                      accidental: "\u{E11A}")
+            }
+        }
+        
+    }
+    
+    private func drawAccidentalOnStaff(staff: StaffLineView, line: Float, position: Int, accidental: String) {
+        
+        // work out dimensions
+        let accidental: NSTextField = NSTextField(string: accidental)
+        let accidentalSize: CGSize = CGSize(width: 20, height: 100)
+        let horizontalSpacing: CGFloat = 10
+        
+        // set up the view
+        accidental.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
+        accidental.textColor = .white
+        accidental.isBordered = false
+        accidental.isEditable = false
+        accidental.drawsBackground = false
+        accidental.frame = NSRect(origin: .zero, size: accidentalSize)
+        accidental.frame.origin.x = staff.frame.origin.x + trebleClefTextField.frame.size.width + horizontalSpacing * CGFloat(position)
+        accidental.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+        
+        // draw the view
+        self.addSubview(accidental) /// need better view management here, array of accidentals to be appended and deleted on redraw
+        
+    }
+    
 }
-
 

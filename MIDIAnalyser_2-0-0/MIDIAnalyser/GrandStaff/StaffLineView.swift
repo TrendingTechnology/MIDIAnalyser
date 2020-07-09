@@ -32,6 +32,7 @@ class StaffLineView: NSView {
         // default values
         lineStartPoints = Array(repeating: .zero, count: numberOfLines)
         lineEndPoints = Array(repeating: .zero, count: numberOfLines)
+
         
     }
     
@@ -50,33 +51,40 @@ class StaffLineView: NSView {
         context.setShouldAntialias(true)
         context.setAllowsAntialiasing(true)
         
-        // work out dimensions
+        // calculate line dimensions
+        calculateDimensions()
+        
+        // draw the lines
+        for i in 0 ..< numberOfLines {
+            
+            context.beginPath()
+            context.move(to: lineStartPoints[i])
+            context.addLine(to: lineEndPoints[i])
+            context.strokePath()
+
+        }
+        
+    }
+    
+    func calculateDimensions() {
+        
         let halfPixelOffset: CGFloat = 0.5
         lineSpacing = self.frame.height / CGFloat(numberOfLines - 1) - 2 * lineWidth / CGFloat(numberOfLines - 1)
         lineStartPoints.removeAll()
         lineEndPoints.removeAll()
         
-        // draw the lines and clef
         for i in 0 ..< numberOfLines {
-
-            // figure out start and end point for line
+            
             let startPoint: CGPoint = CGPoint(x: self.frame.origin.x,
                                               y: CGFloat(i) * lineSpacing
                                                  + lineWidth + halfPixelOffset)
 
             let endPoint: CGPoint = CGPoint(x: self.frame.origin.x + self.frame.size.width,
                                             y: startPoint.y)
-
-            // draw the line
-            context.beginPath()
-            context.move(to: startPoint)
-            context.addLine(to: endPoint)
-            context.strokePath()
             
-            // record the start and end points
             lineStartPoints.append(startPoint)
             lineEndPoints.append(endPoint)
-
+            
         }
         
     }

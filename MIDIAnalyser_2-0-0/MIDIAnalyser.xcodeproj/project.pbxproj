@@ -28,6 +28,11 @@
 		2276C61C24B6063300A155CB /* StaffLineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2276C61B24B6063300A155CB /* StaffLineView.swift */; };
 		2286EC0A24B291B0003914F3 /* PreferencesAnalysisViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2286EC0824B291B0003914F3 /* PreferencesAnalysisViewController.swift */; };
 		2286EC0D24B29214003914F3 /* PreferencesColorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2286EC0C24B29214003914F3 /* PreferencesColorsViewController.swift */; };
+		228FF40024B672640006E880 /* GrandStaffKeySignature.swift in Sources */ = {isa = PBXBuildFile; fileRef = 228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */; };
+		228FF40524B689A90006E880 /* LICENSE.txt in Resources */ = {isa = PBXBuildFile; fileRef = 228FF40324B689A90006E880 /* LICENSE.txt */; };
+		228FF40624B689A90006E880 /* emmentaler.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 228FF40424B689A90006E880 /* emmentaler.ttf */; };
+		228FF40A24B68BFD0006E880 /* LICENSE.txt in CopyFiles */ = {isa = PBXBuildFile; fileRef = 228FF40324B689A90006E880 /* LICENSE.txt */; };
+		228FF40B24B68BFD0006E880 /* emmentaler.ttf in CopyFiles */ = {isa = PBXBuildFile; fileRef = 228FF40424B689A90006E880 /* emmentaler.ttf */; };
 		229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */; };
 		229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */; };
 		229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 229678E124B24B5300A8C71E /* PreferencesWindowController.swift */; };
@@ -71,6 +76,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		228FF40724B68BA30006E880 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Fonts;
+			dstSubfolderSpec = 7;
+			files = (
+				228FF40A24B68BFD0006E880 /* LICENSE.txt in CopyFiles */,
+				228FF40B24B68BFD0006E880 /* emmentaler.ttf in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		2238570D24AFB79B00F34A33 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2238571024AFB79B00F34A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -96,6 +115,9 @@
 		2276C61B24B6063300A155CB /* StaffLineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaffLineView.swift; sourceTree = "<group>"; };
 		2286EC0824B291B0003914F3 /* PreferencesAnalysisViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesAnalysisViewController.swift; sourceTree = "<group>"; };
 		2286EC0C24B29214003914F3 /* PreferencesColorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesColorsViewController.swift; sourceTree = "<group>"; };
+		228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrandStaffKeySignature.swift; sourceTree = "<group>"; };
+		228FF40324B689A90006E880 /* LICENSE.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = LICENSE.txt; sourceTree = "<group>"; };
+		228FF40424B689A90006E880 /* emmentaler.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = emmentaler.ttf; sourceTree = "<group>"; };
 		229678DB24B2178D00A8C71E /* PreferencesTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesTabViewController.swift; sourceTree = "<group>"; };
 		229678DF24B24AAF00A8C71E /* PreferencesMIDIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesMIDIViewController.swift; sourceTree = "<group>"; };
 		229678E124B24B5300A8C71E /* PreferencesWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreferencesWindowController.swift; sourceTree = "<group>"; };
@@ -156,6 +178,7 @@
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
 				22626B2224B011AF002814EC /* GrandStaff */,
 				22AD1CAA24B28871007389E4 /* Preferences */,
+				228FF40224B689A90006E880 /* Fonts */,
 				2238571724AFB79D00F34A33 /* Assets.xcassets */,
 				2238571C24AFB79D00F34A33 /* Info.plist */,
 				2238571D24AFB79D00F34A33 /* MIDIAnalyser.entitlements */,
@@ -211,8 +234,18 @@
 				2276C61724B556ED00A155CB /* GrandStaffViewController.swift */,
 				229B1B7424B543E000A84F41 /* GrandStaffView.swift */,
 				2276C61B24B6063300A155CB /* StaffLineView.swift */,
+				228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */,
 			);
 			path = GrandStaff;
+			sourceTree = "<group>";
+		};
+		228FF40224B689A90006E880 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				228FF40324B689A90006E880 /* LICENSE.txt */,
+				228FF40424B689A90006E880 /* emmentaler.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		22AD1CAA24B28871007389E4 /* Preferences */ = {
@@ -251,6 +284,7 @@
 				2238570924AFB79B00F34A33 /* Sources */,
 				2238570A24AFB79B00F34A33 /* Frameworks */,
 				2238570B24AFB79B00F34A33 /* Resources */,
+				228FF40724B68BA30006E880 /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -323,9 +357,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				228FF40624B689A90006E880 /* emmentaler.ttf in Resources */,
 				22BE3E5724B24DE400C66299 /* Preferences.storyboard in Resources */,
 				2238571824AFB79D00F34A33 /* Assets.xcassets in Resources */,
 				22D7300824B35C9B0039EA90 /* About.storyboard in Resources */,
+				228FF40524B689A90006E880 /* LICENSE.txt in Resources */,
 				2238571B24AFB79D00F34A33 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -356,6 +392,7 @@
 				229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */,
 				2286EC0D24B29214003914F3 /* PreferencesColorsViewController.swift in Sources */,
 				22AD1CA624B263FB007389E4 /* ChordNameExampleView.swift in Sources */,
+				228FF40024B672640006E880 /* GrandStaffKeySignature.swift in Sources */,
 				22D7300424B2AAFB0039EA90 /* PreferencesNotificationCenter.swift in Sources */,
 				22D72FFE24B29C540039EA90 /* MIDIControlMessage.swift in Sources */,
 				22626B1D24AFFF56002814EC /* ChordAnalyser.swift in Sources */,
