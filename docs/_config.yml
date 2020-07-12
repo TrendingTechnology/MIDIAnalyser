@@ -5,5 +5,3 @@ relative_links:
   collections: true
 include:
   - about.md
-
-theme: jekyll-theme-minimal
