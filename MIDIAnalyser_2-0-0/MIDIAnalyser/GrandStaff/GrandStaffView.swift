@@ -280,51 +280,51 @@ class GrandStaffView: NSView {
     
     private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool) {
         
-        // work out dimensions
-        let noteHead: NSTextField = NSTextField(string: GrandStaffNote.noteHeadCode)
-        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
-        
-        // set up the view
-        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
-        noteHead.textColor = .white
-        noteHead.isBordered = false
-        noteHead.isEditable = false
-        noteHead.drawsBackground = false
-        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
-        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
-        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
-        
-        // draw the view
-        self.addSubview(noteHead)
-        
-        // ledger line
-        if requiresLedgerLine {
-            
-            // fetch and setup graphics context
-            guard let context = NSGraphicsContext.current?.cgContext else{
-                fatalError("Missing NSGraphicsContext in GrandStaffView")
-            }
-            
-            context.setStrokeColor(CGColor.white)
-            
-            let halfPixelOffset: CGFloat = 0.5
-            
-            do {
-                
-                let startPoint: CGPoint = CGPoint(x: noteHead.frame.origin.x,
-                                                  y: staff.frame.origin.y + halfPixelOffset * 2 + staff.lineSpacing * CGFloat(line))
-                let endPoint: CGPoint = CGPoint(x: startPoint.x + 15,
-                                                y: startPoint.y)
-                
-                context.setLineWidth(2)
-                context.beginPath()
-                context.move(to: startPoint)
-                context.addLine(to: endPoint)
-                context.strokePath()
-
-                
-            }
-        }
+//        // work out dimensions
+//        let noteHead: NSTextField = NSTextField(string: GrandStaffNote.noteHeadCode)
+//        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
+//        
+//        // set up the view
+//        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
+//        noteHead.textColor = .white
+//        noteHead.isBordered = false
+//        noteHead.isEditable = false
+//        noteHead.drawsBackground = false
+//        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
+//        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
+//        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+//        
+//        // draw the view
+//        self.addSubview(noteHead)
+//        
+//        // ledger line
+//        if requiresLedgerLine {
+//            
+//            // fetch and setup graphics context
+//            guard let context = NSGraphicsContext.current?.cgContext else{
+//                fatalError("Missing NSGraphicsContext in GrandStaffView")
+//            }
+//            
+//            context.setStrokeColor(CGColor.white)
+//            
+//            let halfPixelOffset: CGFloat = 0.5
+//            
+//            do {
+//                
+//                let startPoint: CGPoint = CGPoint(x: noteHead.frame.origin.x,
+//                                                  y: staff.frame.origin.y + halfPixelOffset * 2 + staff.lineSpacing * CGFloat(line))
+//                let endPoint: CGPoint = CGPoint(x: startPoint.x + 15,
+//                                                y: startPoint.y)
+//                
+//                context.setLineWidth(2)
+//                context.beginPath()
+//                context.move(to: startPoint)
+//                context.addLine(to: endPoint)
+//                context.strokePath()
+//
+//                
+//            }
+//        }
         
         
     }
