@@ -37,4 +37,5 @@ This project is made to analyse input data from a MIDI controller and display th
 
 ### Acknowledgements
 MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
+Musical symbols font &nbsp;--- [Emmentaler](http://lilypond.org/doc/v2.19/Documentation/notation/the-emmentaler-font)
 UI &nbsp;---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
