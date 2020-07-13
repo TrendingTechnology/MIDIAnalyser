@@ -7,7 +7,7 @@ Supported OS     :  macOS 10.15+
 ```
 
 ### Description
-This project is made to analyse input data from a MIDI controller and display the chord played in real time.
+macOS desktop app to analyse input data from a MIDI controller and display the chord played and sheet music notation in real time.
 
 <img src="./Info/MIDIAnalyser%201.2.0.png" width="800" class="center">
 
