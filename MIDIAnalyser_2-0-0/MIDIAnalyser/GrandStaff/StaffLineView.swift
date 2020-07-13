@@ -40,16 +40,20 @@ class StaffLineView: NSView {
     // drawing function
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        
+//        self.wantsLayer = true
+//        self.layer?.backgroundColor = NSColor.systemRed.cgColor
 
         // fetch and setup graphics context
         guard let context = NSGraphicsContext.current?.cgContext else{
             fatalError("Missing NSGraphicsContext in StaffView")
         }
         
+
+        context.setShouldAntialias(false)
+        context.setAllowsAntialiasing(false)
         context.setStrokeColor(CGColor.white)
         context.setLineWidth(lineWidth)
-        context.setShouldAntialias(true)
-        context.setAllowsAntialiasing(true)
         
         // calculate line dimensions
         calculateDimensions()
@@ -63,6 +67,7 @@ class StaffLineView: NSView {
             context.strokePath()
 
         }
+    
         
     }
     
@@ -70,6 +75,7 @@ class StaffLineView: NSView {
         
         let halfPixelOffset: CGFloat = 0.5
         lineSpacing = self.frame.height / CGFloat(numberOfLines - 1) - 2 * lineWidth / CGFloat(numberOfLines - 1)
+        
         lineStartPoints.removeAll()
         lineEndPoints.removeAll()
         

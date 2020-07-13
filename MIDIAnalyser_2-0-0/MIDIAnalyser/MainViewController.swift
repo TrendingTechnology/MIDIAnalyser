@@ -11,7 +11,6 @@ import Cocoa
 
 class MainViewController: NSViewController {
     
-    
     // analysis and MIDI
     private var MIDI = MIDIHardwareListener()
     
@@ -30,6 +29,8 @@ class MainViewController: NSViewController {
         super.viewDidLoad()
         
     }
+    
+
 
 }
 

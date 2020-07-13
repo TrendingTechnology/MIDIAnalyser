@@ -11,8 +11,7 @@ import Cocoa
 class ChordNameViewController: NSViewController {
     
     
-    // views
-    private var chordNameView: ChordNameView!
+    // chord analyser hosted here, could make it static instead
     private var chordAnalyser = ChordAnalyser()
     
     
@@ -23,8 +22,7 @@ class ChordNameViewController: NSViewController {
         super.viewDidLoad()
         
         // create the view
-        chordNameView = ChordNameView(frame: self.view.frame)
-        self.view.addSubview(chordNameView)
+        self.view = ChordNameView(frame: self.view.frame)
 
     }
     

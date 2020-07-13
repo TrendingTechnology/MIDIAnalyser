@@ -17,16 +17,25 @@ class GrandStaffView: NSView {
     private var trebleStaff: StaffLineView = StaffLineView(frame: NSRect())
     private var bassClefTextField: NSTextField = NSTextField()
     private var trebleClefTextField: NSTextField = NSTextField()
+    private var accidentals: [NSTextField] = Array()
+    private var noteHeads: [NSTextField] = Array()
     
     // dimensions
-    private var staffHeight: CGFloat = 0
-    private var staffLineSpacing: CGFloat = 0
     private var highestTrebleLedgerLine: Int = 3 // note E6
     private var lowestTrebleLedgerLine: Int = 1 // note C4
     private var highestBassLedgerLine: Int = 1 // note C4
     private var lowestBassLedgerLine: Int = 3 // note A1
     
-    private var musicalSymbolsFont: String = "Emmentaler-26"
+    // colour pallette
+    private let backgroundColor: NSColor = NSColor.black
+    
+    // symbols
+    private let musicalSymbolsFont: String = "Emmentaler-26"
+    private let bassClefCharacter: String = "\u{1D122}"
+    private let trebleClefCharacter: String = "\u{E1AA}"
+    private let sharpCharacter: String = "\u{E10E}"
+    private let flatCharacter: String = "\u{E11A}"
+    
     
     // initialisation
     required init?(coder: NSCoder) {
@@ -40,46 +49,45 @@ class GrandStaffView: NSView {
         
         // superclass initialisation
         super.init(frame: frame)
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
-        
-        // clef characters
-        self.bassClefTextField.stringValue = "\u{1D122}" // E1A7
-        self.trebleClefTextField.stringValue = "\u{E1AA}" // 1D11E
         
         // text fields for clefs
-        self.bassClefTextField.isEditable = false
-        self.bassClefTextField.isSelectable = false
-        self.bassClefTextField.isBordered = false
-        self.bassClefTextField.drawsBackground = false
-        self.bassClefTextField.textColor = .white
-        self.bassClefTextField.canDrawSubviewsIntoLayer = true
-        self.bassClefTextField.frame = NSRect()
+        bassClefTextField.stringValue = bassClefCharacter
+        bassClefTextField.isEditable = false
+        bassClefTextField.isSelectable = false
+        bassClefTextField.isBordered = false
+        bassClefTextField.drawsBackground = false
+        bassClefTextField.textColor = .white
+        bassClefTextField.canDrawSubviewsIntoLayer = true
+        bassClefTextField.frame = NSRect()
         
-        self.trebleClefTextField.isEditable = false
-        self.trebleClefTextField.isSelectable = false
-        self.trebleClefTextField.isBordered = false
-        self.trebleClefTextField.drawsBackground = false
-        self.trebleClefTextField.textColor = .white
-        self.trebleClefTextField.canDrawSubviewsIntoLayer = true
-        self.trebleClefTextField.frame = NSRect()
+        trebleClefTextField.stringValue = trebleClefCharacter
+        trebleClefTextField.isEditable = false
+        trebleClefTextField.isSelectable = false
+        trebleClefTextField.isBordered = false
+        trebleClefTextField.drawsBackground = false
+        trebleClefTextField.textColor = .white
+        trebleClefTextField.canDrawSubviewsIntoLayer = true
+        trebleClefTextField.frame = NSRect()
         
-        // add subviews
+        // add subviews for the staffs and clefs
         self.addSubview(bassStaff)
         self.addSubview(trebleStaff)
         self.addSubview(bassClefTextField)
         self.addSubview(trebleClefTextField)
         
-        // observers
+        // observe chord note messages from Keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(drawNotes), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
         
     }
-    
 
     override func draw(_ dirtyRect: NSRect) {
         
         // superclass drawing
         super.draw(dirtyRect)
+        
+        // set the background of the view
+        self.wantsLayer = true
+        self.layer?.backgroundColor = self.backgroundColor.cgColor
         
         // call the drawing functions
         drawStaffLines()
@@ -90,16 +98,29 @@ class GrandStaffView: NSView {
     }
     
     private func drawStaffLines() {
+    
+    
+        // work out the spacing for lines
+        // (h - 2) / 4 must be whole number
+        var staffHeight: Int = Int(self.frame.height * 0.15)
+        var staffHeightTest: Double = Double(staffHeight - 2) / 4
+        
+        while staffHeightTest != floor(staffHeightTest) {
+            staffHeight += 1
+            staffHeightTest = Double(staffHeight - 2) / 4
+        }
 
-        let staffSize: NSSize = NSSize(width: self.frame.width, height: 46) // (h - 2) /4 must be whole number
+        // work out other dimensions
+        let staffSize: NSSize = NSSize(width: self.frame.size.width, height: CGFloat(staffHeight))
                                                                             // 46
         
-        let staffSpacing: CGFloat = 50
+        let staffSeparation: CGFloat = CGFloat(staffHeight)
         let bassStaffOrigin: NSPoint = NSPoint(x: self.frame.origin.x,
-                                               y: self.frame.origin.y + (self.frame.size.height - staffSpacing) / 2 - staffSize.height)
+                                               y: floor(self.frame.origin.y + (self.frame.size.height - staffSeparation) / 2 - staffSize.height + 1))
         let trebleStaffOrigin: NSPoint = NSPoint(x: bassStaffOrigin.x,
-                                                 y: bassStaffOrigin.y + staffSize.height + staffSpacing)
+                                                 y: bassStaffOrigin.y + staffSize.height + staffSeparation)
         
+        // create the staves
         bassStaff.frame = NSRect(origin: bassStaffOrigin, size: staffSize)
         trebleStaff.frame = NSRect(origin: trebleStaffOrigin, size: staffSize)
         
@@ -193,34 +214,45 @@ class GrandStaffView: NSView {
     }
     
     private func drawKeySignature(_ key: GrandStaffKeySignature) {
+        
+        // clear old key signature on redraw
+        for accidental in accidentals {
+            accidental.removeFromSuperview()
+        }
+        accidentals.removeAll()
      
         // draw sharps on treble clef lines
         for accidental in key.accidentals {
             
             
             if key.isSharpsKey {
+                
                 drawAccidentalOnStaff(staff: trebleStaff,
                                       line: accidental.trebleStaffLineNumber,
                                       position: accidental.order,
-                                      accidental: "\u{E10E}")
+                                      accidental: sharpCharacter)
                 drawAccidentalOnStaff(staff: bassStaff,
                                       line: accidental.trebleStaffLineNumber,
                                       position: accidental.order,
-                                      accidental: "\u{E10E}")
-                
-                //drawSharpOnStaff(staff: trebleStaff, line: accidental.trebleStaffLineNumber, position: accidental.order)
-                //drawSharpOnStaff(staff: bassStaff, line: accidental.bassStaffLineNumber, position: accidental.order)
+                                      accidental: sharpCharacter)
+
             }
             else {
+                
                 drawAccidentalOnStaff(staff: trebleStaff,
                                       line: accidental.trebleStaffLineNumber,
                                       position: accidental.order,
-                                      accidental: "\u{E11A}")
+                                      accidental: flatCharacter)
                 drawAccidentalOnStaff(staff: bassStaff,
                                       line: accidental.trebleStaffLineNumber,
                                       position: accidental.order,
-                                      accidental: "\u{E11A}")
+                                      accidental: flatCharacter)
             }
+        }
+        
+        // add each accidental to the view
+        for accidental in self.accidentals {
+            self.addSubview(accidental)
         }
         
     }
@@ -229,21 +261,26 @@ class GrandStaffView: NSView {
         
         // work out dimensions
         let accidental: NSTextField = NSTextField(string: accidental)
-        let accidentalSize: CGSize = CGSize(width: 20, height: 100)
-        let horizontalSpacing: CGFloat = 10
+        let accidentalSize: CGSize = CGSize(width: 20, height: staff.lineSpacing * 9)
+        let horizontalSpacing: CGFloat = staff.lineSpacing
+
+
         
         // set up the view
-        accidental.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
+        accidental.font = NSFont(name: musicalSymbolsFont, size: staff.lineSpacing * 3)
         accidental.textColor = .white
         accidental.isBordered = false
         accidental.isEditable = false
         accidental.drawsBackground = false
         accidental.frame = NSRect(origin: .zero, size: accidentalSize)
         accidental.frame.origin.x = staff.frame.origin.x + trebleClefTextField.frame.size.width + horizontalSpacing * CGFloat(position)
-        accidental.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+        accidental.frame.origin.y = staff.frame.origin.y + staff.lineStartPoints[0].y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+            
+            //staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+
         
         // draw the view
-        self.addSubview(accidental) /// need better view management here, array of accidentals to be appended and deleted on redraw
+        accidentals.append(accidental)
         
     }
     
@@ -258,22 +295,22 @@ class GrandStaffView: NSView {
         // notehead position rules
         // - seconds to the right
         
-        // deconstruct notification
-        var notes: [Int] = Array()
-        
-        if let message = notification.object as? ChordNotesMessage {
-            notes = message.notes
-        }
-        
-        if notes.count != 0 {
-        
-            let note: GrandStaffNote = GrandStaffNote(MIDINumber: notes[0])
-            
-            drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
-                         line: note.lineToDrawOn,
-                         direction: .left,
-                         requiresLedgerLine: note.requiresLedgerLine)
-        }
+//        // deconstruct notification
+//        var notes: [Int] = Array()
+//
+//        if let message = notification.object as? ChordNotesMessage {
+//            notes = message.notes
+//        }
+//
+//        if notes.count != 0 {
+//
+//            let note: GrandStaffNote = GrandStaffNote(MIDINumber: notes[0])
+//
+//            drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
+//                         line: note.lineToDrawOn,
+//                         direction: .left,
+//                         requiresLedgerLine: note.requiresLedgerLine)
+//        }
 
         
     }

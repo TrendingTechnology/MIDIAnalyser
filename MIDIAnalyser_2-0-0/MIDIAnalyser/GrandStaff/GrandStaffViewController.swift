@@ -17,7 +17,7 @@ class GrandStaffViewController: NSViewController {
         // Do view setup here.
         
         grandStaffView = GrandStaffView(frame: self.view.frame)
-        self.view.addSubview(grandStaffView)
+        self.view = grandStaffView
         
     }
     
