@@ -11,6 +11,12 @@ macOS desktop app to analyse input data from a MIDI controller and display the c
 
 <img src="./Info/MIDIAnalyser%201.2.0.png" width="800" class="center">
 
+
+### Installation
+[Download Latest Version 1.2.1](https://github.com/t-bre/MIDIAnalyser/releases/download/1.2.1/MIDIAnalyser.app.zip)
+
+[Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
+
 ### Features
 * Real time analysis.
 * Recognition of major, minor, diminished, augmented and suspended chords (including extensions).
@@ -26,14 +32,6 @@ macOS desktop app to analyse input data from a MIDI controller and display the c
 * New app icon
 * Improved chord naming algorithm
 * Bug fixes for MIDI input
-
-
-### Downloads
-
-[Download Latest Version 1.2.1](https://github.com/t-bre/MIDIAnalyser/releases/download/1.2.1/MIDIAnalyser.app.zip)
-
-[Previous Releases](https://github.com/t-bre/MIDIAnalyser/releases)  
-[Demo Video (Beta Version)](https://github.com/t-bre/MIDIAnalyser/raw/master/Archive/Demo/ChordAnalyser_0_2.mov)
 
 ### Acknowledgements
 MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
