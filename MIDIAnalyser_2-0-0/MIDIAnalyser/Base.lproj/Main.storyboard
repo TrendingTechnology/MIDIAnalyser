@@ -171,7 +171,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="22d-Ia-sGi" userLabel="ChordNameView" customClass="ChordNameView" customModule="MIDIAnalyser" customModuleProvider="target">
-                                <rect key="frame" x="315" y="340" width="465" height="100"/>
+                                <rect key="frame" x="360" y="340" width="420" height="100"/>
                                 <connections>
                                     <segue destination="tf1-ff-UWm" kind="embed" id="aWQ-0F-l73"/>
                                 </connections>
@@ -187,13 +187,13 @@
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="Xfz-j3-fTo" userLabel="GrandStaffView">
-                                <rect key="frame" x="20" y="140" width="275" height="300"/>
+                                <rect key="frame" x="20" y="140" width="320" height="300"/>
                                 <connections>
                                     <segue destination="zBA-5E-K6w" kind="embed" id="S9K-l2-EFK"/>
                                 </connections>
                             </containerView>
                             <containerView translatesAutoresizingMaskIntoConstraints="NO" id="wtM-ea-ru8">
-                                <rect key="frame" x="315" y="140" width="465" height="180"/>
+                                <rect key="frame" x="360" y="140" width="420" height="180"/>
                                 <connections>
                                     <segue destination="Bqh-fW-YdD" kind="embed" id="3an-gi-usz"/>
                                 </connections>
@@ -201,17 +201,16 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="wtM-ea-ru8" firstAttribute="top" secondItem="22d-Ia-sGi" secondAttribute="bottom" constant="20" id="1lO-J1-eGB"/>
-                            <constraint firstItem="wtM-ea-ru8" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.58125" id="2Ti-eu-8cx"/>
                             <constraint firstItem="wtM-ea-ru8" firstAttribute="bottom" secondItem="Xfz-j3-fTo" secondAttribute="bottom" id="3ng-id-fK3"/>
-                            <constraint firstItem="wtM-ea-ru8" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.391304" id="910-uX-cvQ"/>
                             <constraint firstAttribute="trailing" secondItem="wtM-ea-ru8" secondAttribute="trailing" constant="20" id="DaD-ad-Wmf"/>
                             <constraint firstItem="Xfz-j3-fTo" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="DuZ-2N-wHh"/>
+                            <constraint firstItem="wtM-ea-ru8" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.391304" id="F75-p1-ORI"/>
                             <constraint firstItem="wtM-ea-ru8" firstAttribute="width" secondItem="22d-Ia-sGi" secondAttribute="width" id="Fnr-h7-Z6Y"/>
                             <constraint firstItem="Xfz-j3-fTo" firstAttribute="height" secondItem="m2S-Jp-Qdl" secondAttribute="height" multiplier="0.652174" id="Jxb-86-vBZ"/>
-                            <constraint firstItem="22d-Ia-sGi" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.58125" id="NRi-yU-QFp"/>
                             <constraint firstItem="uad-kK-MyT" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="QYI-GK-mWx"/>
                             <constraint firstAttribute="trailing" secondItem="22d-Ia-sGi" secondAttribute="trailing" constant="20" id="RD4-lt-9Ib"/>
-                            <constraint firstItem="Xfz-j3-fTo" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.34375" id="VGS-lu-OaE"/>
+                            <constraint firstItem="22d-Ia-sGi" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.525" id="RXa-fo-1VY"/>
+                            <constraint firstItem="Xfz-j3-fTo" firstAttribute="width" secondItem="m2S-Jp-Qdl" secondAttribute="width" multiplier="0.4" id="VGS-lu-OaE"/>
                             <constraint firstAttribute="bottom" secondItem="uad-kK-MyT" secondAttribute="bottom" constant="20" id="wNh-Uk-SlR"/>
                             <constraint firstItem="22d-Ia-sGi" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="weg-sb-M43"/>
                             <constraint firstItem="Xfz-j3-fTo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="zQ0-JN-JAv"/>
@@ -236,7 +235,7 @@
                 </viewController>
                 <customObject id="e9L-zn-jdH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="616" y="1368"/>
+            <point key="canvasLocation" x="621" y="1368"/>
         </scene>
         <!--Chord Name View Controller-->
         <scene sceneID="3iB-BJ-P1g">
@@ -249,7 +248,7 @@
                 </viewController>
                 <customObject id="Ed4-7G-z4V" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-466" y="1367"/>
+            <point key="canvasLocation" x="-355" y="1365"/>
         </scene>
         <!--Grand Staff View Controller-->
         <scene sceneID="rb2-Ep-osu">
@@ -262,7 +261,7 @@
                 </viewController>
                 <customObject id="4gm-2s-7eK" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-582" y="921"/>
+            <point key="canvasLocation" x="69" y="1465"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Yuv-05-mjE">

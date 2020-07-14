@@ -27,9 +27,9 @@ class MainViewController: NSViewController {
         
         // superclass load
         super.viewDidLoad()
+        self.view.window?.makeFirstResponder(nil)
         
     }
-    
 
 
 }

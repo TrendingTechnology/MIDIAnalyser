@@ -12,6 +12,10 @@ import AudioKit
 
 class MIDIHardwareListener: AKMIDIListener {
     
+    // currently selected input
+    var currentlySelectedInput: String = ""
+    var availableInputs: [String] = Array()
+    
         
     // initialisation
     init() {
@@ -20,18 +24,7 @@ class MIDIHardwareListener: AKMIDIListener {
         AudioKit.midi.openInput("(select input)")
         AudioKit.midi.addListener(self)
         
-        // open the user preferred input
-        if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
-            if AudioKit.midi.inputNames.contains(preferredInputDevice) {
-                AudioKit.midi.openInput(preferredInputDevice)
-            }
-            else {
-                MIDIHardwareListener.inputChange("All inputs")
-            }
-        }
-        else {
-            MIDIHardwareListener.inputChange("All inputs")
-        }
+        openPreferredInput()
         
     }
     
@@ -59,7 +52,34 @@ class MIDIHardwareListener: AKMIDIListener {
         
     }
     
-    // input change handler
+    func receivedMIDISetupChange() {
+        openPreferredInput()
+        print("MIDI setup changed: ", currentlySelectedInput)
+    }
+    
+    // input change handlers
+    func openPreferredInput() {
+        
+        // open the user preferred input
+        if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
+            if AudioKit.midi.inputNames.contains(preferredInputDevice) {
+                AudioKit.midi.openInput(preferredInputDevice)
+                currentlySelectedInput = preferredInputDevice
+            }
+            else {
+                MIDIHardwareListener.inputChange("All inputs")
+                currentlySelectedInput = "All inputs"
+            }
+        }
+        else {
+            MIDIHardwareListener.inputChange("All inputs")
+            currentlySelectedInput = "All inputs"
+        }
+        
+        availableInputs = MIDIHardwareListener.listInputs()
+    }
+    
+    
     static func inputChange(_ input: String) {
         
         // if one specific input selected, open it
@@ -69,6 +89,7 @@ class MIDIHardwareListener: AKMIDIListener {
         }
         // otherwise open all inputs
         else {
+            AudioKit.midi.closeAllInputs()
             for inputName in AudioKit.midi.inputNames {
                 AudioKit.midi.openInput(inputName)
             }
@@ -83,6 +104,5 @@ class MIDIHardwareListener: AKMIDIListener {
         inputs.insert("All inputs", at: 0)
         return inputs
     }
-    
-    
+        
 }

@@ -81,11 +81,11 @@ class StaffLineView: NSView {
         
         for i in 0 ..< numberOfLines {
             
-            let startPoint: CGPoint = CGPoint(x: self.frame.origin.x,
+            let startPoint: CGPoint = CGPoint(x: self.frame.origin.x - 20,
                                               y: CGFloat(i) * lineSpacing
                                                  + lineWidth + halfPixelOffset)
 
-            let endPoint: CGPoint = CGPoint(x: self.frame.origin.x + self.frame.size.width,
+            let endPoint: CGPoint = CGPoint(x: self.frame.origin.x - 20 + self.frame.size.width,
                                             y: startPoint.y)
             
             lineStartPoints.append(startPoint)

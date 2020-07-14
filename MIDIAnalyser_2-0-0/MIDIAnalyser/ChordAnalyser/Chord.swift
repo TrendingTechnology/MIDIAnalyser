@@ -179,6 +179,7 @@ class Chord {
             // replace sharp and flat symbols
             chordName = chordName.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
             chordName = chordName.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
+            chordName = chordName.replacingOccurrences(of: "add", with: "\u{2009}add", options: .literal, range: nil)
             
             // jazz notation to do
 //            chordName = chordName.replacingOccurrences(of: "maj7", with: "\u{0394}7", options: .literal, range: nil)

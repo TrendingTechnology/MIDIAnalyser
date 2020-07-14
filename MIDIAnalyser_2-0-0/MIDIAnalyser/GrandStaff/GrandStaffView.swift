@@ -13,6 +13,7 @@ import Foundation
 class GrandStaffView: NSView {
     
     // subviews
+    private var keySelectionPopUpButton: NSPopUpButton = NSPopUpButton()
     private var bassStaff: StaffLineView = StaffLineView(frame: NSRect())
     private var trebleStaff: StaffLineView = StaffLineView(frame: NSRect())
     private var bassClefTextField: NSTextField = NSTextField()
@@ -26,12 +27,9 @@ class GrandStaffView: NSView {
     private var highestBassLedgerLine: Int = 1 // note C4
     private var lowestBassLedgerLine: Int = 3 // note A1
     
-    // colour pallette
-    private let backgroundColor: NSColor = NSColor.black
-    
     // symbols
     private let musicalSymbolsFont: String = "Emmentaler-26"
-    private let bassClefCharacter: String = "\u{1D122}"
+    private let bassClefCharacter: String = "\u{1D122}" // specific codes for emmentaler font
     private let trebleClefCharacter: String = "\u{E1AA}"
     private let sharpCharacter: String = "\u{E10E}"
     private let flatCharacter: String = "\u{E11A}"
@@ -49,6 +47,12 @@ class GrandStaffView: NSView {
         
         // superclass initialisation
         super.init(frame: frame)
+        
+        // setup appearance of self
+        self.wantsLayer = true
+        self.layer?.backgroundColor = .black
+//        self.layer?.borderWidth = 1
+//        self.layer?.borderColor = .white
         
         // text fields for clefs
         bassClefTextField.stringValue = bassClefCharacter
@@ -69,15 +73,35 @@ class GrandStaffView: NSView {
         trebleClefTextField.canDrawSubviewsIntoLayer = true
         trebleClefTextField.frame = NSRect()
         
+        // key selection button
+        keySelectionPopUpButton.removeAllItems()
+        keySelectionPopUpButton.frame.origin.x = self.frame.origin.x
+        keySelectionPopUpButton.frame.origin.y = self.frame.origin.y + 2
+        keySelectionPopUpButton.frame.size.width = self.frame.size.width - 1
+        keySelectionPopUpButton.frame.size.height = 20
+        keySelectionPopUpButton.focusRingType = .none
+        keySelectionPopUpButton.action = #selector(updateDrawing) // view should redraw on click
+        
+        for keySignature in GrandStaffKeySignature.possibleKeys {
+            keySelectionPopUpButton.addItem(withTitle: keySignature.key)
+        }
+        
         // add subviews for the staffs and clefs
         self.addSubview(bassStaff)
         self.addSubview(trebleStaff)
         self.addSubview(bassClefTextField)
         self.addSubview(trebleClefTextField)
+        self.addSubview(keySelectionPopUpButton)
         
         // observe chord note messages from Keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(drawNotes), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(setNotes), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
         
+    }
+    
+    
+    // drawing functions
+    @objc func updateDrawing() {
+        self.setNeedsDisplay(self.frame)
     }
 
     override func draw(_ dirtyRect: NSRect) {
@@ -86,14 +110,19 @@ class GrandStaffView: NSView {
         super.draw(dirtyRect)
         
         // set the background of the view
-        self.wantsLayer = true
-        self.layer?.backgroundColor = self.backgroundColor.cgColor
+        self.wantsLayer = true // required now for graphics
+        
+        // update width of pop up button
+        keySelectionPopUpButton.frame.size.width = self.frame.size.width
+        
+        // update the key signature
+        let keySignature: GrandStaffKeySignature = GrandStaffKeySignature.possibleKeys[keySelectionPopUpButton.indexOfSelectedItem].value
         
         // call the drawing functions
         drawStaffLines()
         drawVerticalLines()
         drawClefs()
-        drawKeySignature(GrandStaffKeySignature.Dbmajor)
+        drawKeySignature(keySignature)
         
     }
     
@@ -111,11 +140,11 @@ class GrandStaffView: NSView {
         }
 
         // work out other dimensions
-        let staffSize: NSSize = NSSize(width: self.frame.size.width, height: CGFloat(staffHeight))
+        let staffSize: NSSize = NSSize(width: self.frame.size.width - 40, height: CGFloat(staffHeight))
                                                                             // 46
         
         let staffSeparation: CGFloat = CGFloat(staffHeight)
-        let bassStaffOrigin: NSPoint = NSPoint(x: self.frame.origin.x,
+        let bassStaffOrigin: NSPoint = NSPoint(x: self.frame.origin.x + 20,
                                                y: floor(self.frame.origin.y + (self.frame.size.height - staffSeparation) / 2 - staffSize.height + 1))
         let trebleStaffOrigin: NSPoint = NSPoint(x: bassStaffOrigin.x,
                                                  y: bassStaffOrigin.y + staffSize.height + staffSeparation)
@@ -130,25 +159,23 @@ class GrandStaffView: NSView {
 
     }
     
-    
     private func drawClefs() {
         
         // draw the bass clef with some magic numbers
         bassClefTextField.font = NSFont(name: musicalSymbolsFont, size: bassStaff.lineSpacing * 4.6)
-        bassClefTextField.frame.origin.x = self.frame.origin.x + bassStaff.lineSpacing / 2
+        bassClefTextField.frame.origin.x = bassStaff.frame.origin.x + bassStaff.lineSpacing / 2
         bassClefTextField.frame.origin.y = bassStaff.frame.origin.y - bassStaff.lineSpacing + bassStaff.lineSpacing * 0.2
         bassClefTextField.frame.size.height = bassStaff.lineSpacing * 8 // 4.4
         bassClefTextField.frame.size.width = bassStaff.lineSpacing * 4 // 4
         
         // draw the treble clef with some magic numbers
         trebleClefTextField.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 4.5)
-        trebleClefTextField.frame.origin.x = self.frame.origin.x + trebleStaff.lineSpacing / 2
+        trebleClefTextField.frame.origin.x = trebleStaff.frame.origin.x + trebleStaff.lineSpacing / 2
         trebleClefTextField.frame.origin.y = trebleStaff.frame.origin.y - 2.95 * trebleStaff.lineSpacing
         trebleClefTextField.frame.size.height = trebleStaff.lineSpacing * 10 // 10
         trebleClefTextField.frame.size.width = trebleStaff.lineSpacing * 4 // 4
 
     }
-    
     
     private func drawVerticalLines() {
         
@@ -169,7 +196,7 @@ class GrandStaffView: NSView {
             let endPoint: CGPoint = CGPoint(x: startPoint.x,
                                             y: trebleStaff.frame.origin.y + trebleStaff.frame.size.height)
             
-            context.setLineWidth(4)
+            context.setLineWidth(2)
             context.beginPath()
             context.move(to: startPoint)
             context.addLine(to: endPoint)
@@ -186,7 +213,7 @@ class GrandStaffView: NSView {
             let endPoint: CGPoint = CGPoint(x: startPoint.x,
                                             y: trebleStaff.frame.origin.y + trebleStaff.frame.size.height)
             
-            context.setLineWidth(6)
+            context.setLineWidth(4)
             context.beginPath()
             context.move(to: startPoint)
             context.addLine(to: endPoint)
@@ -271,20 +298,19 @@ class GrandStaffView: NSView {
         accidental.textColor = .white
         accidental.isBordered = false
         accidental.isEditable = false
+        accidental.isSelectable = false
         accidental.drawsBackground = false
         accidental.frame = NSRect(origin: .zero, size: accidentalSize)
         accidental.frame.origin.x = staff.frame.origin.x + trebleClefTextField.frame.size.width + horizontalSpacing * CGFloat(position)
         accidental.frame.origin.y = staff.frame.origin.y + staff.lineStartPoints[0].y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
-            
-            //staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
-
         
         // draw the view
         accidentals.append(accidental)
         
     }
     
-    @objc func drawNotes(_ notification: Notification) {
+    
+    @objc func setNotes(_ notification: Notification) {
         
         // stem rules:
         // - stem length = 1 octave
@@ -295,12 +321,17 @@ class GrandStaffView: NSView {
         // notehead position rules
         // - seconds to the right
         
-//        // deconstruct notification
-//        var notes: [Int] = Array()
-//
-//        if let message = notification.object as? ChordNotesMessage {
-//            notes = message.notes
-//        }
+        var notes: [Int] = Array()
+        
+        if let message = notification.object as? ChordNotesMessage {
+            notes = message.notes
+        }
+        
+        if notes.count != 0 {
+            
+            print(notes)
+        }
+        
 //
 //        if notes.count != 0 {
 //
@@ -362,7 +393,6 @@ class GrandStaffView: NSView {
 //                
 //            }
 //        }
-        
         
     }
     

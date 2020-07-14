@@ -11,6 +11,23 @@ import Foundation
 
 class GrandStaffKeySignature {
     
+    // key dictionary
+    static let possibleKeys: KeyValuePairs = [
+        "(select key signature)" : GrandStaffKeySignature.Cmajor,
+        "C major" : GrandStaffKeySignature.Cmajor,
+        "G major" : GrandStaffKeySignature.Gmajor,
+        "D major" : GrandStaffKeySignature.Dmajor,
+        "A major" : GrandStaffKeySignature.Amajor,
+        "E major" : GrandStaffKeySignature.Emajor,
+        "B major" : GrandStaffKeySignature.Bmajor,
+        "F major" : GrandStaffKeySignature.Fmajor,
+        "B\u{266D} major" : GrandStaffKeySignature.Bbmajor,
+        "E\u{266D} major" : GrandStaffKeySignature.Ebmajor,
+        "A\u{266D} major" : GrandStaffKeySignature.Abmajor,
+        "D\u{266D} major" : GrandStaffKeySignature.Dbmajor,
+        "G\u{266D} major" : GrandStaffKeySignature.Gbmajor
+    ]
+    
     // enumerated types and structs
     enum AccidentalType {
         case sharp, flat

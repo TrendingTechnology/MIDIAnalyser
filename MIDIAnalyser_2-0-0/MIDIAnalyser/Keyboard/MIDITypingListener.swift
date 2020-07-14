@@ -41,14 +41,32 @@ class MIDITypingListener: NSViewController {
     // start monitoring key events
     func startListening() {
 
+//        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+//            self.keyDown(with: $0)
+//            return $0
+//        }
+//
+//        NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
+//            self.keyUp(with: $0)
+//            return $0
+//        }
+        
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
-            self.keyDown(with: $0)
-            return $0
+            if self.keyPress(with: $0) {
+                return nil
+            }
+            else {
+                return $0
+            }
         }
         
         NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
-            self.keyUp(with: $0)
-            return $0
+            if self.keyRelease(with: $0) {
+              return nil
+            }
+            else {
+                return $0
+            }
         }
         
         // load default preference for whether to enable or not
@@ -62,7 +80,7 @@ class MIDITypingListener: NSViewController {
     }
 
     // handle key events
-    override func keyDown(with event: NSEvent) {
+    func keyPress(with event: NSEvent) -> Bool {
         
         if enabled {
             // only take non-repeated events
@@ -76,11 +94,17 @@ class MIDITypingListener: NSViewController {
                     MIDINotificationCenter.post(type: message.messageType, object: message)
                 }
             }
+            
+            return true
         }
-        
+        else {
+            super.keyDown(with: event)
+            self.keyDown(with: event)
+            return false
+        }
     }
     
-    override func keyUp(with event: NSEvent) {
+    func keyRelease(with event: NSEvent) -> Bool {
         
         if enabled {
             // only take non-repeated events
@@ -94,6 +118,11 @@ class MIDITypingListener: NSViewController {
                     MIDINotificationCenter.post(type: message.messageType, object: message)
                 }
             }
+            
+            return true
+        }
+        else {
+            return false
         }
     
     }

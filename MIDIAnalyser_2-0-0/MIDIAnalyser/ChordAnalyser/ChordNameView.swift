@@ -62,13 +62,14 @@ class ChordNameView: NSView {
                     subview.removeFromSuperview()
                 }
                 
-                let rootTextLabelOrigin = NSPoint(x: self.frame.origin.x + self.frame.width / 2,
+                let chordTextLabelOrigin = NSPoint(x: self.frame.origin.x + self.frame.width / 2,
                                                   y: self.frame.origin.y + self.frame.height / 2)
                 
-                let fontSize = self.frame.size.width / 10
-                print(fontSize)
+                let chordName: String = message.chord.name()
                 
-                self.rootTextLabel = ChordNameViewTextField(text: message.chord.name(), fontSize: fontSize, origin: rootTextLabelOrigin)
+                let fontSize = 30 + self.frame.size.width / 15 - CGFloat(chordName.count)
+                
+                self.rootTextLabel = ChordNameViewTextField(text: chordName, fontSize: fontSize, origin: chordTextLabelOrigin)
                 self.addSubview(self.rootTextLabel!)
             }
             

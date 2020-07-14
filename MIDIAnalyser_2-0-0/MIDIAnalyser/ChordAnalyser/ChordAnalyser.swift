@@ -81,8 +81,13 @@ class ChordAnalyser {
             if determineIntervals(notes).contains(7) {
                 chord = Chord(uniqueNoteNames[0])
                 chord.setBaseTonality(.five)
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chord))
+                
             }
+            else {
+                chord = Chord("")
+            }
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chord))
             
             
         }
