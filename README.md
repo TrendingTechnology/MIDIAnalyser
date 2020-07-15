@@ -32,8 +32,3 @@ macOS desktop app to analyse input data from a MIDI controller and display the c
 * New app icon
 * Improved chord naming algorithm
 * Bug fixes for MIDI input
-
-### Acknowledgements
-MIDI event handling ----- [AudioKit](https://github.com/AudioKit/AudioKit)  
-Musical symbols font &nbsp;--- [Emmentaler](http://lilypond.org/doc/v2.19/Documentation/notation/the-emmentaler-font)  
-UI &nbsp;---------------------- [AppKit](https://developer.apple.com/documentation/appkit)
