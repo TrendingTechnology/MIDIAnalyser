@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2207CF6C24BE94C50059F423 /* ChordAltNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207CF6B24BE94C50059F423 /* ChordAltNameViewController.swift */; };
+		2207CF6F24BE94D40059F423 /* ChordAltNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2207CF6E24BE94D40059F423 /* ChordAltNameView.swift */; };
 		2238571124AFB79B00F34A33 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238571024AFB79B00F34A33 /* AppDelegate.swift */; };
 		2238571324AFB79B00F34A33 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2238571224AFB79B00F34A33 /* MainViewController.swift */; };
 		2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 2238571424AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld */; };
@@ -92,6 +94,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		2207CF6B24BE94C50059F423 /* ChordAltNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAltNameViewController.swift; sourceTree = "<group>"; };
+		2207CF6E24BE94D40059F423 /* ChordAltNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordAltNameView.swift; sourceTree = "<group>"; };
 		2238570D24AFB79B00F34A33 /* MIDIAnalyser.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MIDIAnalyser.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2238571024AFB79B00F34A33 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2238571224AFB79B00F34A33 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -226,6 +230,8 @@
 				22626B3124B1155C002814EC /* ChordNameViewController.swift */,
 				22626B3524B1383F002814EC /* ChordNameView.swift */,
 				22D7300924B4CC140039EA90 /* ChordNameViewTextField.swift */,
+				2207CF6B24BE94C50059F423 /* ChordAltNameViewController.swift */,
+				2207CF6E24BE94D40059F423 /* ChordAltNameView.swift */,
 			);
 			path = ChordAnalyser;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				22D72FFF24B29C540039EA90 /* MIDINotificationCenter.swift in Sources */,
 				225A1C8D24B4E5DF00415515 /* ChordMessage.swift in Sources */,
 				22D7300124B29C540039EA90 /* MIDINoteMessage.swift in Sources */,
+				2207CF6C24BE94C50059F423 /* ChordAltNameViewController.swift in Sources */,
 				229B1B7524B543E000A84F41 /* GrandStaffView.swift in Sources */,
 				22626B1B24AFFF3E002814EC /* Chord.swift in Sources */,
 				2238575024AFB9E800F34A33 /* Keyboard.swift in Sources */,
@@ -403,6 +410,7 @@
 				2238571624AFB79B00F34A33 /* MIDIAnalyser.xcdatamodeld in Sources */,
 				228FF40D24B6A6720006E880 /* GrandStaffNote.swift in Sources */,
 				22626B2D24B0D7A3002814EC /* BlackKeyView.swift in Sources */,
+				2207CF6F24BE94D40059F423 /* ChordAltNameView.swift in Sources */,
 				229678E224B24B5300A8C71E /* PreferencesWindowController.swift in Sources */,
 				22626B2B24B0BF0F002814EC /* KeyboardView.swift in Sources */,
 				2238575224AFBA1D00F34A33 /* Key.swift in Sources */,
@@ -563,7 +571,7 @@
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MIDIAnalyser/Info.plist;
@@ -585,7 +593,7 @@
 				CODE_SIGN_ENTITLEMENTS = MIDIAnalyser/MIDIAnalyser.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 6;
+				CURRENT_PROJECT_VERSION = 7;
 				DEVELOPMENT_TEAM = GHV2RXZG6M;
 				ENABLE_HARDENED_RUNTIME = YES;
 				INFOPLIST_FILE = MIDIAnalyser/Info.plist;

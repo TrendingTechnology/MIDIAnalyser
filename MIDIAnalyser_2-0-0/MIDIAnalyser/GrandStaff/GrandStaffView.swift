@@ -50,7 +50,7 @@ class GrandStaffView: NSView {
         
         // setup appearance of self
         self.wantsLayer = true
-        self.layer?.backgroundColor = .black
+        //self.layer?.backgroundColor = .black
 //        self.layer?.borderWidth = 1
 //        self.layer?.borderColor = .white
         

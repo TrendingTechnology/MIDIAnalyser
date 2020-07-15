@@ -41,32 +41,14 @@ class MIDITypingListener: NSViewController {
     // start monitoring key events
     func startListening() {
 
-//        NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
-//            self.keyDown(with: $0)
-//            return $0
-//        }
-//
-//        NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
-//            self.keyUp(with: $0)
-//            return $0
-//        }
-        
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
-            if self.keyPress(with: $0) {
-                return nil
-            }
-            else {
-                return $0
-            }
+            self.keyDown(with: $0)
+            return $0
         }
-        
+
         NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
-            if self.keyRelease(with: $0) {
-              return nil
-            }
-            else {
-                return $0
-            }
+            self.keyUp(with: $0)
+            return $0
         }
         
         // load default preference for whether to enable or not
@@ -78,9 +60,9 @@ class MIDITypingListener: NSViewController {
         PreferencesNotificationCenter.observe(type: .MIDITypingEnabled, observer: self, selector: #selector(enabledChanged))
         
     }
-
-    // handle key events
-    func keyPress(with event: NSEvent) -> Bool {
+    
+    // key handlers
+    override func keyDown(with event: NSEvent) {
         
         if enabled {
             // only take non-repeated events
@@ -94,17 +76,11 @@ class MIDITypingListener: NSViewController {
                     MIDINotificationCenter.post(type: message.messageType, object: message)
                 }
             }
-            
-            return true
-        }
-        else {
-            super.keyDown(with: event)
-            self.keyDown(with: event)
-            return false
+
         }
     }
     
-    func keyRelease(with event: NSEvent) -> Bool {
+    override func keyUp(with event: NSEvent) {
         
         if enabled {
             // only take non-repeated events
@@ -119,12 +95,7 @@ class MIDITypingListener: NSViewController {
                 }
             }
             
-            return true
         }
-        else {
-            return false
-        }
-    
     }
     
     // enabled changed

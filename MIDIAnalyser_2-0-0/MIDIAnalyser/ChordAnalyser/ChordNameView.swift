@@ -9,6 +9,7 @@
 import Cocoa
 
 
+// NSVisualEffectView
 class ChordNameView: NSView {
     
     
@@ -32,6 +33,7 @@ class ChordNameView: NSView {
         // superclass initialisation
         super.init(frame: frame)
         
+        
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)
         
@@ -46,7 +48,7 @@ class ChordNameView: NSView {
 
         // set the background of the view
         self.wantsLayer = true
-        self.layer?.backgroundColor = self.backgroundColor.cgColor
+        //self.layer?.backgroundColor = self.backgroundColor.cgColor
     }
     
     

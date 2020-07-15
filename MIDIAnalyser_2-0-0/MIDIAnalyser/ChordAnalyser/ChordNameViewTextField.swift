@@ -34,7 +34,7 @@ class ChordNameViewTextField: NSTextField {
         self.isBordered = false
         self.drawsBackground = false
         self.alignment = .center
-        self.font = .systemFont(ofSize: fontSize, weight: .ultraLight)
+        self.font = .systemFont(ofSize: fontSize, weight: .thin)
         self.usesSingleLineMode = true
         
         // position the frame centrally

@@ -145,7 +145,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="MIDIAnalyser" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
+                    <window key="window" title="MIDIAnalyser" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" texturedBackground="YES"/>
                         <rect key="contentRect" x="196" y="240" width="800" height="460"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
@@ -263,11 +263,11 @@
             </objects>
             <point key="canvasLocation" x="69" y="1465"/>
         </scene>
-        <!--View Controller-->
+        <!--Chord Alt Name View Controller-->
         <scene sceneID="Yuv-05-mjE">
             <objects>
-                <viewController id="Bqh-fW-YdD" sceneMemberID="viewController">
-                    <view key="view" id="QTU-Un-REn">
+                <viewController id="Bqh-fW-YdD" customClass="ChordAltNameViewController" customModule="MIDIAnalyser" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="QTU-Un-REn" customClass="ChordAltNameView" customModule="MIDIAnalyser" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </view>
