@@ -13,7 +13,8 @@ class GrandStaffKeySignature {
     
     // key dictionary
     static let possibleKeys: KeyValuePairs = [
-        "(select key signature)" : GrandStaffKeySignature.Cmajor,
+        "(select key signature)" : GrandStaffKeySignature.noKey,
+        "no key" : GrandStaffKeySignature.noKey,
         "C major" : GrandStaffKeySignature.Cmajor,
         "G major" : GrandStaffKeySignature.Gmajor,
         "D major" : GrandStaffKeySignature.Dmajor,
@@ -55,6 +56,11 @@ class GrandStaffKeySignature {
         isSharpsKey = false
     }
     
+    init() {
+        accidentals = []
+        isSharpsKey = false
+    }
+    
     // static members
     static let notes: [String : Accidental] = [
         "F#" : Accidental(type: .sharp, trebleStaffLineNumber: 4,   bassStaffLineNumber: 3,     order: 0),
@@ -70,10 +76,15 @@ class GrandStaffKeySignature {
         "Cb" : Accidental(type: .flat,  trebleStaffLineNumber: 2.5, bassStaffLineNumber: 1.5,   order: 5)
     ]
     
+    static var noKey: GrandStaffKeySignature {
+        get {
+            return GrandStaffKeySignature()
+        }
+    }
+    
     static var Cmajor: GrandStaffKeySignature {
         get {
-            let sharps: [Accidental] = []
-            return GrandStaffKeySignature(sharps: sharps)
+            return GrandStaffKeySignature()
         }
     }
     

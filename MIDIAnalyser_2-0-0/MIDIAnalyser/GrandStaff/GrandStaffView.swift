@@ -34,6 +34,9 @@ class GrandStaffView: NSView {
     private let sharpCharacter: String = "\u{E10E}"
     private let flatCharacter: String = "\u{E11A}"
     
+    // key signature
+    var keySignature: GrandStaffKeySignature = .noKey
+    
     
     // initialisation
     required init?(coder: NSCoder) {
@@ -101,6 +104,8 @@ class GrandStaffView: NSView {
     
     // drawing functions
     @objc func updateDrawing() {
+        keySignature = GrandStaffKeySignature.possibleKeys[keySelectionPopUpButton.indexOfSelectedItem].value
+        GrandStaffNotificationCenter.post(type: .keySignature, object: keySignature)
         self.setNeedsDisplay(self.frame)
     }
 
@@ -115,8 +120,7 @@ class GrandStaffView: NSView {
         // update width of pop up button
         keySelectionPopUpButton.frame.size.width = self.frame.size.width
         
-        // update the key signature
-        let keySignature: GrandStaffKeySignature = GrandStaffKeySignature.possibleKeys[keySelectionPopUpButton.indexOfSelectedItem].value
+
         
         // call the drawing functions
         drawStaffLines()

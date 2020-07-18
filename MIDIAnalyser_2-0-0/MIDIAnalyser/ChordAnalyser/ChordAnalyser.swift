@@ -36,6 +36,24 @@ class ChordAnalyser {
         
         // observe chord note messages coming from the keyboard
         NotificationCenter.default.addObserver(self, selector: #selector(analyse), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
+        GrandStaffNotificationCenter.observe(type: .keySignature, observer: self, selector: #selector(updateAccidentals))
+    }
+    
+    // update accidentals from grand staff
+    @objc func updateAccidentals(_ notification: Notification) {
+        
+        if let keySignature = notification.object as? GrandStaffKeySignature {
+            
+            if keySignature.isSharpsKey {
+                accidentals = .sharps
+            }
+            else if keySignature === GrandStaffKeySignature.noKey {
+                accidentals = .mixed
+            }
+            else {
+                accidentals = .flats
+            }
+        }
         
     }
     
