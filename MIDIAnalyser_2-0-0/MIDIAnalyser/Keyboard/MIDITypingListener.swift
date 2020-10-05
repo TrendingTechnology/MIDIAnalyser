@@ -46,6 +46,7 @@ class MIDITypingListener: NSViewController {
             self.keyDown(with: $0)
             
             // to stop funk sound, return nil if the key is handled (in the list of allowed keys)
+            // otherwise allow the event to be passed up the responder chain
             if MIDITypingListener.characterMIDINumberDictionary[$0.characters ?? ""] != nil {
                 return nil
             }

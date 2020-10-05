@@ -23,6 +23,7 @@ class ChordNameViewController: NSViewController {
         
         // create the view
         self.view = ChordNameView(frame: self.view.frame)
+        
 
     }
     

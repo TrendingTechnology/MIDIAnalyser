@@ -33,6 +33,9 @@ class ChordNameView: NSView {
         // superclass initialisation
         super.init(frame: frame)
         
+        self.wantsLayer = true
+        self.layer?.backgroundColor = NSColor.black.cgColor
+        
         
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)

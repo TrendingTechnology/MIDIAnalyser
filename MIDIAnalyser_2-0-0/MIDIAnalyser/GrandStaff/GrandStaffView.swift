@@ -53,7 +53,7 @@ class GrandStaffView: NSView {
         
         // setup appearance of self
         self.wantsLayer = true
-        //self.layer?.backgroundColor = .black
+        self.layer?.backgroundColor = .black
 //        self.layer?.borderWidth = 1
 //        self.layer?.borderColor = .white
         
@@ -83,6 +83,7 @@ class GrandStaffView: NSView {
         keySelectionPopUpButton.frame.size.width = self.frame.size.width - 1
         keySelectionPopUpButton.frame.size.height = 20
         keySelectionPopUpButton.focusRingType = .none
+        keySelectionPopUpButton.target = self
         keySelectionPopUpButton.action = #selector(updateDrawing) // view should redraw on click
         
         for keySignature in GrandStaffKeySignature.possibleKeys {
