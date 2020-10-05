@@ -42,7 +42,14 @@ class MIDITypingListener: NSViewController {
     func startListening() {
 
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
+            
             self.keyDown(with: $0)
+            
+            // to stop funk sound, return nil if the key is handled (in the list of allowed keys)
+            if MIDITypingListener.characterMIDINumberDictionary[$0.characters ?? ""] != nil {
+                return nil
+            }
+            
             return $0
         }
 
@@ -61,6 +68,7 @@ class MIDITypingListener: NSViewController {
         
     }
     
+    
     // key handlers
     override func keyDown(with event: NSEvent) {
         
@@ -75,9 +83,12 @@ class MIDITypingListener: NSViewController {
                     let message: MIDINoteMessage = MIDINoteMessage(messageType: .noteOn, noteNumber: noteNumber, velocity: MIDITypingListener.defaultVelocity)
                     MIDINotificationCenter.post(type: message.messageType, object: message)
                 }
+
             }
 
+
         }
+        
     }
     
     override func keyUp(with event: NSEvent) {
