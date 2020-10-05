@@ -105,7 +105,10 @@ class ChordAnalyser {
                 chord = Chord("")
             }
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chord))
+            var chords: [Chord] = Array()
+            chords.append(chord)
+            
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chords))
             
             
         }
@@ -146,12 +149,18 @@ class ChordAnalyser {
                  possibleChordNames[index] = chord.name()
             }
             
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chord))
+            // reorder possible chords by complexity
+            possibleChords.sort(by: {$0.complexity < $1.complexity})
+            
+            // post the message of possible chords
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(possibleChords))
             
         }
         else {
             chordName = "-"
-            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(Chord("")))
+            var chords: [Chord] = Array()
+            chords.append(Chord(""))
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chords))
         }
         
         

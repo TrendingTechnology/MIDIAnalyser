@@ -36,7 +36,6 @@ class ChordNameView: NSView {
         self.wantsLayer = true
         self.layer?.backgroundColor = NSColor.black.cgColor
         
-        
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)
         
@@ -70,7 +69,7 @@ class ChordNameView: NSView {
                 let chordTextLabelOrigin = NSPoint(x: self.frame.origin.x + self.frame.width / 2,
                                                   y: self.frame.origin.y + self.frame.height / 2)
                 
-                let chordName: String = message.chord.name()
+                let chordName: String = message.chords[0].name()
                 
                 let fontSize = 30 + self.frame.size.width / 15 - CGFloat(chordName.count)
                 

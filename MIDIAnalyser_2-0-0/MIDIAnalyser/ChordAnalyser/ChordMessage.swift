@@ -12,10 +12,10 @@ class ChordMessage {
     
     static let ChordMessageName = "chordMessage"
     
-    var chord: Chord
+    var chords: [Chord] = Array()
     
-    init(_ chord: Chord) {
-        self.chord = chord
+    init(_ chords: [Chord]) {
+        self.chords = chords
     }
     
 }

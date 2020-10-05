@@ -11,11 +11,11 @@ import Cocoa
 class ChordAltNameViewController: NSViewController {
 
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         // Do view setup here.
         
-        self.view.wantsLayer = true
-        self.view.layer?.backgroundColor = NSColor.black.cgColor
+        self.view = ChordAltNameView(frame: self.view.frame)
         
     }
     
