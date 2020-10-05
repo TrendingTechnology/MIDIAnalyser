@@ -18,8 +18,6 @@ class MainViewController: NSViewController {
     private var keyboardViewController: KeyboardViewController?
     private var chordNameViewController: ChordNameViewController?
     
-    // colour palette
-    private var backgroundColor: NSColor = .controlColor
     
 
     // view loaded setup
