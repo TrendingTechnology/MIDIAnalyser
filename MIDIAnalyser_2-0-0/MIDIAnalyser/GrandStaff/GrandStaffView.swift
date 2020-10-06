@@ -54,8 +54,6 @@ class GrandStaffView: NSView {
         // setup appearance of self
         self.wantsLayer = true
         self.layer?.backgroundColor = .black
-//        self.layer?.borderWidth = 1
-//        self.layer?.borderColor = .white
         
         // text fields for clefs
         bassClefTextField.stringValue = bassClefCharacter
@@ -98,7 +96,8 @@ class GrandStaffView: NSView {
         self.addSubview(keySelectionPopUpButton)
         
         // observe chord note messages from Keyboard
-        NotificationCenter.default.addObserver(self, selector: #selector(setNotes), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(drawNotes
+                                                ), name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: nil)
         
     }
     
@@ -120,8 +119,6 @@ class GrandStaffView: NSView {
         
         // update width of pop up button
         keySelectionPopUpButton.frame.size.width = self.frame.size.width
-        
-
         
         // call the drawing functions
         drawStaffLines()
@@ -315,7 +312,7 @@ class GrandStaffView: NSView {
     }
     
     
-    @objc func setNotes(_ notification: Notification) {
+    @objc func drawNotes(_ notification: Notification) {
         
         // stem rules:
         // - stem length = 1 octave
@@ -332,43 +329,50 @@ class GrandStaffView: NSView {
             notes = message.notes
         }
         
+        // remove old notes
+        for case let noteHead as NoteHeadView in self.subviews {
+            noteHead.removeFromSuperview()
+        }
+
+        // draw notes
         if notes.count != 0 {
             
-            print(notes)
+            for MIDINumber in notes  {
+                
+                let note: GrandStaffNote = GrandStaffNote(MIDINumber: MIDINumber)
+
+                drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
+                             line: note.lineToDrawOn,
+                             direction: .left,
+                             requiresLedgerLine: note.requiresLedgerLine)
+            }
+
         }
-        
-//
-//        if notes.count != 0 {
-//
-//            let note: GrandStaffNote = GrandStaffNote(MIDINumber: notes[0])
-//
-//            drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
-//                         line: note.lineToDrawOn,
-//                         direction: .left,
-//                         requiresLedgerLine: note.requiresLedgerLine)
-//        }
 
         
     }
     
     private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool) {
         
-//        // work out dimensions
-//        let noteHead: NSTextField = NSTextField(string: GrandStaffNote.noteHeadCode)
-//        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
-//        
-//        // set up the view
-//        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
-//        noteHead.textColor = .white
-//        noteHead.isBordered = false
-//        noteHead.isEditable = false
-//        noteHead.drawsBackground = false
-//        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
-//        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
-//        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
-//        
-//        // draw the view
-//        self.addSubview(noteHead)
+        // work out dimensions
+        let noteHead: NoteHeadView = NoteHeadView(string: GrandStaffNote.noteHeadCode)
+        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
+        
+        // set up the view
+        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
+        noteHead.textColor = .white
+        noteHead.isBordered = false
+        noteHead.isEditable = false
+        noteHead.drawsBackground = false
+        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
+        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
+        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
+        
+        // draw the view
+
+        
+        
+        self.addSubview(noteHead)
 //        
 //        // ledger line
 //        if requiresLedgerLine {

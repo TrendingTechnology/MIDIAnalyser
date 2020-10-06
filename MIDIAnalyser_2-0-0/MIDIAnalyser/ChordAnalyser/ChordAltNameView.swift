@@ -11,7 +11,7 @@ import Cocoa
 class ChordAltNameView: NSView {
     
     
-    private var textLabel: ChordNameViewTextField?
+    private var chordTextLabels: [ChordNameViewTextField] = Array()
 
     // initialisation
     required init?(coder: NSCoder) {
@@ -27,7 +27,7 @@ class ChordAltNameView: NSView {
         super.init(frame: frame)
         
         self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.black.cgColor
+        self.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
         
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)
@@ -58,16 +58,32 @@ class ChordAltNameView: NSView {
                 for subview in self.subviews where subview is ChordNameViewTextField {
                     subview.removeFromSuperview()
                 }
+
+                let fontSize: CGFloat = 40 - CGFloat(message.chords.count) * 3
                 
-                let chordTextLabelOrigin = NSPoint(x: self.frame.origin.x + self.frame.width / 2,
-                                                  y: self.frame.origin.y + self.frame.height / 2)
+                // draw an array of chord text fields
+                self.chordTextLabels = Array()
+                message.chords.remove(at: 0)        // remove first one as already displayed
                 
-                let chordName: String = message.chords[0].name()
+                let labelHeight: CGFloat = self.frame.height / CGFloat(message.chords.count)
+                var i: Int = 0
                 
-                let fontSize = 30 + self.frame.size.width / 15 - CGFloat(chordName.count)
+                for chord in message.chords {
+                    
+                    let chordTextLabelOrigin = NSPoint(x: self.frame.origin.x + self.frame.width / 2,
+                                                       y: self.frame.origin.y + self.frame.height - labelHeight / 2 - CGFloat(labelHeight * CGFloat(i)))
+                    
+                    let newLabel: ChordNameViewTextField = ChordNameViewTextField(text: chord.name(), fontSize: fontSize, origin: chordTextLabelOrigin)
+                    //newLabel.isBordered = true
+                    
+                    self.chordTextLabels.append(newLabel)
+                    self.addSubview(self.chordTextLabels[i])
+                    
+                    i = i + 1
+                }
                 
-                self.textLabel = ChordNameViewTextField(text: chordName, fontSize: fontSize, origin: chordTextLabelOrigin)
-                self.addSubview(self.textLabel!)
+                
+                
             }
             
         }

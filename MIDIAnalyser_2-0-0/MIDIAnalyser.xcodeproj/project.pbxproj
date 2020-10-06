@@ -54,6 +54,7 @@
 		22D7300624B347B30039EA90 /* MIDITypingListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7300524B347B30039EA90 /* MIDITypingListener.swift */; };
 		22D7300824B35C9B0039EA90 /* About.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22D7300724B35C9B0039EA90 /* About.storyboard */; };
 		22D7300A24B4CC140039EA90 /* ChordNameViewTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D7300924B4CC140039EA90 /* ChordNameViewTextField.swift */; };
+		22F0E504252D072E0075D922 /* NoteHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22F0E503252D072E0075D922 /* NoteHeadView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -143,6 +144,7 @@
 		22D7300524B347B30039EA90 /* MIDITypingListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MIDITypingListener.swift; sourceTree = "<group>"; };
 		22D7300724B35C9B0039EA90 /* About.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = About.storyboard; sourceTree = "<group>"; };
 		22D7300924B4CC140039EA90 /* ChordNameViewTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameViewTextField.swift; sourceTree = "<group>"; };
+		22F0E503252D072E0075D922 /* NoteHeadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteHeadView.swift; sourceTree = "<group>"; };
 		22F5442124AFE14D00692D16 /* AudioKit For macOS.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "AudioKit For macOS.xcodeproj"; path = "AudioKit-4.5.6/AudioKit/macOS/AudioKit For macOS.xcodeproj"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -244,6 +246,7 @@
 				2276C61724B556ED00A155CB /* GrandStaffViewController.swift */,
 				229B1B7424B543E000A84F41 /* GrandStaffView.swift */,
 				2276C61B24B6063300A155CB /* StaffLineView.swift */,
+				22F0E503252D072E0075D922 /* NoteHeadView.swift */,
 				228FF40C24B6A6720006E880 /* GrandStaffNote.swift */,
 				228FF3FF24B672640006E880 /* GrandStaffKeySignature.swift */,
 				2207CF7024BF40BA0059F423 /* GrandStaffNotificationCenter.swift */,
@@ -385,6 +388,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22F0E504252D072E0075D922 /* NoteHeadView.swift in Sources */,
 				2238571324AFB79B00F34A33 /* MainViewController.swift in Sources */,
 				2238571124AFB79B00F34A33 /* AppDelegate.swift in Sources */,
 				22D72FF824B29C3F0039EA90 /* MIDIHardwareListener.swift in Sources */,

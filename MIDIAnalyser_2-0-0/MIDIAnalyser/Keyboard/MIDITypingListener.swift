@@ -87,7 +87,6 @@ class MIDITypingListener: NSViewController {
 
             }
 
-
         }
         
     }

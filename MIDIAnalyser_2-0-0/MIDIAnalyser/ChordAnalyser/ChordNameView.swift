@@ -16,15 +16,11 @@ class ChordNameView: NSView {
     // text labels
     private var rootTextLabel: ChordNameViewTextField?
     
-    // colour pallette
-    private let backgroundColor: NSColor = NSColor.controlShadowColor
-    
     
     // initialisation
     required init?(coder: NSCoder) {
         // superclass initialisation
         super.init(coder: coder)
-        
         
     }
     
@@ -34,7 +30,7 @@ class ChordNameView: NSView {
         super.init(frame: frame)
         
         self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.black.cgColor
+        self.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
         
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)
