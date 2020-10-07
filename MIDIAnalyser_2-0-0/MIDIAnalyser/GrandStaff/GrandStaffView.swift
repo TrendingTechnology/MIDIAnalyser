@@ -348,6 +348,7 @@ class GrandStaffView: NSView {
             }
             
             // generate note clusters
+            // for note 
             
             
             // draw the note heads
