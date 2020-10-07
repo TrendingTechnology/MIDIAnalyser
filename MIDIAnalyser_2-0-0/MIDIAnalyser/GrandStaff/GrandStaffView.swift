@@ -323,56 +323,78 @@ class GrandStaffView: NSView {
         // notehead position rules
         // - seconds to the right
         
-        var notes: [Int] = Array()
+        var MIDINumbers: [Int] = Array()
         
         if let message = notification.object as? ChordNotesMessage {
-            notes = message.notes
+            MIDINumbers = message.notes
         }
         
         // remove old notes
-        for case let noteHead as NoteHeadView in self.subviews {
-            noteHead.removeFromSuperview()
+        DispatchQueue.main.async {
+            for case let noteHead as NoteHeadView in self.subviews {
+                noteHead.removeFromSuperview()
+            }
         }
 
+
         // draw notes
-        if notes.count != 0 {
+        if MIDINumbers.count != 0 {
             
-            for MIDINumber in notes  {
-                
-                let note: GrandStaffNote = GrandStaffNote(MIDINumber: MIDINumber)
+            // generate note objects
+            var notes: [GrandStaffNote] = Array()
+            
+            for MIDINumber in MIDINumbers {
+                notes.append(GrandStaffNote(MIDINumber: MIDINumber))
+            }
+            
+            // generate note clusters
+            
+            
+            // draw the note heads
+            for note in notes  {
+
 
                 drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
                              line: note.lineToDrawOn,
                              direction: .left,
-                             requiresLedgerLine: note.requiresLedgerLine)
+                             requiresLedgerLine: note.requiresLedgerLine,
+                             requiresAccidental: noteRequiresAccidental(note: note))
             }
+            
+            print(MIDINumbers)
 
         }
 
-        
+         
     }
     
-    private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool) {
+    private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool, requiresAccidental: Bool) {
         
-        // work out dimensions
-        let noteHead: NoteHeadView = NoteHeadView(string: GrandStaffNote.noteHeadCode)
-        let noteHeadSize: CGSize = CGSize(width: 20, height: 100)
         
-        // set up the view
-        noteHead.font = NSFont(name: musicalSymbolsFont, size: trebleStaff.lineSpacing * 3)
-        noteHead.textColor = .white
-        noteHead.isBordered = false
-        noteHead.isEditable = false
-        noteHead.drawsBackground = false
-        noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
-        noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
-        noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(line)
-        
-        // draw the view
+        DispatchQueue.main.async{
+            // work out dimensions
+            let noteHead: NoteHeadView = NoteHeadView(string: GrandStaffNote.noteHeadCode)
+            let noteHeadSize: CGSize = CGSize(width: 40, height: 100)
+            
+            // check if the note needs a sharp
+            var adjustedLine: Float = line
+            if requiresAccidental && !self.keySignature.isSharpsKey {
+                adjustedLine = line + 0.5 // move up by line for flats
+            }
 
-        
-        
-        self.addSubview(noteHead)
+            // set up the view
+            noteHead.font = NSFont(name: self.musicalSymbolsFont, size: self.trebleStaff.lineSpacing * 3.75)
+            noteHead.textColor = .white
+            noteHead.isBordered = false
+            noteHead.isEditable = false
+            noteHead.drawsBackground = false
+            noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
+            noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
+            noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(adjustedLine)
+
+            // draw the view
+            self.addSubview(noteHead)
+        }
 //        
 //        // ledger line
 //        if requiresLedgerLine {
@@ -402,6 +424,13 @@ class GrandStaffView: NSView {
 //                
 //            }
 //        }
+        
+    }
+    
+    private func noteRequiresAccidental(note: GrandStaffNote) -> Bool {
+        
+        let accidentalModuloValues: [Int] = [1,3,6,8,10]
+        return accidentalModuloValues.contains(note.MIDINumber % 12)
         
     }
     

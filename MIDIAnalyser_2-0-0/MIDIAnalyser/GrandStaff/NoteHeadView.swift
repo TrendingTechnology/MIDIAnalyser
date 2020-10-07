@@ -9,6 +9,5 @@
 import Cocoa
 
 class NoteHeadView: NSTextField {
-
-    
+    // needed to be able to remove only note head views
 }
