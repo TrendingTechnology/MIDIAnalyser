@@ -31,3 +31,7 @@ macOS desktop app to analyse input data from a MIDI controller and display the c
 * New app icon
 * Improved chord naming algorithm
 * Bug fixes for MIDI input
+
+Beta version:  
+
+<img src="./Info/MIDIAnalyser%202.0.0.png" width="800" class="center">
