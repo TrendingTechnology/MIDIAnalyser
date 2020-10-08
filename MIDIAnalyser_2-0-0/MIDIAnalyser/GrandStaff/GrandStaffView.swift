@@ -392,6 +392,11 @@ class GrandStaffView: NSView {
             noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
             noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
             noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(adjustedLine)
+            
+            // temporary display for accidentals
+            if requiresAccidental {
+                noteHead.textColor = .systemRed
+            }
 
             // draw the view
             self.addSubview(noteHead)
@@ -431,7 +436,14 @@ class GrandStaffView: NSView {
     private func noteRequiresAccidental(note: GrandStaffNote) -> Bool {
         
         let accidentalModuloValues: [Int] = [1,3,6,8,10]
-        return accidentalModuloValues.contains(note.MIDINumber % 12)
+        
+        // check if its an accidental
+        if accidentalModuloValues.contains(note.MIDINumber % 12) {
+            // check if the note is in the current key
+            return !keySignature.isAccidentalInKey(note: note)
+        }
+        
+        return false
         
     }
     

@@ -39,6 +39,7 @@ class GrandStaffKeySignature {
         var trebleStaffLineNumber: Float // 0 => first line from bottom, 0.5 => first space between lines, etc...
         var bassStaffLineNumber: Float
         var order: Int
+        var name: String
     }
     
     // class variables
@@ -62,19 +63,21 @@ class GrandStaffKeySignature {
     }
     
     // static members
-    static let notes: [String : Accidental] = [
-        "F#" : Accidental(type: .sharp, trebleStaffLineNumber: 4,   bassStaffLineNumber: 3,     order: 0),
-        "C#" : Accidental(type: .sharp, trebleStaffLineNumber: 2.5, bassStaffLineNumber: 1.5,   order: 1),
-        "G#" : Accidental(type: .sharp, trebleStaffLineNumber: 4.5, bassStaffLineNumber: 3.5,   order: 2),
-        "D#" : Accidental(type: .sharp, trebleStaffLineNumber: 3,   bassStaffLineNumber: 2,     order: 3),
-        "A#" : Accidental(type: .sharp, trebleStaffLineNumber: 1.5, bassStaffLineNumber: 0.5,   order: 4),
-        "Bb" : Accidental(type: .flat,  trebleStaffLineNumber: 2,   bassStaffLineNumber: 1,     order: 0),
-        "Eb" : Accidental(type: .flat,  trebleStaffLineNumber: 3.5, bassStaffLineNumber: 2.5,   order: 1),
-        "Ab" : Accidental(type: .flat,  trebleStaffLineNumber: 1.5, bassStaffLineNumber: 0.5,   order: 2),
-        "Db" : Accidental(type: .flat,  trebleStaffLineNumber: 3,   bassStaffLineNumber: 2,     order: 3),
-        "Gb" : Accidental(type: .flat,  trebleStaffLineNumber: 1,   bassStaffLineNumber: 0,     order: 4),
-        "Cb" : Accidental(type: .flat,  trebleStaffLineNumber: 2.5, bassStaffLineNumber: 1.5,   order: 5)
+    static let accidentals: [String : Accidental] = [
+        "F#" : Accidental(type: .sharp, trebleStaffLineNumber: 4,   bassStaffLineNumber: 3,     order: 0,   name: "F#"),
+        "C#" : Accidental(type: .sharp, trebleStaffLineNumber: 2.5, bassStaffLineNumber: 1.5,   order: 1,   name: "C#"),
+        "G#" : Accidental(type: .sharp, trebleStaffLineNumber: 4.5, bassStaffLineNumber: 3.5,   order: 2,   name: "G#"),
+        "D#" : Accidental(type: .sharp, trebleStaffLineNumber: 3,   bassStaffLineNumber: 2,     order: 3,   name: "D#"),
+        "A#" : Accidental(type: .sharp, trebleStaffLineNumber: 1.5, bassStaffLineNumber: 0.5,   order: 4,   name: "A#"),
+        "Bb" : Accidental(type: .flat,  trebleStaffLineNumber: 2,   bassStaffLineNumber: 1,     order: 0,   name: "Bb"),
+        "Eb" : Accidental(type: .flat,  trebleStaffLineNumber: 3.5, bassStaffLineNumber: 2.5,   order: 1,   name: "Eb"),
+        "Ab" : Accidental(type: .flat,  trebleStaffLineNumber: 1.5, bassStaffLineNumber: 0.5,   order: 2,   name: "Ab"),
+        "Db" : Accidental(type: .flat,  trebleStaffLineNumber: 3,   bassStaffLineNumber: 2,     order: 3,   name: "Db"),
+        "Gb" : Accidental(type: .flat,  trebleStaffLineNumber: 1,   bassStaffLineNumber: 0,     order: 4,   name: "Gb"),
+        "Cb" : Accidental(type: .flat,  trebleStaffLineNumber: 2.5, bassStaffLineNumber: 1.5,   order: 5,   name: "Cb")
     ]
+    
+
     
     static var noKey: GrandStaffKeySignature {
         get {
@@ -91,7 +94,7 @@ class GrandStaffKeySignature {
     static var Gmajor: GrandStaffKeySignature {
         get {
             let sharps: [Accidental] = [
-                GrandStaffKeySignature.notes["F#"]!,
+                GrandStaffKeySignature.accidentals["F#"]!,
             ]
             return GrandStaffKeySignature(sharps: sharps)
         }
@@ -100,8 +103,8 @@ class GrandStaffKeySignature {
     static var Dmajor: GrandStaffKeySignature {
         get {
             let sharps: [Accidental] = [
-                GrandStaffKeySignature.notes["F#"]!,
-                GrandStaffKeySignature.notes["C#"]!
+                GrandStaffKeySignature.accidentals["F#"]!,
+                GrandStaffKeySignature.accidentals["C#"]!
             ]
             return GrandStaffKeySignature(sharps: sharps)
         }
@@ -110,9 +113,9 @@ class GrandStaffKeySignature {
     static var Amajor: GrandStaffKeySignature {
         get {
             let sharps: [Accidental] = [
-                GrandStaffKeySignature.notes["F#"]!,
-                GrandStaffKeySignature.notes["C#"]!,
-                GrandStaffKeySignature.notes["G#"]!
+                GrandStaffKeySignature.accidentals["F#"]!,
+                GrandStaffKeySignature.accidentals["C#"]!,
+                GrandStaffKeySignature.accidentals["G#"]!
             ]
             return GrandStaffKeySignature(sharps: sharps)
         }
@@ -121,10 +124,10 @@ class GrandStaffKeySignature {
     static var Emajor: GrandStaffKeySignature {
         get {
             let sharps: [Accidental] = [
-                GrandStaffKeySignature.notes["F#"]!,
-                GrandStaffKeySignature.notes["C#"]!,
-                GrandStaffKeySignature.notes["G#"]!,
-                GrandStaffKeySignature.notes["D#"]!
+                GrandStaffKeySignature.accidentals["F#"]!,
+                GrandStaffKeySignature.accidentals["C#"]!,
+                GrandStaffKeySignature.accidentals["G#"]!,
+                GrandStaffKeySignature.accidentals["D#"]!
             ]
             return GrandStaffKeySignature(sharps: sharps)
         }
@@ -133,11 +136,11 @@ class GrandStaffKeySignature {
     static var Bmajor: GrandStaffKeySignature {
         get {
             let sharps: [Accidental] = [
-                GrandStaffKeySignature.notes["F#"]!,
-                GrandStaffKeySignature.notes["C#"]!,
-                GrandStaffKeySignature.notes["G#"]!,
-                GrandStaffKeySignature.notes["D#"]!,
-                GrandStaffKeySignature.notes["A#"]!
+                GrandStaffKeySignature.accidentals["F#"]!,
+                GrandStaffKeySignature.accidentals["C#"]!,
+                GrandStaffKeySignature.accidentals["G#"]!,
+                GrandStaffKeySignature.accidentals["D#"]!,
+                GrandStaffKeySignature.accidentals["A#"]!
             ]
             return GrandStaffKeySignature(sharps: sharps)
         }
@@ -146,7 +149,7 @@ class GrandStaffKeySignature {
     static var Fmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!
+                GrandStaffKeySignature.accidentals["Bb"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
@@ -155,8 +158,8 @@ class GrandStaffKeySignature {
     static var Bbmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!,
-                GrandStaffKeySignature.notes["Eb"]!
+                GrandStaffKeySignature.accidentals["Bb"]!,
+                GrandStaffKeySignature.accidentals["Eb"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
@@ -165,9 +168,9 @@ class GrandStaffKeySignature {
     static var Ebmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!,
-                GrandStaffKeySignature.notes["Eb"]!,
-                GrandStaffKeySignature.notes["Ab"]!
+                GrandStaffKeySignature.accidentals["Bb"]!,
+                GrandStaffKeySignature.accidentals["Eb"]!,
+                GrandStaffKeySignature.accidentals["Ab"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
@@ -176,10 +179,10 @@ class GrandStaffKeySignature {
     static var Abmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!,
-                GrandStaffKeySignature.notes["Eb"]!,
-                GrandStaffKeySignature.notes["Ab"]!,
-                GrandStaffKeySignature.notes["Db"]!
+                GrandStaffKeySignature.accidentals["Bb"]!,
+                GrandStaffKeySignature.accidentals["Eb"]!,
+                GrandStaffKeySignature.accidentals["Ab"]!,
+                GrandStaffKeySignature.accidentals["Db"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
@@ -188,11 +191,11 @@ class GrandStaffKeySignature {
     static var Dbmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!,
-                GrandStaffKeySignature.notes["Eb"]!,
-                GrandStaffKeySignature.notes["Ab"]!,
-                GrandStaffKeySignature.notes["Db"]!,
-                GrandStaffKeySignature.notes["Gb"]!
+                GrandStaffKeySignature.accidentals["Bb"]!,
+                GrandStaffKeySignature.accidentals["Eb"]!,
+                GrandStaffKeySignature.accidentals["Ab"]!,
+                GrandStaffKeySignature.accidentals["Db"]!,
+                GrandStaffKeySignature.accidentals["Gb"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
@@ -201,15 +204,37 @@ class GrandStaffKeySignature {
     static var Gbmajor: GrandStaffKeySignature {
         get {
             let flats: [Accidental] = [
-                GrandStaffKeySignature.notes["Bb"]!,
-                GrandStaffKeySignature.notes["Eb"]!,
-                GrandStaffKeySignature.notes["Ab"]!,
-                GrandStaffKeySignature.notes["Db"]!,
-                GrandStaffKeySignature.notes["Gb"]!,
-                GrandStaffKeySignature.notes["Cb"]!
+                GrandStaffKeySignature.accidentals["Bb"]!,
+                GrandStaffKeySignature.accidentals["Eb"]!,
+                GrandStaffKeySignature.accidentals["Ab"]!,
+                GrandStaffKeySignature.accidentals["Db"]!,
+                GrandStaffKeySignature.accidentals["Gb"]!,
+                GrandStaffKeySignature.accidentals["Cb"]!
             ]
             return GrandStaffKeySignature(flats: flats)
         }
+    }
+    
+    func isAccidentalInKey(note: GrandStaffNote) -> Bool {
+        
+        // check if the note matches a sharp
+        if self.isSharpsKey {
+            for accidental in self.accidentals {
+                if note.noteNameSharp == accidental.name {
+                    return true
+                }
+            }
+        }
+        // check if the note matches a flat
+        else {
+            for accidental in self.accidentals {
+                if note.noteNameFlat == accidental.name {
+                    return true
+                }
+            }
+        }
+        
+        return false
     }
     
 }

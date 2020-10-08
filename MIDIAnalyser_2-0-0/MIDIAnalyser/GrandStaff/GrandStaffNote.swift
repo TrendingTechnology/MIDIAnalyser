@@ -39,6 +39,48 @@ class GrandStaffNote {
         }
     }
     
+    var noteNameSharp: String {
+        get {
+            let possibleNoteNames: [String] = [
+                "C",
+                "C#",
+                "D",
+                "D#",
+                "E",
+                "F",
+                "F#",
+                "G",
+                "G#",
+                "A",
+                "A#",
+                "B"
+            ]
+
+            return possibleNoteNames[MIDINumber % 12] // magic number
+        }
+    }
+    
+    var noteNameFlat: String {
+        get {
+            let possibleNoteNames: [String] = [
+                "C",
+                "Db",
+                "D",
+                "Eb",
+                "E",
+                "F",
+                "Gb",
+                "G",
+                "Ab",
+                "A",
+                "Bb",
+                "B"
+            ]
+
+            return possibleNoteNames[MIDINumber % 12] // magic number
+        }
+    }
+    
     var staffToDrawOn: Staff {
         get {
             return self.octave < 4 ? .bass : .treble
