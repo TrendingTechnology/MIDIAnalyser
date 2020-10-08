@@ -439,12 +439,22 @@ class GrandStaffView: NSView {
         
         // check if its an accidental
         if accidentalModuloValues.contains(note.MIDINumber % 12) {
-            // check if the note is in the current key
-            return !keySignature.isAccidentalInKey(note: note)
+            
+            // check if the note is an accidental in the current key
+            // if not, we need an accidental
+            return keySignature.needsAccidental(note: note)
+            
+            // check if the note is a natural in the current key
+            
         }
-        
-        return false
-        
+        // check if its a natural
+        else {
+            
+            // check if the note is the natural version of an accidental in a key
+            return keySignature.needsNatural(note: note)
+            
+        }
+
     }
     
     

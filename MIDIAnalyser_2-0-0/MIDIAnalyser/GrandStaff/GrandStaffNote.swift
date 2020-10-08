@@ -183,8 +183,5 @@ class GrandStaffNote {
         self.MIDINumber = MIDINumber
     }
     
-    // work out which staff to draw on
-    
-    
     
 }
