@@ -19,14 +19,13 @@ class MainViewController: NSViewController {
     private var chordNameViewController: ChordNameViewController?
     
     
-
     // view loaded setup
     override func viewDidLoad() {
         
         // superclass load
         super.viewDidLoad()
         self.view.window?.makeFirstResponder(nil)
-        
+ 
     }
 
 

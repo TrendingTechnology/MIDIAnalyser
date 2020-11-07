@@ -17,7 +17,6 @@ class PreferencesNotificationCenter {
         
     }
     
-    
     // subscribe to notifications
     static func observe(type: Preferences.PreferenceKeys, observer: Any, selector: Selector) {
     

@@ -23,7 +23,8 @@ class Preferences {
         case AbbreviateHideSlashRoots = "AbbreviateHideSlashRoots"
         case SingleNoteInputDisplayed = "SingleNoteInputDisplayed"
         case IntervalInputDisplayed = "IntervalInputDisplayed"
-        case ColorTheme = "ColorTheme"
+        case Appearance = "Appearance"
+        case AppearanceName = "AppearanceName"
         case PressedKeyColor = "PressedKeyColor"
     }
     
@@ -42,3 +43,5 @@ class Preferences {
     }
     
 }
+
+

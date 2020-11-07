@@ -12,11 +12,23 @@ import Foundation
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 
-
+    private var appearanceObserver: NSKeyValueObservation?
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         // Insert code here to initialize your application
-
+        
+    }
+    
+    func applicationWillFinishLaunching(_ notification: Notification) {
+        
+        
+        // load the appearance
+        if let appearance = Preferences.load(key: .Appearance) as? Data {
+            NSApp.appearance = NSKeyedUnarchiver.unarchiveObject(with: appearance) as? NSAppearance
+        }
+        else {
+            NSApp.appearance = NSAppearance(named: .darkAqua) // default to dark
+        }
         
     }
 

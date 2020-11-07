@@ -26,9 +26,6 @@ class ChordAltNameView: NSView {
         // superclass initialisation
         super.init(frame: frame)
         
-        self.wantsLayer = true
-        self.layer?.backgroundColor = NSColor.controlBackgroundColor.cgColor
-        
         // setup observers
         NotificationCenter.default.addObserver(self, selector: #selector(updateView), name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: nil)
         
@@ -43,7 +40,7 @@ class ChordAltNameView: NSView {
 
         // set the background of the view
         self.wantsLayer = true
-        //self.layer?.backgroundColor = self.backgroundColor.cgColor
+        self.layer?.backgroundColor = NSColor(named: "ChordAltNameBackground")?.cgColor ?? .white
     }
     
     

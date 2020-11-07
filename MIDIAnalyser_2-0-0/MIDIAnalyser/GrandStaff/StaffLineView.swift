@@ -40,9 +40,7 @@ class StaffLineView: NSView {
     // drawing function
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-        
-//        self.wantsLayer = true
-//        self.layer?.backgroundColor = NSColor.systemRed.cgColor
+
 
         // fetch and setup graphics context
         guard let context = NSGraphicsContext.current?.cgContext else{

@@ -294,7 +294,7 @@ class GrandStaffView: NSView {
         
         // set up the view
         accidental.font = NSFont(name: musicalSymbolsFont, size: staff.lineSpacing * 3)
-        accidental.textColor = .white
+        accidental.textColor = NSColor(named: "GrandStaffForeground")
         accidental.isBordered = false
         accidental.isEditable = false
         accidental.isSelectable = false

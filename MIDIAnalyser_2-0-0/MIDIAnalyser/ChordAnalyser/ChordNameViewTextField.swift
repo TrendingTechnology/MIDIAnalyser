@@ -37,6 +37,7 @@ class ChordNameViewTextField: NSTextField {
         self.font = .systemFont(ofSize: fontSize, weight: .thin)
         self.usesSingleLineMode = true
         
+        
         // position the frame centrally
         let centeredOrigin: NSPoint = NSPoint(x: origin.x - self.intrinsicContentSize.width / 2,
                                               y: origin.y - self.intrinsicContentSize.height / 2)
@@ -49,6 +50,8 @@ class ChordNameViewTextField: NSTextField {
     // drawing function
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
+        
+        self.textColor = NSColor(named: "ChordNameText")
 
         // Drawing code here.
     }
