@@ -16,8 +16,8 @@ class GrandStaffNote {
         case up, down
     }
     
-    enum NoteHeadDirection {
-        case left, right
+    enum NoteHeadPosition {
+        case center, left, right
     }
     
     enum Staff {
@@ -31,6 +31,9 @@ class GrandStaffNote {
     
     var MIDINumber: Int = 0
     var staff: Staff = .treble
+    var position: NoteHeadPosition = .center
+    var lineOffset: Float = 0
+    var clusterID: Int = 0  // group notes in clusters and give each cluster an ID
     
     // get variables
     var octave: Int {
@@ -56,7 +59,7 @@ class GrandStaffNote {
                 "B"
             ]
 
-            return possibleNoteNames[MIDINumber % 12] // magic number
+            return possibleNoteNames[MIDINumber % 12]
         }
     }
     
@@ -77,7 +80,7 @@ class GrandStaffNote {
                 "B"
             ]
 
-            return possibleNoteNames[MIDINumber % 12] // magic number
+            return possibleNoteNames[MIDINumber % 12]
         }
     }
     
@@ -125,7 +128,7 @@ class GrandStaffNote {
                 // when accidentals added, need to shift up notes with
                 // flats up by half a line
                 
-                return (linesForMIDINumbers[MIDINumber] ?? 0) + 1
+                return (linesForMIDINumbers[MIDINumber] ?? 0) + 1 + lineOffset
                 
             }
             else {
@@ -161,7 +164,7 @@ class GrandStaffNote {
                 ]
                 
                 
-                return (linesForMIDINumbers[MIDINumber] ?? 0) + 1
+                return (linesForMIDINumbers[MIDINumber] ?? 0) + 1 + lineOffset
             }
         }
     }

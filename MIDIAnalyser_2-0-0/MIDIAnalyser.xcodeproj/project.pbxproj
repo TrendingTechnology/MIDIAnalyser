@@ -206,6 +206,7 @@
 				22626B2A24B0BF0F002814EC /* KeyboardView.swift */,
 				22626B2824B0BD78002814EC /* WhiteKeyView.swift */,
 				22626B2C24B0D7A3002814EC /* BlackKeyView.swift */,
+				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";
@@ -228,7 +229,6 @@
 			isa = PBXGroup;
 			children = (
 				22626B1A24AFFF3E002814EC /* Chord.swift */,
-				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 				22626B1E24B00883002814EC /* ChordNotesMessage.swift */,
 				225A1C8C24B4E5DF00415515 /* ChordMessage.swift */,
 				22626B3124B1155C002814EC /* ChordNameViewController.swift */,

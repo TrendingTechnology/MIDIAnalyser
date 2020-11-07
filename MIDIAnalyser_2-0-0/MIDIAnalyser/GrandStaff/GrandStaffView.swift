@@ -323,6 +323,7 @@ class GrandStaffView: NSView {
         // notehead position rules
         // - seconds to the right
         
+        // extract the message
         var MIDINumbers: [Int] = Array()
         
         if let message = notification.object as? ChordNotesMessage {
@@ -347,41 +348,26 @@ class GrandStaffView: NSView {
                 notes.append(GrandStaffNote(MIDINumber: MIDINumber))
             }
             
-            // generate note clusters
-            // for note 
-            
-            
             // draw the note heads
             for note in notes  {
-
-
-                drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff,
-                             line: note.lineToDrawOn,
-                             direction: .left,
-                             requiresLedgerLine: note.requiresLedgerLine,
-                             requiresAccidental: noteRequiresAccidental(note: note))
+                //drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff, note: note)
             }
             
-            print(MIDINumbers)
-
         }
 
          
     }
     
-    private func drawNoteHead(staff: StaffLineView, line: Float, direction: GrandStaffNote.NoteHeadDirection, requiresLedgerLine: Bool, requiresAccidental: Bool) {
+
+    private func drawNoteHead(staff: StaffLineView, note: GrandStaffNote) {
         
         
-        DispatchQueue.main.async{
+        DispatchQueue.main.async {
+            
             // work out dimensions
             let noteHead: NoteHeadView = NoteHeadView(string: GrandStaffNote.noteHeadCode)
             let noteHeadSize: CGSize = CGSize(width: 40, height: 100)
-            
-            // check if the note needs a sharp
-            var adjustedLine: Float = line
-            if requiresAccidental && !self.keySignature.isSharpsKey {
-                adjustedLine = line + 0.5 // move up by line for flats
-            }
+            let noteRequiresAccidental: Bool = self.noteRequiresAccidental(note: note)
 
             // set up the view
             noteHead.font = NSFont(name: self.musicalSymbolsFont, size: self.trebleStaff.lineSpacing * 3.75)
@@ -391,45 +377,30 @@ class GrandStaffView: NSView {
             noteHead.drawsBackground = false
             noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
             noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
-            noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(adjustedLine)
+            noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(note.lineToDrawOn)
+            
+            // adjust horizontal position
+            let noteHeadOffset: CGFloat = 12
+            
+            
+            if note.position == .left {
+                noteHead.frame.origin.x -= noteHeadOffset
+            }
+            else if note.position == .right {
+                noteHead.frame.origin.x += noteHeadOffset
+            }
             
             // temporary display for accidentals
-            if requiresAccidental {
+            if noteRequiresAccidental {
                 noteHead.textColor = .systemRed
             }
+            
 
             // draw the view
             self.addSubview(noteHead)
         }
-//        
-//        // ledger line
-//        if requiresLedgerLine {
-//            
-//            // fetch and setup graphics context
-//            guard let context = NSGraphicsContext.current?.cgContext else{
-//                fatalError("Missing NSGraphicsContext in GrandStaffView")
-//            }
-//            
-//            context.setStrokeColor(CGColor.white)
-//            
-//            let halfPixelOffset: CGFloat = 0.5
-//            
-//            do {
-//                
-//                let startPoint: CGPoint = CGPoint(x: noteHead.frame.origin.x,
-//                                                  y: staff.frame.origin.y + halfPixelOffset * 2 + staff.lineSpacing * CGFloat(line))
-//                let endPoint: CGPoint = CGPoint(x: startPoint.x + 15,
-//                                                y: startPoint.y)
-//                
-//                context.setLineWidth(2)
-//                context.beginPath()
-//                context.move(to: startPoint)
-//                context.addLine(to: endPoint)
-//                context.strokePath()
-//
-//                
-//            }
-//        }
+        
+ 
         
     }
     

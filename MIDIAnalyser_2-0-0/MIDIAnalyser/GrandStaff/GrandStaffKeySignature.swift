@@ -239,7 +239,7 @@ class GrandStaffKeySignature {
     
     func needsNatural(note: GrandStaffNote) -> Bool {
         
-        // check if the note sharpened or flattened matches an accidental
+        // check if the note sharpened matches an accidental
         if self.isSharpsKey {
             for accidental in self.accidentals {
                 if (note.noteNameSharp + "#") == accidental.name {
@@ -247,6 +247,7 @@ class GrandStaffKeySignature {
                 }
             }
         }
+        // check if the note flattened matches an accidental
         else {
             for accidental in self.accidentals {
                 if (note.noteNameFlat + "b") == accidental.name {
