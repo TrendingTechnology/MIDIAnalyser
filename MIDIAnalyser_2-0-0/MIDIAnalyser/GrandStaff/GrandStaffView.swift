@@ -51,17 +51,13 @@ class GrandStaffView: NSView {
         // superclass initialisation
         super.init(frame: frame)
         
-        // setup appearance of self
-        self.wantsLayer = true
-        self.layer?.backgroundColor = .black
-        
         // text fields for clefs
         bassClefTextField.stringValue = bassClefCharacter
         bassClefTextField.isEditable = false
         bassClefTextField.isSelectable = false
         bassClefTextField.isBordered = false
         bassClefTextField.drawsBackground = false
-        bassClefTextField.textColor = .white
+        bassClefTextField.textColor = NSColor(named: "GrandStaffForeground")
         bassClefTextField.canDrawSubviewsIntoLayer = true
         bassClefTextField.frame = NSRect()
         
@@ -70,7 +66,7 @@ class GrandStaffView: NSView {
         trebleClefTextField.isSelectable = false
         trebleClefTextField.isBordered = false
         trebleClefTextField.drawsBackground = false
-        trebleClefTextField.textColor = .white
+        trebleClefTextField.textColor = NSColor(named: "GrandStaffForeground")
         trebleClefTextField.canDrawSubviewsIntoLayer = true
         trebleClefTextField.frame = NSRect()
         
@@ -116,6 +112,7 @@ class GrandStaffView: NSView {
         
         // set the background of the view
         self.wantsLayer = true // required now for graphics
+        self.layer?.backgroundColor = NSColor(named: "GrandStaffBackground")?.cgColor
         
         // update width of pop up button
         keySelectionPopUpButton.frame.size.width = self.frame.size.width
@@ -186,7 +183,7 @@ class GrandStaffView: NSView {
             fatalError("Missing NSGraphicsContext in GrandStaffView")
         }
         
-        context.setStrokeColor(CGColor.white)
+        context.setStrokeColor(NSColor(named: "GrandStaffForeground")?.cgColor ?? .white)
         
         let halfPixelOffset: CGFloat = 0.5
         
@@ -350,7 +347,7 @@ class GrandStaffView: NSView {
             
             // draw the note heads
             for note in notes  {
-                //drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff, note: note)
+                drawNoteHead(staff: note.staffToDrawOn == GrandStaffNote.Staff.treble ? trebleStaff : bassStaff, note: note)
             }
             
         }
@@ -371,7 +368,7 @@ class GrandStaffView: NSView {
 
             // set up the view
             noteHead.font = NSFont(name: self.musicalSymbolsFont, size: self.trebleStaff.lineSpacing * 3.75)
-            noteHead.textColor = .white
+            noteHead.textColor = NSColor(named: "GrandStaffForeground")
             noteHead.isBordered = false
             noteHead.isEditable = false
             noteHead.drawsBackground = false

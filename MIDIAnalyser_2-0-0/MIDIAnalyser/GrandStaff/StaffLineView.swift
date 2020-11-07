@@ -52,7 +52,7 @@ class StaffLineView: NSView {
 
         context.setShouldAntialias(false)
         context.setAllowsAntialiasing(false)
-        context.setStrokeColor(CGColor.white)
+        context.setStrokeColor(NSColor(named: "GrandStaffForeground")?.cgColor ?? .white)
         context.setLineWidth(lineWidth)
         
         // calculate line dimensions
