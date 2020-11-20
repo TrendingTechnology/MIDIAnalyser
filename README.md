@@ -33,7 +33,7 @@ macOS desktop app to analyse input data from a MIDI controller and display the c
 * Virtual MIDI keyboard (typing)
 * Sustain pedal support
 * New app icon
-* Improved chord naming algorithm
+* Improved context dependent chord naming algorithm
 * Bug fixes for MIDI input
 
 
