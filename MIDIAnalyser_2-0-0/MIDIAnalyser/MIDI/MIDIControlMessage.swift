@@ -11,7 +11,7 @@ import Foundation
 
 class MIDIControlMessage : MIDIMessage {
     
-    //
+    // control events
     enum MIDIControlMessageType: Int {
         case sustain = 64
     }

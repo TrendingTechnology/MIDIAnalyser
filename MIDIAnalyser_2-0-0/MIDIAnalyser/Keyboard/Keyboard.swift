@@ -18,8 +18,7 @@ class Keyboard {
     static var minMIDINumber: Int = 21  // A0
     static var maxMIDINumber: Int = 108 // C8
 
-    
-    // class variables
+    // key variables
     var keys: [Key] = Array()
     var sustainedKeys: [Key] = Array()
     var sustainPressed: Bool = false
@@ -28,30 +27,35 @@ class Keyboard {
     // initialisation
     init() {
         
-        // generate the key objects
+        // key types for one octave
         let octaveKeyTypes: [Key.KeyType] = [.white, .black, .white, .white, .black, .white, .black, .white, .white, .black, .white, .black]
         
+        // generate a key objects
         for MIDINumber in Keyboard.minMIDINumber...Keyboard.maxMIDINumber {
             
-            let octave: Int = (MIDINumber - Keyboard.minMIDINumber + 9) / 12
+            // data for the particular key
+            let octaveOffset: Int = 9; // offset to line up with A0
+            let octave: Int = (MIDINumber - Keyboard.minMIDINumber + octaveOffset) / 12
             let index: Int = MIDINumber - Keyboard.minMIDINumber
             let keyType: Key.KeyType = octaveKeyTypes[index % 12]
-            let key: Key = Key(keyType: keyType , MIDINumber: MIDINumber, octave: octave, index: index)
             
+            // construct object and add to key array
+            let key: Key = Key(keyType: keyType , MIDINumber: MIDINumber, octave: octave, index: index)
             keys.append(key)
+            
+            // sustain pedal support
             sustainedKeys.append(key.copy() as! Key)
             
         }
         
-        // add observers
+        // add observers for MIDI events
         MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
         MIDINotificationCenter.observe(type: .noteOff, observer: self, selector: #selector(keyUpdate))
         MIDINotificationCenter.observe(type: .control, observer: self, selector: #selector(keyUpdate))
   
     }
     
-    
-    // get the index in for the key array for a particular MIDI number
+    // get the index for the key array for a particular MIDI number
     static func keyIndexOfMIDINumber(_ MIDINumber: Int) -> Int {
         return MIDINumber - Keyboard.minMIDINumber
     }
@@ -70,11 +74,16 @@ class Keyboard {
         // case for noteOn messages
         case MIDINotificationCenter.MIDINotificationType.noteOn.rawValue:
             
+            // try to cast as a MIDINoteMessage
             if let message = notification.object as? MIDINoteMessage {
                 
+                // make sure the message is a valid note
                 if message.noteNumber >= Keyboard.minMIDINumber && message.noteNumber <= Keyboard.maxMIDINumber {
+                    
+                    // figure out which key to update
                     let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
                     
+                    // check for sustain pedal pressed
                     if !sustainPressed {
                         keys[keyIndex].state = true
                     }
@@ -83,7 +92,9 @@ class Keyboard {
                         sustainedKeys[keyIndex].state = true
                     }
                     
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
+                    // send all notes currently pressed to the ChordAnalyser
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName),
+                                                    object: ChordNotesMessage(keysPressed()))
                 }
                 
             }
@@ -91,11 +102,14 @@ class Keyboard {
         // case for noteOff messages
         case MIDINotificationCenter.MIDINotificationType.noteOff.rawValue:
             
+            // try to cast as a MIDINoteMessage
             if let message = notification.object as? MIDINoteMessage {
                 
+                // make sure the message is a valid note
                 if message.noteNumber >= Keyboard.minMIDINumber && message.noteNumber <= Keyboard.maxMIDINumber {
                     let keyIndex = Keyboard.keyIndexOfMIDINumber(message.noteNumber)
                     
+                    // check for sustain pedal pressed
                     if !sustainPressed {
                         keys[keyIndex].state = false
                     }
@@ -103,26 +117,32 @@ class Keyboard {
                         sustainedKeys[keyIndex].state = false
                     }
                     
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName), object: ChordNotesMessage(keysPressed()))
+                    // send all notes currently pressed to the ChordAnalyser
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordNotesMessage.ChordNotesMessageName),
+                                                    object: ChordNotesMessage(keysPressed()))
                 }
             }
             
         // case for control messages
         case MIDINotificationCenter.MIDINotificationType.control.rawValue:
             
+            // try to cast as a MIDIControlMessage
             if let message = notification.object as? MIDIControlMessage {
                 
-                // sustain pedal
+                // case for sustain pedal messages
                 if message.controlMessageType == MIDIControlMessage.MIDIControlMessageType.sustain {
                     
+                    // sustain is pressed if value is 127
                     if message.value == 127 {
                         sustainPressed = true
+                        // copy the currently pressed keys to the sustained keys
                         for i in 0 ..< keys.count {
                             sustainedKeys[i].state = keys[i].state
                         }
                     }
                     else {
                         sustainPressed = false
+                        // copy the sustained keys back to the keys
                         for i in 0 ..< keys.count {
                             keys[i].state = sustainedKeys[i].state
                         }
@@ -163,6 +183,7 @@ class Keyboard {
         let isWhiteKey: [Bool] = [true, false, true, true, false, true, false, true, true, false, true, false]
         var result: Bool = false
         
+        // make sure index is within range
         if keyIndex >= 0 && keyIndex < Keyboard.nKeys {
             if isWhiteKey[keyIndex % 12] {
                 result =  true

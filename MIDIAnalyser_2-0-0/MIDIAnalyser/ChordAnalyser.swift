@@ -39,11 +39,13 @@ class ChordAnalyser {
         GrandStaffNotificationCenter.observe(type: .keySignature, observer: self, selector: #selector(updateAccidentals))
     }
     
-    // update accidentals from grand staff
+    // update accidentals by reading grand staff data
     @objc func updateAccidentals(_ notification: Notification) {
         
+        // extract the key signature
         if let keySignature = notification.object as? GrandStaffKeySignature {
             
+            // set the accidentals depending on the key
             if keySignature.isSharpsKey {
                 accidentals = .sharps
             }
@@ -59,11 +61,12 @@ class ChordAnalyser {
     
     
     // main analysis function
-    @objc func analyse(_ notification: Notification) {  // (_ keysPressed: [Int])
+    @objc func analyse(_ notification: Notification) {
         
         // deconstruct notification
         var keysPressed: [Int] = Array()
         
+        // try to cast the message and extract the notes
         if let message = notification.object as? ChordNotesMessage {
             keysPressed = message.notes
         }
@@ -75,68 +78,67 @@ class ChordAnalyser {
             keyStates[Keyboard.keyIndexOfMIDINumber(pressedKey)] = true
         }
         
-        // generate basic note input data
+        // generate basic data for analysis decisions
         let nKeysPressed: Int = countKeysPressed(keyStates)
         let notes: [Int] = notesInChord(keyStates: keyStates, nKeysPressed: nKeysPressed)
         let noteNames: [String] = noteNamesInChord(notes)
         
-        // work out unique notes
+        // work out unique notes in the chord
         var uniqueNoteNames: [String] = noteNames
         uniqueNoteNames.removeDuplicates()
         let nUniqueNotes: Int = uniqueNoteNames.count
         
-        // single notes
+        // single note case
         if(nUniqueNotes == 1) {
             chordName = uniqueNoteNames[0] + " (note)"
-            
         }
-            
-        // intervals
+    
+        // intervals case
         else if(nUniqueNotes == 2) {
-            // TODO: interval names
+            /// TODO: interval names
             chordName = "interval (to do)"
             
+            // special case for 5 chords
             if determineIntervals(notes).contains(7) {
                 chord = Chord(uniqueNoteNames[0])
                 chord.setBaseTonality(.five)
-                
             }
             else {
                 chord = Chord("")
             }
             
+            // generate chord object
             var chords: [Chord] = Array()
             chords.append(chord)
             
+            // post the chord name to the nofication center
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(chords))
             
             
         }
             
-            
         // chords
         else if(nUniqueNotes >= 3) {
-
             
-            // generate interval data from notes
+            // generate interval set from notes
             let intervals: [Int] = determineIntervals(notes)
             let intervalSets: [[Int]] = generateIntervalSets(intervals)
             
-            // iterate through interval sets and determine possible chord names
+            // array of blank chord objects
             possibleChords = Array(repeating: Chord(""), count: intervalSets.count)
             
+            // work out the first possible chord name
             possibleChords[0] = analysePermutation(intervals: intervalSets[0], root: uniqueNoteNames[0])
             possibleChords[0].estimateComplexity()
             print(possibleChords[0].complexity, "\t", possibleChords[0].name())
             
+            // iterate through remaining interval sets and determine possible chord names
             for i in 1...intervalSets.count - 1  {
                 possibleChords[i] = analysePermutation(intervals: intervalSets[i], root: uniqueNoteNames[i])
                 possibleChords[i].setSlash(noteNames[0])
                 possibleChords[i].estimateComplexity()
                 print(possibleChords[i].complexity, "\t", possibleChords[i].name())
             }
-            
-            print("")
             
             // determine most likely chord name
             chord = mostLikelyChord(possibleChords)
@@ -156,6 +158,7 @@ class ChordAnalyser {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: ChordMessage.ChordMessageName), object: ChordMessage(possibleChords))
             
         }
+        // catch for empty / error cases
         else {
             chordName = "-"
             var chords: [Chord] = Array()
@@ -165,7 +168,6 @@ class ChordAnalyser {
         
         
     }
-    
     
     // analyse one chord from its intervals
     private func analysePermutation(intervals: [Int], root: String) -> Chord {
@@ -186,8 +188,7 @@ class ChordAnalyser {
         let minorSeventh = 10
         let majorSeventh = 11
         
-        
-        // decide which intervals are in the chord
+        // determine which intervals are in the chord
         var intervalStates: [Bool] = Array(repeating: false, count: 12)
         
         for i in 0...12 {
@@ -203,79 +204,95 @@ class ChordAnalyser {
         
         if(intervalStates[perfectFifth]) {
             
-            intervalStates[perfectFifth] = false
+            intervalStates[perfectFifth] = false // intervalStates set to false once accounted for
             
+            // major chord
             if(intervalStates[majorThird]) {
                 chord.setBaseTonality(.major)
                 intervalStates[majorThird] = false
             }
+            // minor chord
             else if(intervalStates[minorThird]) {
                 chord.setBaseTonality(.minor)
                 intervalStates[minorThird] = false
             }
+            // sus2 chord
             else if(intervalStates[majorSecond]) {
                 chord.setBaseTonality(.sus2)
                 intervalStates[majorSecond] = false
             }
+            // sus4 chord
             else if(intervalStates[perfectFourth]) {
                 chord.setBaseTonality(.sus4)
                 intervalStates[perfectFourth] = false
             }
+            // 5 chord
             else {
                 chord.setBaseTonality(.five)
             }
         }
+        // diminished chord
         else if(intervalStates[flatFifth] && intervalStates[minorThird]) {
             chord.setBaseTonality(.diminished)
             intervalStates[flatFifth] = false
             intervalStates[minorThird] = false
         }
+        // augmented chord
         else if(intervalStates[minorSixth] && intervalStates[majorThird]) {
             chord.setBaseTonality(.augmented)
             intervalStates[minorSixth] = false
             intervalStates[majorThird] = false
         }
+        // strange chords with no 5
         else {
             
-            // stuff with no 5
+            // major (no5)
             if(intervalStates[majorThird]) {
                 chord.setBaseTonality(.majorNoFive)
                 intervalStates[majorThird] = false
             }
+            // minor (no5)
             else if(intervalStates[minorThird]) {
                 chord.setBaseTonality(.minorNoFive)
                 intervalStates[minorThird] = false
             }
+            // sus2 (no5)
             else if(intervalStates[majorSecond]) {
                 chord.setBaseTonality(.sus2NoFive)
                 intervalStates[majorSecond] = false
             }
+            // sus4 (no5)
             else if(intervalStates[perfectFourth]) {
                 chord.setBaseTonality(.sus4NoFive)
                 intervalStates[perfectFourth] = false
             }
+            // catch for unknown (should never be reached)
             else {
                 chord.setBaseTonality(.unknown)
+                print("ChordAnalyser.analysePermutation(): unknown base tonality")
             }
             
         }
   
-        
         // check for primary extensions
         
+        // maj7 chord
         if(intervalStates[majorSeventh]) {
             chord.setPrimaryExtension(.majorSeventh)
             intervalStates[majorSeventh] = false
         }
+        // 7 chord
         else if(intervalStates[minorSeventh]) {
             chord.setPrimaryExtension(.minorSeventh)
             intervalStates[minorSeventh] = false
         }
+        // 6/9 chord
         else if(intervalStates[majorSixth] && intervalStates[majorSecond] && (chord.baseTonality != .five)) {
             chord.setPrimaryExtension(.sixNine)
             intervalStates[majorSixth] = false
             intervalStates[majorSecond] = false
         }
+        // 6 chord
         else if(intervalStates[majorSixth] && (chord.baseTonality != .five)) {
             chord.setPrimaryExtension(.sixth)
             intervalStates[majorSixth] = false
@@ -294,23 +311,26 @@ class ChordAnalyser {
         // check for any intervals unaccounted for
         for interval in intervalStates {
             if interval {
-                print("analysePermutation(): interval not accounted for in name")
+                print("ChordAnalyser.analysePermutation(): interval not accounted for in name")
             }
         }
         
         return chord
     }
     
-    // pick the most likely chord
+    // choose the most likely chord
     private func mostLikelyChord(_ possibleChords: [Chord]) -> Chord {
         
         var mostLikelyIndex = 0
         
+        // go through each chord
         for i in 0...(possibleChords.count - 1) {
             
+            // find the chord with minimal complexity
             if(possibleChords[i].complexity < possibleChords[mostLikelyIndex].complexity) {
                 mostLikelyIndex = i
             }
+            // if two chord have equal complexity, choose the shortest name
             else if(possibleChords[i].complexity == possibleChords[mostLikelyIndex].complexity) {
                 if(possibleChords[i].name().count < possibleChords[mostLikelyIndex].name().count) {
                     mostLikelyIndex = i
@@ -318,7 +338,8 @@ class ChordAnalyser {
             }
             
         }
-        
+    
+        // return the most likely chord
         return possibleChords[mostLikelyIndex]
     }
     
@@ -362,16 +383,16 @@ class ChordAnalyser {
             
             let lowestNote: Int = notes[0]
             
-            for i in 0...(notes.count-1) {
+            for i in 0...(notes.count - 1) {
                 notes[i] -= lowestNote
                 notes[i] = notes[i] % 12
                 notes[i] += lowestNote
             }
             
+            // sort ascending
             notes.sort()
         }
 
-        
         return notes
         
     }
@@ -391,7 +412,7 @@ class ChordAnalyser {
         return noteNames
     }
     
-    // generate interval sets
+    // determine intervals for a set of notes
     private func determineIntervals(_ notes: [Int]) -> [Int] {
         
         // figure out intervals in chord (assuming lowest note is root)
@@ -401,6 +422,7 @@ class ChordAnalyser {
             intervals[i] = (notes[i] - notes[0]) % 12 // mod 12 removes compound intervals
         }
         
+        // sort ascending and remove redundant duplicates
         intervals.sort()
         intervals.removeDuplicates()
         
@@ -408,6 +430,7 @@ class ChordAnalyser {
         
     }
     
+    // generate interval sets
     private func generateIntervalSets(_ intervals: [Int]) -> [[Int]] {
         
         var intervalSets: [[Int]] = Array(repeating: Array(repeating: 0, count: intervals.count), count: intervals.count)
@@ -438,7 +461,7 @@ class ChordAnalyser {
 }
 
 
-// remove duplicates from array
+// extension to remove duplicates from an array
 extension Array where Element: Hashable {
     func removingDuplicates() -> [Element] {
         var addedDict = [Element: Bool]()

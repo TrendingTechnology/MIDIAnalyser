@@ -69,8 +69,7 @@ class Chord {
     var slashRoot: String = ""
     var isSlashChord: Bool = false
     var hasExtensions: Bool = false
-    
-    var complexity: Int = 1
+    var complexity: Int = 1 // TODO: make this a get variable with complexity()
     
     
     // initialisation
@@ -79,7 +78,7 @@ class Chord {
     }
     
     
-    // chord data functions
+    // mutator functions
     func addExtension(_ ext: Extension) {
         extensions[ext.rawValue] = true
         hasExtensions = true
@@ -93,6 +92,16 @@ class Chord {
         primaryExtension = ext
     }
     
+    func setSlash(_ note: String) {
+        slashRoot = " / " + note
+        isSlashChord = true
+    }
+    
+    func setRoot(_ rootNote: String) {
+        root = rootNote
+    }
+    
+    // accessor functions
     func hasBaseTonality(_ tonality: BaseTonality) -> Bool {
         return baseTonality == tonality
     }
@@ -104,34 +113,31 @@ class Chord {
     func hasExtension(_ ext: Extension) -> Bool {
         return extensions[ext.rawValue]
     }
-    
-    func setSlash(_ note: String) {
-        slashRoot = " / " + note
-        isSlashChord = true
-    }
-    
-    func setRoot(_ rootNote: String) {
-        root = rootNote
-    }
+
     
     // name generating function
     func name() -> String {
         
-        
+        // make sure its not a blank chord
         if root != "" {
+            
             // generate string of extensions
             var extensionString: String = ""
             
+            // make sure it actually has extensions
             if(hasExtensions) {
             
+                // use add() notation
                 extensionString = "add("
                 
+                // add the corresponding string for each extension
                 for i in 0...(extensions.count - 1) {
                     if extensions[i] {
                         extensionString += extensionNames[i] + ","
                     }
                 }
                 
+                // string formatting
                 extensionString += ")"
                 extensionString = extensionString.replacingOccurrences(of: ",)", with: ")", options: .literal, range: nil)
                 
@@ -147,7 +153,7 @@ class Chord {
                 chordName = root + primaryExtension.rawValue + "(no3)" + extensionString + slashRoot
             }
                 
-            // diminished chords have primary extensions named differently
+            // diminished chords have primary extensions named differently (why??)
             else if (baseTonality == BaseTonality.diminished) && (primaryExtension != PrimaryExtension.none) {
                 
                 switch primaryExtension {
@@ -171,23 +177,24 @@ class Chord {
                     
             }
             
-            // general chord naming format, no special cases
+            // general chord naming format for non special case
             else {
                chordName = root + baseTonality.rawValue + primaryExtension.rawValue + extensionString + slashRoot
             }
             
-            // replace sharp and flat symbols
+            // replace sharp and flat symbols with unicode
             chordName = chordName.replacingOccurrences(of: "#", with: "\u{266F}", options: .literal, range: nil)
             chordName = chordName.replacingOccurrences(of: "b", with: "\u{266D}", options: .literal, range: nil)
             chordName = chordName.replacingOccurrences(of: "add", with: "\u{2009}add", options: .literal, range: nil)
             
-            // jazz notation to do
+            /// TODO: jazz notation support
 //            chordName = chordName.replacingOccurrences(of: "maj7", with: "\u{0394}7", options: .literal, range: nil)
 //            chordName = chordName.replacingOccurrences(of: "dim", with: "\u{00B0}", options: .literal, range: nil)
 //            chordName = chordName.replacingOccurrences(of: "aug", with: "+", options: .literal, range: nil) // alt: \u{FF0B}
 //            chordName = chordName.replacingOccurrences(of: "m7\u{266D}5", with: "\u{00F8}", options: .literal, range: nil)
 //            chordName = chordName.replacingOccurrences(of: "m", with: "-", options: .literal, range: nil) // alt: \u{FF0D}
 //
+            // make sure to estimate the complexity
             estimateComplexity()
         }
         else {

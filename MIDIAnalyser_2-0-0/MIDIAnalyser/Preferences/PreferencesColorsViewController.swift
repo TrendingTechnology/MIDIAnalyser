@@ -96,7 +96,7 @@ class PreferencesColorsViewController: NSViewController {
         Preferences.save(key: .Appearance, data: encodedAppearance)
         
         // also save the name of the appearance selected
-        Preferences.save(key: .AppearanceName, data: appearancePopUpButton.titleOfSelectedItem)
+        Preferences.save(key: .AppearanceName, data: appearancePopUpButton.titleOfSelectedItem ?? "")
         
     }
     

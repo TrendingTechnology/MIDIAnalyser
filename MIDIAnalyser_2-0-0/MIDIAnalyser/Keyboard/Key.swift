@@ -12,21 +12,20 @@ import Foundation
 class Key: NSCopying {
     
     
-    // enumerated types
+    // different accidental types
     enum NoteNameFormat {
         case sharps, flats, mixed
     }
     
+    // key colours
     enum KeyType {
         case white, black
     }
     
-    
-    // lists of possible note names
+    // lists of possible note names for each way of naming
     static let noteNamesSharps = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"]
     static let noteNamesFlats  = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "Gb", "G", "Ab"]
     static let noteNamesMixed  = ["A", "Bb", "B", "C", "Db", "D", "Eb", "E", "F", "F#", "G", "Ab"]
-    
     
     // key data
     var state: Bool
@@ -52,7 +51,7 @@ class Key: NSCopying {
         switch format {
         
         case .sharps:
-            return Key.noteNamesSharps[MIDINumber % 12] // need to fix this magic number by reordering noteNamesSharps etc
+            return Key.noteNamesSharps[MIDINumber % 12]
             
         case .flats:
             return Key.noteNamesFlats[MIDINumber % 12]
@@ -63,7 +62,6 @@ class Key: NSCopying {
         }
         
     }
-    
     
     // function for copying key objects
     func copy(with zone: NSZone? = nil) -> Any {

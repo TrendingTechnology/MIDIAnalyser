@@ -11,7 +11,7 @@ import Cocoa
 class MIDITypingListener: NSViewController {
     
     
-    // dictionary for MIDI number to character
+    // mapping for keyboard letters to MIDI number
     static private let characterMIDINumberDictionary: [String : Int] = [
         "a" : 60,
         "w" : 61,
@@ -31,21 +31,23 @@ class MIDITypingListener: NSViewController {
         "p" : 75
     ]
     
+    
     // default velocity to send for keyDown events
     static private let defaultVelocity: Int = 127
     
-    // is the listener enabled
+    // is the listener enabled by user preferences
     var enabled: Bool = true
     
     
     // start monitoring key events
     func startListening() {
 
+        // monitor keyDown events
         NSEvent.addLocalMonitorForEvents(matching: .keyDown) {
             
             self.keyDown(with: $0)
             
-            // to stop funk sound, return nil if the key is handled (in the list of allowed keys)
+            // to stop macOS error sound, return nil if the key is handled (in the list of allowed keys)
             // otherwise allow the event to be passed up the responder chain
             if MIDITypingListener.characterMIDINumberDictionary[$0.characters ?? ""] != nil {
                 return nil
@@ -54,17 +56,18 @@ class MIDITypingListener: NSViewController {
             return $0
         }
 
+        // monitor keyUp events
         NSEvent.addLocalMonitorForEvents(matching: .keyUp) {
             self.keyUp(with: $0)
             return $0
         }
         
-        // load default preference for whether to enable or not
+        // load default preference for whether to enable listening or not
         if let preferEnabled = Preferences.load(key: .MIDITypingEnabled) as? Bool {
             enabled = preferEnabled
         }
         
-        // add observer
+        // add observer for change to preferences
         PreferencesNotificationCenter.observe(type: .MIDITypingEnabled, observer: self, selector: #selector(enabledChanged))
         
     }
@@ -73,8 +76,10 @@ class MIDITypingListener: NSViewController {
     // key handlers
     override func keyDown(with event: NSEvent) {
         
+        // only respond to events if enabled
         if enabled {
-            // only take non-repeated events
+            
+            // only handle non-repeated events
             if !event.isARepeat {
                 
                 let key: String = event.characters ?? ""
@@ -93,8 +98,10 @@ class MIDITypingListener: NSViewController {
     
     override func keyUp(with event: NSEvent) {
         
+        // only respond to inputs if enabled
         if enabled {
-            // only take non-repeated events
+            
+            // only handle non-repeated events
             if !event.isARepeat {
                 
                 let key: String = event.characters ?? ""
@@ -109,7 +116,7 @@ class MIDITypingListener: NSViewController {
         }
     }
     
-    // enabled changed
+    // receiver for change to enable
     @objc func enabledChanged(_ notification: Notification) {
         
         // load preference for whether to enable or not

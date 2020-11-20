@@ -12,7 +12,7 @@ import AudioKit
 
 class MIDIHardwareListener: AKMIDIListener {
     
-    // currently selected input
+    // currently and available inputs
     var currentlySelectedInput: String = ""
     var availableInputs: [String] = Array()
     
@@ -24,6 +24,7 @@ class MIDIHardwareListener: AKMIDIListener {
         AudioKit.midi.openInput("(select input)")
         AudioKit.midi.addListener(self)
         
+        // open the user preferred input (if available)
         openPreferredInput()
         
     }
@@ -31,12 +32,14 @@ class MIDIHardwareListener: AKMIDIListener {
 
     // noteOn event handler
     func receivedMIDINoteOn(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
+        // generate and post a noteOn object
         let message = MIDINoteMessage(messageType: .noteOn, noteNumber: Int(noteNumber), velocity: Int(velocity))
         MIDINotificationCenter.post(type: .noteOn, object: message)
     }
     
     // noteOff event handler
     func receivedMIDINoteOff(noteNumber: MIDINoteNumber, velocity: MIDIVelocity, channel: MIDIChannel) {
+        // generate and post a noteOff message
         let message = MIDINoteMessage(messageType: .noteOn, noteNumber: Int(noteNumber), velocity: Int(velocity))
         MIDINotificationCenter.post(type: .noteOff, object: message)
     }
@@ -44,7 +47,7 @@ class MIDIHardwareListener: AKMIDIListener {
     // control event handler
     func receivedMIDIController(_ controller: MIDIByte, value: MIDIByte, channel: MIDIChannel) {
         
-        // sustain pedal
+        // generate and post a sustain message
         if controller.magnitude == MIDIControlMessage.MIDIControlMessageType.sustain.rawValue {
             let message = MIDIControlMessage(type: .sustain, value: Int(value))
             MIDINotificationCenter.post(type: .control, object: message)
@@ -52,9 +55,10 @@ class MIDIHardwareListener: AKMIDIListener {
         
     }
     
+    // change the MIDI setup
     func receivedMIDISetupChange() {
         openPreferredInput()
-        print("MIDI setup changed: ", currentlySelectedInput)
+        print("MIDI input changed: ", currentlySelectedInput)
     }
     
     // input change handlers
@@ -62,24 +66,29 @@ class MIDIHardwareListener: AKMIDIListener {
         
         // open the user preferred input
         if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
+            
+            // open preferred input if available
             if AudioKit.midi.inputNames.contains(preferredInputDevice) {
                 AudioKit.midi.openInput(preferredInputDevice)
                 currentlySelectedInput = preferredInputDevice
             }
+            // otherwise default to all inputs
             else {
                 MIDIHardwareListener.inputChange("All inputs")
                 currentlySelectedInput = "All inputs"
             }
         }
+        // if no preferred input, default to all inputs
         else {
             MIDIHardwareListener.inputChange("All inputs")
             currentlySelectedInput = "All inputs"
         }
         
+        // record all the available inputs
         availableInputs = MIDIHardwareListener.listInputs()
     }
     
-    
+    // handle input changes
     static func inputChange(_ input: String) {
         
         // if one specific input selected, open it
@@ -96,7 +105,6 @@ class MIDIHardwareListener: AKMIDIListener {
         }
         
     }
-    
     
     // list all available inputs
     static func listInputs() -> [String] {

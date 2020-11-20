@@ -12,7 +12,7 @@ class KeyboardView: NSView {
     
     
     // colour pallette
-    private let backgroundColor: NSColor = NSColor.black
+    private let backgroundColor: NSColor = NSColor.black /// TODO: define using colour assets
     
     // key views
     var whiteKeys: [WhiteKeyView] = Array()
@@ -44,19 +44,21 @@ class KeyboardView: NSView {
         blackKeyWidth = 0.7 * whiteKeyWidth
         blackKeyHeight = 0.64 * whiteKeyHeight
 
-        // create keys
+        // create white keys
         for i in 0 ... Keyboard.nWhiteKeys {
 
+            // determine dimensions
             let whiteKeyFrame = NSRect(x: CGFloat(self.frame.origin.x) + CGFloat(i) * whiteKeyWidth,
                                        y: CGFloat(self.frame.origin.y),
                                        width: CGFloat(whiteKeyWidth - 1), // -2
                                        height: whiteKeyHeight)
 
+            // create the white key object and add to key array
             let whiteKey = WhiteKeyView(frame: whiteKeyFrame)
             whiteKeys.append(whiteKey)
         }
         
-
+        // offsets for black key positions
         let blackKeyOffsets = [0,  1,  1,  2,  2,  2,
                                    3,  3,  4,  4,  4,
                                    5,  5,  6,  6,  6,
@@ -66,23 +68,27 @@ class KeyboardView: NSView {
                                   13, 13, 14, 14, 14,
                                   15, 15, 16, 16, 16]
 
+        // create the black keys
         for i in 0 ..< Keyboard.nBlackKeys {
 
+            // calculate position
             var x = CGFloat(self.frame.origin.x)
             x += (whiteKeyWidth - CGFloat(blackKeyWidth / 2))
             x += CGFloat(i + blackKeyOffsets[i]) * whiteKeyWidth
 
+            // determine dimensions
             let blackKeyFrame = NSRect(x: x,
                                        y: CGFloat(self.frame.origin.y) + CGFloat(self.frame.size.height) - blackKeyHeight,
                                        width: CGFloat(blackKeyWidth * 0.9),
                                        height: blackKeyHeight)
 
+            // create the black key object and add to key array
             let blackKey = BlackKeyView(frame: blackKeyFrame)
             blackKeys.append(blackKey)
 
         }
 
-        // add keys to view
+        // add keys to the view
         for key in whiteKeys {self.addSubview(key)}
         for key in blackKeys {self.addSubview(key)}
         

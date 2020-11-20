@@ -23,6 +23,7 @@ class WhiteKeyView: NSBox {
         
     }
     
+    // initialisation with frame
     override init(frame: NSRect) {
         
         // superclass initialisation

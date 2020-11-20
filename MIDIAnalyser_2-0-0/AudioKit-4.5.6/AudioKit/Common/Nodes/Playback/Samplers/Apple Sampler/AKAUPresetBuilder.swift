@@ -101,7 +101,8 @@ open class AKAUPresetBuilder {
                     sampleNum = temp
                 }
             }
-
+            /// DELETED SOME LINES
+            /*
             if (sound as AnyObject).object(forKey: startNoteKey) == nil ||
                 (sound as AnyObject).object(forKey: endNoteKey) == nil {
                 if let soundObject = (sound as AnyObject).object(forKey: rootNoteKey) {
@@ -125,6 +126,7 @@ open class AKAUPresetBuilder {
 
                 sampleIteration += 1
             }
+            */
 
             var startNote = soundDict.object(forKey: startNoteKey) as? MIDINoteNumber
             var endNote = soundDict.object(forKey: endNoteKey) as? MIDINoteNumber

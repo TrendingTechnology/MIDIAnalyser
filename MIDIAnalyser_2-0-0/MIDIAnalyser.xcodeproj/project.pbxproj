@@ -183,6 +183,7 @@
 				2238571224AFB79B00F34A33 /* MainViewController.swift */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
 				22D7300724B35C9B0039EA90 /* About.storyboard */,
+				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 				2238575924AFD58800F34A33 /* MIDI */,
 				2238574A24AFB89700F34A33 /* Keyboard */,
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
@@ -206,7 +207,6 @@
 				22626B2A24B0BF0F002814EC /* KeyboardView.swift */,
 				22626B2824B0BD78002814EC /* WhiteKeyView.swift */,
 				22626B2C24B0D7A3002814EC /* BlackKeyView.swift */,
-				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 			);
 			path = Keyboard;
 			sourceTree = "<group>";

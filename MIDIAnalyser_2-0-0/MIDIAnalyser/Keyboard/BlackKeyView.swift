@@ -22,6 +22,7 @@ class BlackKeyView: NSBox {
         
     }
     
+    // initialisation with frame
     override init(frame: NSRect) {
         
         // superclass initialisation
