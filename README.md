@@ -8,8 +8,9 @@ Supported OS     :  macOS 10.15+
 ### Description
 macOS desktop app to analyse input data from a MIDI controller and display the chord played and sheet music notation in real time.
 
-<img src="./Info/MIDIAnalyser%202.0.0.png" width="800" class="center">
-*MIDIAnalyser 2.0.0 beta 1.*
+<img src="./Info/MIDIAnalyser%202.0.0.png" width="800" class="center">  
+
+>MIDIAnalyser 2.0.0 beta 1.
 
 
 ### Installation
