@@ -1,4 +1,4 @@
-# Notes on how the code works
+# Notes to self
 
 
 
