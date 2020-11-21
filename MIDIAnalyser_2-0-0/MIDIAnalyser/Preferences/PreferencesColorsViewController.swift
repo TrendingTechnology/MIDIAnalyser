@@ -92,6 +92,7 @@ class PreferencesColorsViewController: NSViewController {
         NSApp.appearance = appearance
         
         // encode and save to user preferences
+        /// TODO: archiving method depreciated, update
         let encodedAppearance = NSKeyedArchiver.archivedData(withRootObject: appearance)
         Preferences.save(key: .Appearance, data: encodedAppearance)
         

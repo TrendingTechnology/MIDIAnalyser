@@ -37,7 +37,7 @@ class PreferencesMIDIViewController: NSViewController {
             }
         }
         
-        // load MIDI typing preferred staate if available
+        // load MIDI typing preferred state if available
         if let enableMIDITyping = Preferences.load(key: .MIDITypingEnabled) as? Bool {
             MIDITypingButton.state = enableMIDITyping ? .on : .off
         }

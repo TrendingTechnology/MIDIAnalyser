@@ -14,8 +14,8 @@ class GrandStaffViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
-        
+
+        // create the view
         grandStaffView = GrandStaffView(frame: self.view.frame)
         self.view = grandStaffView
         

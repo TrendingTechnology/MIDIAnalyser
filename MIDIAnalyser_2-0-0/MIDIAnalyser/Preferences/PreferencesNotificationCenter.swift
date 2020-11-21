@@ -19,9 +19,7 @@ class PreferencesNotificationCenter {
     
     // subscribe to notifications
     static func observe(type: Preferences.PreferenceKeys, observer: Any, selector: Selector) {
-    
         NotificationCenter.default.addObserver(observer, selector: selector, name: NSNotification.Name(rawValue: type.rawValue), object: nil)
-    
     }
     
     

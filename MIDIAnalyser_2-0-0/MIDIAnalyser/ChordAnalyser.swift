@@ -19,6 +19,7 @@ class ChordAnalyser {
     var chord: Chord = Chord("")
     var possibleChords: [Chord] = []
     var accidentals: Key.NoteNameFormat = Key.NoteNameFormat.mixed
+    var keySignature: GrandStaffKeySignature = GrandStaffKeySignature.noKey
     
     // analyser constants
     let intervalNames: [String] = ["unison",
@@ -43,19 +44,24 @@ class ChordAnalyser {
     @objc func updateAccidentals(_ notification: Notification) {
         
         // extract the key signature
-        if let keySignature = notification.object as? GrandStaffKeySignature {
+        if let theKey = notification.object as? GrandStaffKeySignature {
             
             // set the accidentals depending on the key
-            if keySignature.isSharpsKey {
+            if theKey.isSharpsKey {
                 accidentals = .sharps
             }
-            else if keySignature === GrandStaffKeySignature.noKey {
+            else if theKey === GrandStaffKeySignature.noKey {
                 accidentals = .mixed
             }
             else {
                 accidentals = .flats
             }
+            
+            // store the key signature for use elsewhere
+            self.keySignature = theKey
         }
+        
+        
         
     }
     
@@ -338,6 +344,8 @@ class ChordAnalyser {
             }
             
         }
+        
+        /// TODO: context dependent analysis 
     
         // return the most likely chord
         return possibleChords[mostLikelyIndex]

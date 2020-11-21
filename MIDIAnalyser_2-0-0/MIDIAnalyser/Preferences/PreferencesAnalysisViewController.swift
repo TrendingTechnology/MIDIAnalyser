@@ -20,8 +20,6 @@ class PreferencesAnalysisViewController: NSViewController {
     
     override func viewDidAppear() {
         super.viewDidAppear()
-        
-
     }
     
 }

@@ -34,7 +34,6 @@ class BlackKeyView: NSBox {
         self.borderWidth = 1
         self.fillColor = defaultColor
         self.borderColor = NSColor.black
-        self.borderType = .grooveBorder // groove
         self.focusRingType = .none
         self.appearance = NSAppearance(named: .darkAqua)
         

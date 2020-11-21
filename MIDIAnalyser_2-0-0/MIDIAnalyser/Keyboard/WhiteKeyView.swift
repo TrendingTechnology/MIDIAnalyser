@@ -35,7 +35,7 @@ class WhiteKeyView: NSBox {
         self.borderWidth = 0
         self.fillColor = defaultColor
         self.borderColor = NSColor.secondaryLabelColor
-        self.borderType = .noBorder
+        self.borderWidth = 0
         self.focusRingType = .none
         self.appearance = NSAppearance(named: .darkAqua)
         
