@@ -44,6 +44,7 @@
 		22AD1CA624B263FB007389E4 /* ChordNameExampleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CA524B263FB007389E4 /* ChordNameExampleView.swift */; };
 		22AD1CA924B26552007389E4 /* ChordNameExampleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CA824B26552007389E4 /* ChordNameExampleViewController.swift */; };
 		22AD1CAC24B288C3007389E4 /* Preferences.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22AD1CAB24B288C3007389E4 /* Preferences.swift */; };
+		22B5C075258D206300D2C687 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22B5C074258D206300D2C687 /* MainView.swift */; };
 		22BE3E5724B24DE400C66299 /* Preferences.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 22BE3E5624B24DE400C66299 /* Preferences.storyboard */; };
 		22D72FF824B29C3F0039EA90 /* MIDIHardwareListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FF724B29C3F0039EA90 /* MIDIHardwareListener.swift */; };
 		22D72FFE24B29C540039EA90 /* MIDIControlMessage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22D72FF924B29C530039EA90 /* MIDIControlMessage.swift */; };
@@ -134,6 +135,7 @@
 		22AD1CA524B263FB007389E4 /* ChordNameExampleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameExampleView.swift; sourceTree = "<group>"; };
 		22AD1CA824B26552007389E4 /* ChordNameExampleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChordNameExampleViewController.swift; sourceTree = "<group>"; };
 		22AD1CAB24B288C3007389E4 /* Preferences.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Preferences.swift; sourceTree = "<group>"; };
+		22B5C074258D206300D2C687 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		22BE3E5624B24DE400C66299 /* Preferences.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Preferences.storyboard; sourceTree = "<group>"; };
 		22D72FF724B29C3F0039EA90 /* MIDIHardwareListener.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIHardwareListener.swift; path = MIDIAnalyser/MIDI/MIDIHardwareListener.swift; sourceTree = SOURCE_ROOT; };
 		22D72FF924B29C530039EA90 /* MIDIControlMessage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MIDIControlMessage.swift; path = MIDIAnalyser/MIDI/MIDIControlMessage.swift; sourceTree = SOURCE_ROOT; };
@@ -181,6 +183,7 @@
 			children = (
 				2238571924AFB79D00F34A33 /* Main.storyboard */,
 				2238571224AFB79B00F34A33 /* MainViewController.swift */,
+				22B5C074258D206300D2C687 /* MainView.swift */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
 				22D7300724B35C9B0039EA90 /* About.storyboard */,
 				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
@@ -405,6 +408,7 @@
 				229678E024B24AAF00A8C71E /* PreferencesMIDIViewController.swift in Sources */,
 				2276C61824B556ED00A155CB /* GrandStaffViewController.swift in Sources */,
 				22D7300A24B4CC140039EA90 /* ChordNameViewTextField.swift in Sources */,
+				22B5C075258D206300D2C687 /* MainView.swift in Sources */,
 				22AD1CAC24B288C3007389E4 /* Preferences.swift in Sources */,
 				229678DC24B2178D00A8C71E /* PreferencesTabViewController.swift in Sources */,
 				2286EC0D24B29214003914F3 /* PreferencesColorsViewController.swift in Sources */,

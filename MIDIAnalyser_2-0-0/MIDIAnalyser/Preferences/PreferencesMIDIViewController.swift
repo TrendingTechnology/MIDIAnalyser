@@ -35,7 +35,6 @@ class PreferencesMIDIViewController: NSViewController {
         if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
             if let item = inputDevicePopUpButton.item(withTitle: preferredInputDevice) {
                 inputDevicePopUpButton.select(item)
-                // MIDIHardwareListener.inputChange(preferredInputDevice)
             }
         }
         
