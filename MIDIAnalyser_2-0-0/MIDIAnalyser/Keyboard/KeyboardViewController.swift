@@ -27,8 +27,8 @@ class KeyboardViewController: NSViewController {
         // create the view
         // note that the container view is slightly smaller than this view
         // to crop the rounding of the tops of the keys
-        self.keyboardView = KeyboardView(frame: view.frame)
-        self.view.addSubview(keyboardView)
+        self.keyboardView = KeyboardView(frame: self.view.frame)
+        self.view = keyboardView
         
         // add observers
         MIDINotificationCenter.observe(type: .noteOn, observer: self, selector: #selector(keyUpdate))
@@ -39,7 +39,11 @@ class KeyboardViewController: NSViewController {
         self.typingListener.startListening()
         
     }
-
+    
+    override func viewDidLayout() {
+        keyboardView.keyContainer()
+        keyboardView.keyDimensions()
+    }
     
     // key updated function
     @objc func keyUpdate(_ notification: Notification) {

@@ -11,12 +11,13 @@ import Cocoa
 class KeyboardView: NSView {
     
     
-    // colour pallette
-    private let backgroundColor: NSColor = NSColor.black /// TODO: define using colour assets
-    
     // key views
     var whiteKeys: [WhiteKeyView] = Array()
     var blackKeys: [BlackKeyView] = Array()
+    
+    // container view
+    private let keyContainerAspectRatio: CGFloat = 728 / 100 // width : height
+    private let keyContainerView = NSView()
     
     // key dimensions
     private var whiteKeyWidth: CGFloat = CGFloat()
@@ -38,26 +39,94 @@ class KeyboardView: NSView {
         // superclass initialisation
         super.init(frame: frame)
         
+        // key container
+        self.addSubview(keyContainerView)
+        
+        // create keys
+        for _ in 0 ..< Keyboard.nWhiteKeys {
+            whiteKeys.append(WhiteKeyView(frame: NSRect()))
+        }
+        
+        for _ in 0 ..< Keyboard.nBlackKeys {
+            blackKeys.append(BlackKeyView(frame: NSRect()))
+        }
+        
+        keyDimensions()
+        
+
+        // add keys to the view
+        for key in whiteKeys {keyContainerView.addSubview(key)}
+        for key in blackKeys {keyContainerView.addSubview(key)}
+        
+        
+    }
+    
+    // drawing function
+    override func draw(_ dirtyRect: NSRect) {
+        
+        // superclass drawing
+        super.draw(dirtyRect)
+        
+        // background color
+        self.wantsLayer = true
+        //self.layer?.backgroundColor = NSColor.red.cgColor
+        
+    }
+    
+
+    // calculate size of key container
+    func keyContainer() {
+    
+        // aspect ratio of parent view to the container
+        let keyboardViewAspectRatio: CGFloat = self.frame.width / self.frame.height
+        var keyContainerViewSize: NSSize = NSSize()
+        
+        // determine the maximum size the container can be
+        if keyboardViewAspectRatio > keyContainerAspectRatio {
+            keyContainerViewSize =  NSSize(width: self.frame.height * keyContainerAspectRatio,
+                                           height: self.frame.height)
+        }
+        else {
+            keyContainerViewSize = NSSize(width: self.frame.width,
+                                          height: self.frame.width / keyContainerAspectRatio)
+        }
+        
+        // container for keys
+        let keyContainerView = self.subviews[0]
+        
+        keyContainerView.wantsLayer = true
+        //keyContainerView.layer?.backgroundColor = NSColor.blue.cgColor
+            
+        keyContainerView.frame = NSRect(x: self.frame.origin.x + (self.frame.width - keyContainerViewSize.width) / 2,
+                                        y: self.frame.origin.y + (self.frame.height - keyContainerViewSize.height) / 2,
+                                        width: keyContainerViewSize.width,
+                                        height: keyContainerViewSize.height)
+
+    }
+    
+    // calculate and update key dimensions
+    func keyDimensions() {
+        
         // calculate key dimensions
-        whiteKeyWidth = CGFloat(self.frame.size.width) / CGFloat(Keyboard.nWhiteKeys)
-        whiteKeyHeight = CGFloat(self.frame.size.height)
+        whiteKeyWidth = CGFloat(keyContainerView.frame.width) / CGFloat(Keyboard.nWhiteKeys)
+        whiteKeyHeight = CGFloat(keyContainerView.frame.height)
         blackKeyWidth = 0.7 * whiteKeyWidth
         blackKeyHeight = 0.64 * whiteKeyHeight
 
         // create white keys
-        for i in 0 ... Keyboard.nWhiteKeys {
-
+        for i in 0 ..< Keyboard.nWhiteKeys {
+            
             // determine dimensions
-            let whiteKeyFrame = NSRect(x: CGFloat(self.frame.origin.x) + CGFloat(i) * whiteKeyWidth,
-                                       y: CGFloat(self.frame.origin.y),
+            let whiteKeyFrame = NSRect(x: CGFloat(i) * whiteKeyWidth,
+                                       y: 0,
                                        width: CGFloat(whiteKeyWidth - 1), // -2
                                        height: whiteKeyHeight)
-
-            // create the white key object and add to key array
-            let whiteKey = WhiteKeyView(frame: whiteKeyFrame)
-            whiteKeys.append(whiteKey)
+            
+            whiteKeys[i].frame = whiteKeyFrame
         }
-        
+
+        print(whiteKeyWidth)
+
         // offsets for black key positions
         let blackKeyOffsets = [0,  1,  1,  2,  2,  2,
                                    3,  3,  4,  4,  4,
@@ -67,32 +136,25 @@ class KeyboardView: NSView {
                                   11, 11, 12, 12, 12,
                                   13, 13, 14, 14, 14,
                                   15, 15, 16, 16, 16]
+        
 
         // create the black keys
+        
         for i in 0 ..< Keyboard.nBlackKeys {
 
             // calculate position
-            var x = CGFloat(self.frame.origin.x)
-            x += (whiteKeyWidth - CGFloat(blackKeyWidth / 2))
+            var x = (whiteKeyWidth - CGFloat(blackKeyWidth / 2))
             x += CGFloat(i + blackKeyOffsets[i]) * whiteKeyWidth
 
             // determine dimensions
             let blackKeyFrame = NSRect(x: x,
-                                       y: CGFloat(self.frame.origin.y) + CGFloat(self.frame.size.height) - blackKeyHeight,
+                                       y: CGFloat(keyContainerView.frame.size.height) - blackKeyHeight,
                                        width: CGFloat(blackKeyWidth * 0.9),
                                        height: blackKeyHeight)
 
-            // create the black key object and add to key array
-            let blackKey = BlackKeyView(frame: blackKeyFrame)
-            blackKeys.append(blackKey)
+            blackKeys[i].frame = blackKeyFrame
 
         }
-
-        // add keys to the view
-        for key in whiteKeys {self.addSubview(key)}
-        for key in blackKeys {self.addSubview(key)}
         
     }
-
-    
 }
