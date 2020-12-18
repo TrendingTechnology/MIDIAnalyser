@@ -25,15 +25,17 @@ class PreferencesMIDIViewController: NSViewController {
         inputDevicePopUpButton.removeAllItems()
         inputDevicePopUpButton.addItems(withTitles: MIDIHardwareListener.listInputs())
         inputDevicePopUpButton.action = #selector(inputDeviceChanged)
+        inputDevicePopUpButton.target = self
         
         // update MIDI typing button
         MIDITypingButton.action = #selector(MIDITypingButtonStateChanged)
+        MIDITypingButton.target = self
         
         // load the preferred input device if it is available
         if let preferredInputDevice = Preferences.load(key: .InputDevice) as? String {
             if let item = inputDevicePopUpButton.item(withTitle: preferredInputDevice) {
                 inputDevicePopUpButton.select(item)
-                MIDIHardwareListener.inputChange(preferredInputDevice)
+                // MIDIHardwareListener.inputChange(preferredInputDevice)
             }
         }
         

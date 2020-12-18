@@ -123,6 +123,8 @@ class MIDITypingListener: NSViewController {
         if let preferEnabled = Preferences.load(key: .MIDITypingEnabled) as? Bool {
             enabled = preferEnabled
         }
+        
+        print("enabledChanged()")
     }
     
     
