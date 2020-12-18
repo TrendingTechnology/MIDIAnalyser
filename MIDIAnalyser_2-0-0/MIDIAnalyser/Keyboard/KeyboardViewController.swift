@@ -25,8 +25,6 @@ class KeyboardViewController: NSViewController {
         super.viewDidLoad()
         
         // create the view
-        // note that the container view is slightly smaller than this view
-        // to crop the rounding of the tops of the keys
         self.keyboardView = KeyboardView(frame: self.view.frame)
         self.view = keyboardView
         
@@ -41,8 +39,10 @@ class KeyboardViewController: NSViewController {
     }
     
     override func viewDidLayout() {
-        keyboardView.keyContainer()
-        keyboardView.keyDimensions()
+        // update dimensions in the view when the layout is complete
+        // must be done this way otherwise frame sizes will not be correctly calculated
+        keyboardView.updateKeyContainer()
+        keyboardView.updateKeyDimensions()
     }
     
     // key updated function

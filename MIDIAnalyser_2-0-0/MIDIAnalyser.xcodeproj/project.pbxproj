@@ -186,7 +186,6 @@
 				22B5C074258D206300D2C687 /* MainView.swift */,
 				2238571024AFB79B00F34A33 /* AppDelegate.swift */,
 				22D7300724B35C9B0039EA90 /* About.storyboard */,
-				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 				2238575924AFD58800F34A33 /* MIDI */,
 				2238574A24AFB89700F34A33 /* Keyboard */,
 				22626B1824AFFF15002814EC /* ChordAnalyser */,
@@ -231,6 +230,7 @@
 		22626B1824AFFF15002814EC /* ChordAnalyser */ = {
 			isa = PBXGroup;
 			children = (
+				22626B1C24AFFF56002814EC /* ChordAnalyser.swift */,
 				22626B1A24AFFF3E002814EC /* Chord.swift */,
 				22626B1E24B00883002814EC /* ChordNotesMessage.swift */,
 				225A1C8C24B4E5DF00415515 /* ChordMessage.swift */,

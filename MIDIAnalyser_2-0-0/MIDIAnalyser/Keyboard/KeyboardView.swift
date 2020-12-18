@@ -43,6 +43,7 @@ class KeyboardView: NSView {
         self.addSubview(keyContainerView)
         
         // create keys
+        // array(repeating:) does not work here
         for _ in 0 ..< Keyboard.nWhiteKeys {
             whiteKeys.append(WhiteKeyView(frame: NSRect()))
         }
@@ -51,13 +52,12 @@ class KeyboardView: NSView {
             blackKeys.append(BlackKeyView(frame: NSRect()))
         }
         
-        keyDimensions()
+        // initialise keys to the correct size
+        updateKeyDimensions()
         
-
-        // add keys to the view
+        // add keys to their container view
         for key in whiteKeys {keyContainerView.addSubview(key)}
         for key in blackKeys {keyContainerView.addSubview(key)}
-        
         
     }
     
@@ -75,7 +75,7 @@ class KeyboardView: NSView {
     
 
     // calculate size of key container
-    func keyContainer() {
+    func updateKeyContainer() {
     
         // aspect ratio of parent view to the container
         let keyboardViewAspectRatio: CGFloat = self.frame.width / self.frame.height
@@ -105,7 +105,7 @@ class KeyboardView: NSView {
     }
     
     // calculate and update key dimensions
-    func keyDimensions() {
+    func updateKeyDimensions() {
         
         // calculate key dimensions
         whiteKeyWidth = CGFloat(keyContainerView.frame.width) / CGFloat(Keyboard.nWhiteKeys)
@@ -124,8 +124,6 @@ class KeyboardView: NSView {
             
             whiteKeys[i].frame = whiteKeyFrame
         }
-
-        print(whiteKeyWidth)
 
         // offsets for black key positions
         let blackKeyOffsets = [0,  1,  1,  2,  2,  2,

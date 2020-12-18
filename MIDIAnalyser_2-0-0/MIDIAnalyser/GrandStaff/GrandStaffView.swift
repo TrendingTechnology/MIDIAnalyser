@@ -334,7 +334,6 @@ class GrandStaffView: NSView {
             }
         }
 
-
         // draw notes
         if MIDINumbers.count != 0 {
             
@@ -363,7 +362,7 @@ class GrandStaffView: NSView {
             
             // work out dimensions
             let noteHead: NoteHeadView = NoteHeadView(string: GrandStaffNote.noteHeadCode)
-            let noteHeadSize: CGSize = CGSize(width: 40, height: 100)
+            let noteHeadSize: CGSize = CGSize(width: 40, height: staff.lineSpacing * 9) // 100 height previously
             let noteRequiresAccidental: Bool = self.noteRequiresAccidental(note: note)
 
             // set up the view
@@ -375,6 +374,7 @@ class GrandStaffView: NSView {
             noteHead.frame = NSRect(origin: .zero, size: noteHeadSize)
             noteHead.frame.origin.x = staff.frame.origin.x + staff.frame.size.width / 2
             noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(note.lineToDrawOn)
+            //noteHead.frame.origin.y = staff.frame.origin.y - staff.lineSpacing * 5 + staff.lineSpacing * CGFloat(note.lineToDrawOn)
             
             // adjust horizontal position
             let noteHeadOffset: CGFloat = 12
